@@ -152,6 +152,13 @@ export default function ManageAppointments() {
                 </div>
                 <span className="detail-value">{appointment.pet_name}</span>
               </div>
+              <div className="detail-row">
+                <div className="detail-label">
+                  <span className="icon">🐾</span>
+                  <span>Booking Type:</span>
+                </div>
+                <span className="detail-value">{appointment.service_type}</span>
+              </div>
               {/* Date & Time */}
               <div className="detail-row">
                 <div className="detail-label">

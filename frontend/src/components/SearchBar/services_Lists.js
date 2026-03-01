@@ -4,7 +4,7 @@ const service_Lists = [
   "Desexing",
   "Dental",
   "Nail Trimming",
-  "Haircuts Coat",
+  "Haircuts and Coat Maintenance",
   "Dog Walking",
   "Puppy Training"
 ];

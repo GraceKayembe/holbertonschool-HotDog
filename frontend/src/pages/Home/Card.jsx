@@ -9,7 +9,9 @@ function Card(props) {
       }}
     >
       <div className="topsearchs-overlay">
-        <p className="topsearchs-servicestitle ">{props.title}</p>
+        <p className="topsearchs-servicestitle" onClick={props.onClick}>
+          {props.title}
+        </p>
       </div>
     </div>
   );

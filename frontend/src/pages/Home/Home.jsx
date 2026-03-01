@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchButton.jsx";
 import Card from "./Card.jsx";
 import card_Data from "./card_Data.js";
@@ -53,6 +54,7 @@ function advertBanner(props) {
 function Home() {
   // 1. Add state for the live providers
   const [topProviders, setTopProviders] = useState([]);
+  const navigate = useNavigate();
 
   // 2. Fetch the same public endpoint
   useEffect(() => {
@@ -68,6 +70,10 @@ function Home() {
     };
     fetchTopProviders();
   }, []);
+
+  const handleProviderClick = (provider) => {
+    navigate(`/services?provider=${encodeURIComponent(provider.name)}`);
+  };
 
   return (
     <div className="home-container">
@@ -95,6 +101,7 @@ function Home() {
               key={provider.id}
               img={provider.img_url}
               title={`${provider.name} (⭐${provider.rating})`}
+              linktoservices={() => navigate(`/services/${p.id}`)}
             />
           ))
         ) : (

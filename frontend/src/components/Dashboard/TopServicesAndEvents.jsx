@@ -13,7 +13,7 @@ export default function TopServicesAndEvents({
   const { user } = useContext(AuthContext);
   const [appointments, setAppointments] = useState([]);
   const [loadingAppts, setLoadingAppts] = useState(true);
-  
+
   console.log("3. Data received by Grid Component:", topProviders);
 
   // Fetch user appointments from backend
@@ -68,7 +68,8 @@ export default function TopServicesAndEvents({
           {/* SAFETY CHECK: If we have data, map it. If not, show the text */}
           {topProviders && topProviders.length > 0 ? (
             topProviders.map((provider) => (
-              <div key={provider.id} className="top-service-card">
+              <div key={provider.id} className="top-service-card" onClick={() => navigate(`/appointments/${provider.id}`)}
+                style={{ cursor: 'pointer' }}>
                 <img
                   className="service-img"
                   src={provider.img_url}
@@ -77,7 +78,7 @@ export default function TopServicesAndEvents({
                   style={{ objectFit: 'cover' }}
                 />
                 <div className="service-label" style={{ lineHeight: '1.2' }}>
-                  {provider.name} <br/>
+                  {provider.name} <br />
                   <span style={{ fontSize: '0.85em', color: '#ffce31' }}>⭐ {provider.rating}</span>
                 </div>
               </div>

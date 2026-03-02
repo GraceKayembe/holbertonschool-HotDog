@@ -10,6 +10,7 @@ import AvatarImages from "../../components/AvatarImages/AvatarImages.jsx";
 import "./homeStyle.css";
 import "../../components/SearchBar/searchbar.css";
 import "../../components/AvatarImages/avatarStyle.css";
+import { useNavigate } from "react-router-dom";
 
 // Function service cards
 function createCard(props) {
@@ -26,10 +27,10 @@ function createCard(props) {
 function bannerCard(props) {
   return (
     <CardBanner
-    key={props.id}
-    bannerTitle={props.bannerTitle}
-    img={props.img}
-    showButton={props.showButton}
+      key={props.id}
+      bannerTitle={props.bannerTitle}
+      img={props.img}
+      showButton={props.showButton}
     />
   );
 }
@@ -38,13 +39,13 @@ function bannerCard(props) {
 function advertBanner(props) {
   return (
     <Advert
-    key={props.id}
-    img={props.img}
-    name={props.name}
-    description={props.description}
-    title={props.title}
-    subtitle={props.subtitle}
-    showButton={props.showButton}
+      key={props.id}
+      img={props.img}
+      name={props.name}
+      description={props.description}
+      title={props.title}
+      subtitle={props.subtitle}
+      showButton={props.showButton}
     />
   );
 }
@@ -53,6 +54,7 @@ function advertBanner(props) {
 function Home() {
   // 1. Add state for the live providers
   const [topProviders, setTopProviders] = useState([]);
+  const navigate = useNavigate();
 
   // 2. Fetch the same public endpoint
   useEffect(() => {
@@ -73,7 +75,7 @@ function Home() {
     <div className="home-container">
       {/* Main Heading */}
       <h1 className="home-heading">
-          Book your next healthcare <br /> visit in just a few clicks
+        Book your next healthcare <br /> visit in just a few clicks
       </h1>
 
       {/* Subheading */}
@@ -87,12 +89,14 @@ function Home() {
       <div className="topsearchs-title-card-container" style={{ marginTop: '40px' }}>
         <p className="topsearchs-card-title">Top Rated Providers</p>
       </div>
-      
+
       <div className="topsearchs-cards-container">
         {topProviders.length > 0 ? (
           topProviders.map((provider) => (
             <Card
               key={provider.id}
+              onClick={() => navigate(`/appointments/${provider.id}`)}
+              style={{ cursor: 'pointer' }}
               img={provider.img_url}
               title={`${provider.name} (⭐${provider.rating})`}
             />

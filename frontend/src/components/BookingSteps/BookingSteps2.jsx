@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./bookingsteps.css";
 import { createPet } from "../../api/pet";
 
-function FormAddPet({ closePopup, onPetAdded }) { // fixed prop name
+function BookingSteps2({ closePopup, onPetAdded }) { // fixed prop name
   const [values, setValues] = useState({
     name: "",
     species: "",
@@ -84,4 +84,4 @@ function FormAddPet({ closePopup, onPetAdded }) { // fixed prop name
   );
 }
 
-export default FormAddPet;
+export default BookingSteps2;

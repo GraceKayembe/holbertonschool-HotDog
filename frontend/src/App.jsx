@@ -8,7 +8,7 @@ import ProviderNav from "./components/Header/ProviderNav.jsx";
 import ProtectedRoute from "./components/protectedRoute/ProtectedRoute.jsx";
 
 // MUST DELETE
-import BookingSteps from "./components/BookingSteps/BookingSteps.jsx";
+import BookingSteps1 from "./components/BookingSteps/BookingSteps1.jsx";
 
 /* =======================
    PUBLIC PAGES
@@ -75,7 +75,7 @@ export default function App() {
           <Route path="/appointments/:id" element={<Appointments />} />
           <Route path="/manage-appointments" element={<ManageAppointments />} />
           {/* MUST DELETE -- GRACE */}
-          <Route path="/BookingSteps" element={<BookingSteps />} />
+          <Route path="/BookingSteps" element={<BookingSteps1 />} />
           BookingSteps
           {/* </Route> */}
           {/* =======================

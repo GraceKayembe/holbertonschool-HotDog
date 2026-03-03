@@ -4,7 +4,13 @@ import { useEffect, useState } from "react";
 import FormLabel from "../../../components/Form/FormLabel.jsx";
 import SuccessToast from "../../../components/toasts/SuccessToast.jsx";
 import ConfirmModal from "../../../components/modals/ConfirmModal.jsx";
+<<<<<<< HEAD
 
+=======
+// import Header from "../../components/Header/Header.jsx";
+// import "../../components/Header/Header.css";
+// import "../PaitentList/ProviderPetProfile.jsx";
+>>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
 import "../../../styles/common.css";
 import "./account.css";
 
@@ -168,6 +174,163 @@ export default function Account() {
         <h1 className="mb-5" style={{ fontWeight: 800, color: "#1f3a5f" }}>
           My Profile
         </h1>
+<<<<<<< HEAD
+=======
+        <div className="form">
+          <div className="form-nav">
+            <div>
+              <h3
+                style={{
+                  paddingLeft: "16px",
+                  paddingTop: "30px",
+                  color: "#1f3a5f",
+                  fontWeight: "800",
+                }}
+              >
+                Account
+              </h3>
+              <FormNav
+                nav1="My Details"
+                nav2="Manage Password"
+                nav3="Manage Account"
+                activeTab={activeTab}
+                setActiveTab={setActiveTab}
+                className="link-style"
+              />
+            </div>
+          </div>
+          <div className="form-panel">
+            {activeTab === "details" && (
+              <>
+                <h6
+                  id="mydetails"
+                  style={{ fontWeight: 700, color: "#1f3a5f" }}
+                >
+                  My Details
+                </h6>
+                <div className="form-block mb-3">
+                  <Form>
+                    <FormLabel
+                      className="justify-left mb-1"
+                      controlId="userFirstName"
+                      type="firstname"
+                      name="Company Name"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+                    {/* <FormLabel
+                      className="justify-left mb-1"
+                      controlId="userLastName"
+                      type="lastname"
+                      name="Last Name"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    /> */}
+                    <FormLabel
+                      className="justify-left mb-1"
+                      controlId="userEmail"
+                      type="email"
+                      name="Email"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+                    <FormLabel
+                      className="justify-left mb-1"
+                      controlId="userMobile"
+                      type="mobile"
+                      name="Address"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+                    <FormLabel
+                      className="justify-left mb-3"
+                      controlId="emergencyNumber"
+                      type="secondaryNumber"
+                      name="Other locations"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+                    <FormLabel
+                      className="justify-left mb-3"
+                      controlId="emergencyNumber"
+                      type="secondaryNumber"
+                      name="Other locations"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+
+                    {/* Profile Info */}
+                    <FormLabel
+                      className="justify-left mb-1"
+                      controlId="userEmail"
+                      type="email"
+                      name="Services you provide"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+                    <FormLabel
+                      className="justify-left mb-1"
+                      controlId="userMobile"
+                      type="mobile"
+                      name="Phone"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+                    <FormLabel
+                      className="justify-left mb-3"
+                      controlId="emergencyNumber"
+                      type="secondaryNumber"
+                      name="Description"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+                    <FormLabel
+                      className="justify-left mb-3"
+                      controlId="emergencyNumber"
+                      type="secondaryNumber"
+                      name="Opening hours"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+                    <FormLabel
+                      className="justify-left mb-3"
+                      controlId="emergencyNumber"
+                      type="secondaryNumber"
+                      name="Closing hours"
+                      disabled={!editMode}
+                      readOnly={!editMode}
+                    />
+                  </Form>
+
+                  {editMode ? (
+                    <div>
+                      <button
+                        onClick={closeEditMode}
+                        className="btn-layout btn-yellow"
+                      >
+                        Save details
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={openEditMode}
+                      className="btn-layout btn-yellow"
+                    >
+                      Edit Details
+                    </button>
+                  )}
+                </div>
+              </>
+            )}
+            {activeTab === "password" && (
+              <>
+                <h6
+                  id="mngpwd"
+                  style={{ margin: "0px", fontWeight: 700, color: "#1f3a5f" }}
+                >
+                  Manage Password
+                </h6>
+>>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
 
         {/* Tabs */}
         <div className="tab-menu mb-4">

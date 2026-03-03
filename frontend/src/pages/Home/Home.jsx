@@ -11,6 +11,7 @@ import AvatarImages from "../../components/AvatarImages/AvatarImages.jsx";
 import "./homeStyle.css";
 import "../../components/SearchBar/searchbar.css";
 import "../../components/AvatarImages/avatarStyle.css";
+import { useNavigate } from "react-router-dom";
 
 // Function service cards
 function createCard(props) {
@@ -27,11 +28,18 @@ function createCard(props) {
 function bannerCard(props, navigate) {
   return (
     <CardBanner
+<<<<<<< HEAD
     key={props.id}
     bannerTitle={props.bannerTitle}
     img={props.img}
     showButton={props.showButton}
     onButtonClick={() => navigate("/services")}
+=======
+      key={props.id}
+      bannerTitle={props.bannerTitle}
+      img={props.img}
+      showButton={props.showButton}
+>>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
     />
   );
 }
@@ -40,6 +48,7 @@ function bannerCard(props, navigate) {
 function advertBanner(props, navigate) {
   return (
     <Advert
+<<<<<<< HEAD
     key={props.id}
     img={props.img}
     name={props.name}
@@ -48,6 +57,15 @@ function advertBanner(props, navigate) {
     subtitle={props.subtitle}
     showButton={props.showButton}
     registerNowBtnClick={() => navigate("/about")}
+=======
+      key={props.id}
+      img={props.img}
+      name={props.name}
+      description={props.description}
+      title={props.title}
+      subtitle={props.subtitle}
+      showButton={props.showButton}
+>>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
     />
   );
 }
@@ -81,7 +99,7 @@ function Home() {
     <div className="home-container">
       {/* Main Heading */}
       <h1 className="home-heading">
-          Book your next healthcare <br /> visit in just a few clicks
+        Book your next healthcare <br /> visit in just a few clicks
       </h1>
 
       {/* Subheading */}
@@ -95,12 +113,14 @@ function Home() {
       <div className="topsearchs-title-card-container" style={{ marginTop: '40px' }}>
         <p className="topsearchs-card-title">Top Rated Providers</p>
       </div>
-      
+
       <div className="topsearchs-cards-container">
         {topProviders.length > 0 ? (
           topProviders.map((provider) => (
             <Card
               key={provider.id}
+              onClick={() => navigate(`/appointments/${provider.id}`)}
+              style={{ cursor: 'pointer' }}
               img={provider.img_url}
               title={`${provider.name} (⭐${provider.rating})`}
               linktoApptPage={() => navigate(`/appointments/${provider.id}`)}

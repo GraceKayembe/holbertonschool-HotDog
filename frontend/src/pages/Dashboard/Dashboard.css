@@ -23,6 +23,7 @@
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
+  margin-bottom: 30px;
 }
 
 .intro-hi {
@@ -86,9 +87,15 @@
 /* Grid section */
 .grid-2col {
   display: grid;
+<<<<<<< HEAD
   grid-template-columns: 1.35fr 1.35fr;
   gap: 30px;
   margin: 10px 0 50px;
+=======
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 18px;
+  margin: 30px 0 28px;
+>>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
 }
 
 .panel {
@@ -188,7 +195,7 @@
 
 .event-row {
   display: grid;
-  grid-template-columns: 92px 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 10px;
   padding: 10px 0;
   border-top: 1px solid #e8eaee;
@@ -205,6 +212,11 @@
 
 .event-title {
   font-size: 15px;
+}
+
+.event-service {
+  font-size: 12px;
+  color: #666;
 }
 
 /* banner */
@@ -311,6 +323,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
+  margin-bottom: 20px;
 }
 
 .stylist-card {

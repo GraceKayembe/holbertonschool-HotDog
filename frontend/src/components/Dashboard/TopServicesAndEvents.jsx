@@ -89,7 +89,7 @@ export default function TopServicesAndEvents({
         </div>
       </div>
 
-      <div className="panel events">
+      <div className="panel-events">
         <div className="events-tabs">
           <button
             className="tab"

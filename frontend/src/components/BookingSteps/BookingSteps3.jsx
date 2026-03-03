@@ -1,84 +1,39 @@
-import React, { useState } from "react";
+import React from "react";
 import "./bookingsteps.css";
-import { createPet } from "../../api/pet";
+import confirmationIcon from "../../assets/icons/confirmation-icon.png";
 
-function BookingSteps3({ closePopup, onPetAdded }) { // fixed prop name
-  const [values, setValues] = useState({
-    name: "",
-    species: "",
-    breed: "",
-    gender: "",
-    desexed: "",
-    date_of_birth: "",
-    weight: "",
-    notes: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setValues((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const token = localStorage.getItem("token");
-    if (!token) {
-      alert("No token found. Please log in.");
-      return;
-    }
-
-    try {
-      const payload = {
-        name: values.name,
-        species: values.species.toLowerCase(),
-        breed: values.breed,
-        gender: values.gender.toLowerCase(),
-        desexed: values.desexed === "Yes",
-        date_of_birth: values.date_of_birth,
-        weight: values.weight ? parseFloat(values.weight) : null,
-        notes: values.notes,
-      };
-
-      console.log("Payload sent to backend:", payload);
-
-      const newPet = await createPet(payload, token);
-
-      console.log("Created pet:", newPet);
-
-      onPetAdded(); // refresh pet list
-      closePopup(); // close popup
-
-    } catch (err) {
-      console.error("Error creating pet:", err);
-      alert("Failed to add pet: " + (err.message || "Unknown error"));
-    }
-  };
+function BookingSteps3({ closePopup, bookingData, selectedDate, selectedTime, address }) { 
+  if (!bookingData) return <div>Loading...</div>;
 
   return (
-    <div className="add-pet-form-container">
-      <form onSubmit={handleSubmit}>
+    <div className="bookingsequence-container">
+      <img src={confirmationIcon} alt="Confirmation" className="confirmation-icon"/>
+      <h2 className="bookingsequence-h2">Appointment Confirmed!</h2>
+      <div className="bookingsequence3">
+        <div className="apptdetail-titles-container">
+          <p>Pet:</p> 
+          <p>Booking Type:</p>
+          <p>Date:</p>
+          <p>Time:</p> 
+          <p>Location:</p> 
+        </div>
+        
+        <div className="apptdetail-container">
+          <p>{bookingData.name}</p>
+          <p>{bookingData.booking_type}</p>
+          <p>{selectedDate.format("DD/MM/YYYY")}</p>
+          <p>{selectedTime}</p>
+          <p>{address}</p>
+        </div>
+      </div>
 
-        <h2>Appointment Confirmed!</h2>
+      <hr />
 
-        <p>Name</p>
-        <p>Company Name</p>
-        <p>Date</p>
-        <p>Location</p>
+      <p className="bold-word-accent">Thank you for making your appointment online.</p>
+      <p>Appointments can be managed online. We kindly ask that cancellations be made at least 24 hours prior to the scheduled appointment.</p>
+      <p className="bold-word-accent">We look forward to taking care of your health needs.</p>
 
-        {/* BOOKING TYPES */}
-        <p>Thank you for making your appointment online</p>
-        <p>Should you wish to manage your appointments you can do so online, or on your mobile by downloading the mobile app, AMS Connect, from your app store and following the prompts.</p>
-        <p>We look forward to taking care of your health needs</p>
-    
-
-        <button type="button" onClick={closePopup} className="cancelbutton">
-          Cancel
-        </button>
-      </form>
+      <button type="button" className="bookingsequence-closebutton" onClick={closePopup}>Close</button>
     </div>
   );
 }

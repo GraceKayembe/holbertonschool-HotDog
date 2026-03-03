@@ -144,3 +144,24 @@
 .active-btn {
   background-color: #ffc72c;
 }
+
+
+/* popup css */
+body.modal-open {
+  overflow: hidden;
+}
+
+.provider-modal {
+  background: transparent !important;
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 500px; 
+  width: 100%;
+}
+
+.add-pet-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%; 
+}

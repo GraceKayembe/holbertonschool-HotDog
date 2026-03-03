@@ -9,7 +9,9 @@ import LocationIcon from "../../assets/icons/geo-alt.svg";
 import EmailIcon from "../../assets/icons/email.svg";
 import PhoneIcon from "../../assets/icons/phone.svg";
 
-
+import BookingSteps1 from "../../components/BookingSteps/BookingSteps1";
+import BookingSteps2 from "../../components/BookingSteps/BookingSteps2";
+import BookingSteps3 from "../../components/BookingSteps/BookingSteps3";
 
 
 export default function Appointments() {
@@ -24,6 +26,89 @@ export default function Appointments() {
   const [reviews, setReviews] = useState([]);
   const [hasAppointment, setHasAppointment] = useState(false);
   const [validAppointmentId, setValidAppointmentId] = useState("");
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [step, setStep] = useState(1);
+  const [bookingData, setBookingData] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // popup handler functions
+  const openPopup = () => {
+    setStep(1);
+    setIsPopupOpen(true);
+    document.body.classList.add("modal-open");
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+    setStep(1);
+    setBookingData({});
+    document.body.classList.remove("modal-open");
+    setIsSubmitting(false);
+  };
+
+  const goBack = () => setStep((prev) => Math.max(prev - 1, 1));
+
+  // Move popup steps
+  const handleNext = async (dataFromStep) => {
+    const updatedBookingData = {
+      ...bookingData,
+      ...dataFromStep
+    };
+
+    setBookingData(updatedBookingData);
+
+    if (step === 2) {
+      await submitAppointment(updatedBookingData);
+    }
+
+    setStep(prev => prev + 1);
+  };
+
+  // Submit appointment to backend
+  const submitAppointment = async (dataFromStep1) => {
+    const token = localStorage.getItem("token");
+
+    if (!dataFromStep1.pet_id || !dataFromStep1.booking_type || !selectedTime) {
+      alert("Please make sure all required fields are selected.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch("/api/appointments/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          pet_id: dataFromStep1.pet_id,
+          booking_type: dataFromStep1.booking_type,
+          date: selectedDate.format("YYYY-MM-DD"),
+          time: selectedTime,
+          provider_id: providerID.id,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || data.msg || "Failed to create appointment");
+      }
+
+      // Store the appointment ID for Step 3 display
+      setBookingData((prev) => ({ ...prev, appointment_id: data.id }));
+      console.log("Appointment successfully created:", data);
+    } catch (err) {
+      console.error("Error creating appointment:", err.message);
+      alert("❌ Failed to create appointment: " + err.message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
 
   // FETCH SERVICE PROVIDER DETAILS
   useEffect(() => {
@@ -226,10 +311,30 @@ export default function Appointments() {
               >
                 Cancel
               </button>
-              <button className="action-btn-format navy-btn">Book</button>
+              <button className="action-btn-format navy-btn" onClick={openPopup}>Book</button>
             </div>
           )}
         </div>
+
+        {/* Booking Sequence */}
+        {isPopupOpen && (
+          <div className="provider-modal-overlay">
+            <div className="provider-modal">
+              {step === 1 && <BookingSteps1 closePopup={closePopup} onNext={handleNext} />}
+              {step === 2 && <BookingSteps2 closePopup={closePopup} handleNext={handleNext} goBack={goBack} />}
+              {step === 3 && (
+                <BookingSteps3
+                  closePopup={closePopup}
+                  bookingData={bookingData}
+                  selectedDate={selectedDate}
+                  selectedTime={selectedTime}
+                  address={provider.address}
+                />
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Reviews section - only show if user has completed appointment */}
         <ReviewList
           title={`${provider.name} Reviews`}

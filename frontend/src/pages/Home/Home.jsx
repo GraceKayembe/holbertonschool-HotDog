@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchButton.jsx";
 import Card from "./Card.jsx";
 import card_Data from "./card_Data.js";
@@ -24,28 +25,30 @@ function createCard(props) {
 }
 
 // Function for main banner
-function bannerCard(props) {
+function bannerCard(props, navigate) {
   return (
     <CardBanner
-      key={props.id}
-      bannerTitle={props.bannerTitle}
-      img={props.img}
-      showButton={props.showButton}
+    key={props.id}
+    bannerTitle={props.bannerTitle}
+    img={props.img}
+    showButton={props.showButton}
+    onButtonClick={() => navigate("/services")}
     />
   );
 }
 
 // Function slide show banners
-function advertBanner(props) {
+function advertBanner(props, navigate) {
   return (
     <Advert
-      key={props.id}
-      img={props.img}
-      name={props.name}
-      description={props.description}
-      title={props.title}
-      subtitle={props.subtitle}
-      showButton={props.showButton}
+    key={props.id}
+    img={props.img}
+    name={props.name}
+    description={props.description}
+    title={props.title}
+    subtitle={props.subtitle}
+    showButton={props.showButton}
+    registerNowBtnClick={() => navigate("/about")}
     />
   );
 }
@@ -70,6 +73,10 @@ function Home() {
     };
     fetchTopProviders();
   }, []);
+
+  const handleProviderClick = (provider) => {
+    navigate(`/services?provider=${encodeURIComponent(provider.name)}`);
+  };
 
   return (
     <div className="home-container">
@@ -99,6 +106,7 @@ function Home() {
               style={{ cursor: 'pointer' }}
               img={provider.img_url}
               title={`${provider.name} (⭐${provider.rating})`}
+              linktoApptPage={() => navigate(`/appointments/${provider.id}`)}
             />
           ))
         ) : (
@@ -108,12 +116,12 @@ function Home() {
 
       {/* Faster Booking Banner Section */}
       <div className="home-banner-container">
-        {banner_Data.map(bannerCard)}
+        {banner_Data.map((banner) => bannerCard(banner, navigate))}
       </div>
 
       {/* Advert card */}
       <div className="banner-advert-container">
-        {advert_Data.map(advertBanner)}
+        {advert_Data.map((advert) => advertBanner(advert, navigate))}
       </div>
 
 

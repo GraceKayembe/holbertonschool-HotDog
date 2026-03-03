@@ -1,7 +1,6 @@
 import './Dashboard.css';
 
 import DashboardHero from '../../components/Dashboard/DashboardHero.jsx';
-<<<<<<< HEAD
 // import DashboardSearch from '../../components/Dashboard/DashboardSearch.jsx';
 import SearchBar from '../../components/SearchBar/SearchButton.jsx';
 import TopServicesAndEvents from '../../components/Dashboard/TopServicesAndEvents.jsx';
@@ -9,12 +8,6 @@ import DashboardBanner from '../../components/Dashboard/DashboardBanner.jsx';
 import PetStylistReviews from '../../components/Dashboard/PetStylistReviews.jsx';
 import Advert from '../../pages/Home/Advert.jsx';
 import advert_Data from '../../pages/Home/advert_Data.js';
-=======
-import TopServicesAndEvents from '../../components/Dashboard/TopServicesAndEvents.jsx';
-import DashboardBanner from '../../components/Dashboard/DashboardBanner.jsx';
-import PetStylistReviews from '../../components/Dashboard/PetStylistReviews.jsx';
-import SearchBar from '../../components/SearchBar/SearchButton.jsx';
->>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
 
 import { STYLISTS } from './dashboardData.js';
 import { useContext, useState, useEffect } from 'react';
@@ -48,14 +41,11 @@ export default function Dashboard() {
       <div className="dash-container">
         <DashboardHero name={user?.first_name || 'User'} />
 
-<<<<<<< HEAD
         {/* <DashboardSearch
           onSearch={(query) => {
             console.log('search:', query);
           }}
         /> */}
-=======
->>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
         <SearchBar />
 
         <TopServicesAndEvents
@@ -69,7 +59,6 @@ export default function Dashboard() {
         />
       </div>
 
-<<<<<<< HEAD
       {/* <PetStylistReviews
         stylists={STYLISTS}
         onBookClick={() => console.log('Book appointment')}
@@ -88,9 +77,6 @@ export default function Dashboard() {
         ))}
       </div>
 
-=======
-      <PetStylistReviews stylists={STYLISTS} />
->>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
     </div>
   );
 }

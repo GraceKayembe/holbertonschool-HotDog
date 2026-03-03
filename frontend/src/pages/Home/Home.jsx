@@ -28,18 +28,11 @@ function createCard(props) {
 function bannerCard(props, navigate) {
   return (
     <CardBanner
-<<<<<<< HEAD
     key={props.id}
     bannerTitle={props.bannerTitle}
     img={props.img}
     showButton={props.showButton}
     onButtonClick={() => navigate("/services")}
-=======
-      key={props.id}
-      bannerTitle={props.bannerTitle}
-      img={props.img}
-      showButton={props.showButton}
->>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
     />
   );
 }
@@ -48,7 +41,6 @@ function bannerCard(props, navigate) {
 function advertBanner(props, navigate) {
   return (
     <Advert
-<<<<<<< HEAD
     key={props.id}
     img={props.img}
     name={props.name}
@@ -57,15 +49,6 @@ function advertBanner(props, navigate) {
     subtitle={props.subtitle}
     showButton={props.showButton}
     registerNowBtnClick={() => navigate("/about")}
-=======
-      key={props.id}
-      img={props.img}
-      name={props.name}
-      description={props.description}
-      title={props.title}
-      subtitle={props.subtitle}
-      showButton={props.showButton}
->>>>>>> d2ba4548a21f4d648414b5a269bbe245c3682f30
     />
   );
 }

@@ -38,8 +38,7 @@ export async function updateUser(token, user, body) {
   const data = await response.json();
 
   if (!response.ok) {
-    throw new Error("Failed to update password");
+    throw new Error(data.error || "Failed to update password");
   }
-
   return data;
 }

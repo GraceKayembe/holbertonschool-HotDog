@@ -9,15 +9,14 @@ import { loginUser } from "../../api/auth";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function Login() {
-
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
   // State for form inputs and error messages
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
-  })
+    password: "",
+  });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -27,7 +26,7 @@ export default function Login() {
       ...formData,
       [e.target.name]: e.target.value,
     });
-  }
+  };
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -38,7 +37,7 @@ export default function Login() {
 
     try {
       setLoading(true);
-      
+
       const response = await loginUser(formData);
 
       // use context login instead of manual Storage
@@ -46,7 +45,7 @@ export default function Login() {
 
       if (userData.role === "provider") {
         // curretnly navigating to patientlist as provider dashboard not ready
-        navigate("/PatientList")
+        navigate("/patients");
       } else {
         navigate("/");
       }
@@ -54,7 +53,7 @@ export default function Login() {
       setError(err.message || "Login failed");
       console.log(err);
     }
-  }
+  };
 
   return (
     <div className="auth-page">
@@ -89,7 +88,7 @@ export default function Login() {
             onChange={handleChange}
           />
           {/* Error message pops up for invalid credentials */}
-          {error && <p style={{ color: 'red'}}>{error}</p>}
+          {error && <p style={{ color: "red" }}>{error}</p>}
 
           <Button className="login-btn" type="submit">
             Login

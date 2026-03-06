@@ -23,7 +23,13 @@ export default function ConfirmModal({
       </Modal.Header>
       <Modal.Body>{body}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button
+          variant="secondary"
+          onClick={handleClose}
+          style={{
+            border: "none",
+          }}
+        >
           {secondaryButton}
         </Button>
         <Button

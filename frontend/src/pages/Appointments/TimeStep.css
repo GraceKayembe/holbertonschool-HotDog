@@ -7,14 +7,24 @@
 
 .time-button.time-button-available {
   background-color: #ffc72c;
+  cursor: pointer;
 }
 
 .time-button.time-button-booked {
   background-color: #c5c3c3;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.time-button:disabled {
+  background-color: #c5c3c3;
+  color: #6b7280;
   cursor: not-allowed;
 }
 
 .time-button.active-btn {
+  background-color: #1f3a5f;
+  color: #ffc72c;
   outline: 2px solid #1f3a5f;
   outline-offset: 1px;
 }

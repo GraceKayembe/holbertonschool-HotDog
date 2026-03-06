@@ -82,6 +82,7 @@ function ColumnFilterDropdown({
 export default function UpcomingEvents({ upcomingEvents = [] }) {
   const navigate = useNavigate();
   const containerRef = useRef(null);
+  const prevFilterOptionsRef = useRef({});
   const [activeFilter, setActiveFilter] = useState(null);
   const [filters, setFilters] = useState({});
 
@@ -118,8 +119,20 @@ export default function UpcomingEvents({ upcomingEvents = [] }) {
       FILTER_KEYS.forEach((key) => {
         const currentValues = prev[key];
         const availableValues = filterOptions[key] || [];
+        const previousAvailableValues = prevFilterOptionsRef.current[key] || [];
 
         if (!currentValues || currentValues.length === 0) {
+          next[key] = [...availableValues];
+          return;
+        }
+
+        const hadAllSelectedPreviously =
+          previousAvailableValues.length > 0
+          && currentValues.length === previousAvailableValues.length
+          && previousAvailableValues.every((value) => currentValues.includes(value));
+
+        // Preserve "Select All" behavior when new options appear (e.g. new appointment date/time).
+        if (hadAllSelectedPreviously) {
           next[key] = [...availableValues];
           return;
         }
@@ -129,6 +142,11 @@ export default function UpcomingEvents({ upcomingEvents = [] }) {
 
       return next;
     });
+
+    prevFilterOptionsRef.current = FILTER_KEYS.reduce((acc, key) => {
+      acc[key] = [...(filterOptions[key] || [])];
+      return acc;
+    }, {});
   }, [filterOptions]);
 
   useEffect(() => {

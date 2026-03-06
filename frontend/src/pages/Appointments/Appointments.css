@@ -120,7 +120,6 @@
   height: 30px;
   border: none;
   border-radius: 10px;
-  background-color: lightgray;
   color: #1f3a5f;
 }
 
@@ -170,11 +169,6 @@
   background-color: #1f3a5f;
   color: #ffc72c;
 }
-
-.active-btn {
-  background-color: #ffc72c;
-}
-
 
 /* popup css */
 body.modal-open {

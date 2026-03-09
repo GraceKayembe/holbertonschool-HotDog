@@ -12,6 +12,8 @@ import "./homeStyle.css";
 import "../../components/SearchBar/searchbar.css";
 import "../../components/AvatarImages/avatarStyle.css";
 
+const API_URL = import.meta.env.VITE_API_URL; // for deployment purposes, keep as is
+
 // Function service cards
 function createCard(props) {
   return (
@@ -62,7 +64,7 @@ function Home() {
   useEffect(() => {
     const fetchTopProviders = async () => {
       try {
-        const response = await fetch("/api/providers/top-rated");
+        const response = await fetch(`${API_URL}/api/providers/top-rated`);
         if (!response.ok) throw new Error("Failed to fetch");
         const data = await response.json();
         setTopProviders(data.providers);

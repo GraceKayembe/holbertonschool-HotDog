@@ -13,6 +13,8 @@ import advert_Data from '../../pages/Home/advert_Data.js';
 import { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
+const API_URL = import.meta.env.VITE_API_URL; // for deployment purposes, keep as is
+
 export default function Dashboard() {
   const { user } = useContext(AuthContext);
   const [topProviders, setTopProviders] = useState([]);
@@ -20,7 +22,7 @@ export default function Dashboard() {
   useEffect(() => {
     const fetchTopProviders = async () => {
       try {
-        const response = await fetch('/api/providers/top-rated');
+        const response = await fetch(`${API_URL}/api/providers/top-rated`);
         if (response.ok) {
           const data = await response.json();
           console.log('1. Raw data from backend:', data);

@@ -268,12 +268,8 @@ main {
   border-radius: 20px;
   cursor: pointer;
   font-weight: 700;
-<<<<<<< HEAD
   font-size: clamp(0.93rem, 0.93vw, 0.93rem);
   transition: 0.2s ease;
-=======
-  font-size: 14px !important;
->>>>>>> e15e7a189fdc61d2538a33d8b462f9ab0d16497b
 }
 
 .form-actions-button .edit-btn-cancel:hover {

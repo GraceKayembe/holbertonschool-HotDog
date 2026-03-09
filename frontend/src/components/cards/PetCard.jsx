@@ -114,7 +114,6 @@ export default function PetCard({ pet }) {
               buttonClassName="popover-buttons"
               bodyClassName="popover-body"
             />
-<<<<<<< HEAD
 
             {/* Medical Notes (Provider Only Editable, Owner Read-Only) */}
             {/* <BasicPopover
@@ -126,8 +125,6 @@ export default function PetCard({ pet }) {
               buttonClassName="popover-button"
               bodyClassName="popover-body"
             /> */}
-=======
->>>>>>> e15e7a189fdc61d2538a33d8b462f9ab0d16497b
           </div>
 
           <div className="pet-card-actions">

@@ -170,19 +170,7 @@ export default function EditPetDetails() {
 
   return (
     <div className="edit-pet-container">
-<<<<<<< HEAD
       
-=======
-      <ConfirmModal
-        show={showDeleteModal}
-        handleClose={() => setShowDeleteModal(false)}
-        handlePrimary={handleDeleteConfirm}
-        heading="Delete Pet"
-        body="Are you sure you want to permanently remove this pet?"
-        secondaryButton="Close"
-        primaryButton="Delete Pet"
-      />
->>>>>>> e15e7a189fdc61d2538a33d8b462f9ab0d16497b
       <div className="edit-pet-header">
         <h1 className="edit-pet-title">Edit {pet?.name || "Pet"} Details</h1>
       </div>

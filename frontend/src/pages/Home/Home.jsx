@@ -79,49 +79,51 @@ function Home() {
 
   return (
     <div className="home-container">
-      {/* Main Heading */}
-      <h1 className="home-heading">
-        Book your next healthcare <br /> visit in just a few clicks
-      </h1>
+      <div className="home-content">
+        {/* Main Heading */}
+        <h1 className="home-heading">
+          Book your next healthcare <br /> visit in just a few clicks
+        </h1>
 
-      {/* Subheading */}
-      <p className="home-subheading">
-        Everything your pet needs, all in one platform
-      </p>
+        {/* Subheading */}
+        <p className="home-subheading">
+          Everything your pet needs, all in one platform
+        </p>
 
-      <SearchBar />
+        <SearchBar />
 
-      {/* DYNAMIC BACKEND SECTION: Top Rated Providers */}
-      <div className="topsearchs-title-card-container" style={{ marginTop: '40px' }}>
-        <p className="topsearchs-card-title">Top Rated Providers</p>
+        {/* DYNAMIC BACKEND SECTION: Top Rated Providers */}
+        <div className="topsearchs-title-card-container" style={{ marginTop: '40px' }}>
+          <p className="topsearchs-card-title">Top Rated Providers</p>
+        </div>
+
+        <div className="topsearchs-cards-container">
+          {topProviders.length > 0 ? (
+            topProviders.slice(0, 6).map((provider) => (
+              <Card
+                key={provider.id}
+                img={provider.img_url}
+                title={`${provider.name} (⭐${provider.rating})`}
+                onClick={() => navigate(`/appointments/${provider.id}`)}
+              />
+            ))
+          ) : (
+            <p>Loading top rated clinics...</p>
+          )}
+        </div>
+
+        {/* Faster Booking Banner Section */}
+        <div className="home-banner-container">
+          {banner_Data.map((banner) => bannerCard(banner, navigate))}
+        </div>
+
+        {/* Advert card */}
+        <div className="banner-advert-section">
+          <div className="banner-advert-container">
+            {advert_Data.map((advert) => advertBanner(advert, navigate))}
+          </div>
+        </div>
       </div>
-
-      <div className="topsearchs-cards-container">
-        {topProviders.length > 0 ? (
-          topProviders.map((provider) => (
-            <Card
-              key={provider.id}
-              img={provider.img_url}
-              title={`${provider.name} (⭐${provider.rating})`}
-              onClick={() => navigate(`/appointments/${provider.id}`)}
-            />
-          ))
-        ) : (
-          <p>Loading top rated clinics...</p>
-        )}
-      </div>
-
-      {/* Faster Booking Banner Section */}
-      <div className="home-banner-container">
-        {banner_Data.map((banner) => bannerCard(banner, navigate))}
-      </div>
-
-      {/* Advert card */}
-      <div className="banner-advert-container">
-        {advert_Data.map((advert) => advertBanner(advert, navigate))}
-      </div>
-
-
     </div>
   );
 }

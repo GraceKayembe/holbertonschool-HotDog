@@ -74,56 +74,73 @@ function practiceTestimonalsCard(props) {
 }
 
 
-function Home() {
+function About() {
   return (
-    <div className="adout-container">
-      {/* Banner Section */}
-      <div className="about-banner-container">
-        {about_Data.map(aboutCard)}
-      </div>
+    <div className="about-container">
 
-      <div className="using-hotDog-container">
-      {/* Main Heading */}
-      <h1 className="adout-heading">
-          Our Story
-      </h1>
-
-      {/* Subheading */}
-      <p className="adout-body-text">
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper uscipitlobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-      </p>
-      </div>
-
-      {/* Banner what we do */}
-      <div className="whatwedo_parentcontainer"> 
-        <h1 className="adout-heading">What we do for you</h1>
-        <p className="whatwedo-subheading">HotDog makes it easier for patients to find, book, and return to your practice.</p>
-        <div className="whatwedo-showcontainer">
-          {whatwedo_Data.map(slideShow)}
+      {/* Banner Section (100vw) */}
+      <div className="about-wide-section">
+        <div className="about-banner-parent">
+          <div className="about-banner-container">
+            {about_Data.map(aboutCard)}
+          </div>
         </div>
       </div>
 
-      
-      {/* Banner choose us */}
-      <div className="using-hotDog-container">
-        <h1 className="adout-heading">Are you a provider interested <br /> in our platform?</h1>
-        <div className="adout-body-text">
-          {chooseUs_Card_Data.map(chooseUsCard)}
+      {/* Centered Content */}
+      <div className="about-content">
+
+        <div className="using-hotDog-container">
+          <h1 className="about-heading">Our Story</h1>
+
+        {/* Subheading */}
+        <p className="about-body-text">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper uscipitlobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+        </p>
         </div>
+
+        {/* What we do */}
+        <div className="whatwedo_parentcontainer">
+          <h1 className="about-heading">What we do for you</h1>
+          <p className="whatwedo-subheading">
+            HotDog makes it easier for patients to find, book, and return to your practice.
+          </p>
+
+          <div className="whatwedo-showcontainer">
+            {whatwedo_Data.map(slideShow)}
+          </div>
+        </div>
+
+        {/* Provider section */}
+        <div className="using-hotDog-container">
+          <h1 className="about-heading">
+            Are you a provider interested <br /> in our platform?
+          </h1>
+
+          <div className="about-body-text">
+            {chooseUs_Card_Data.map(chooseUsCard)}
+          </div>
+        </div>
+
       </div>
-      
-      
-      {/* Banner what we do */}
-      <div className="businesstesi_parentcontainer"> 
-        <h1 className="adout-heading">Testimonials of businesses we work with</h1>
-        <div className="businesstesi-showcontainer">
-          {practicetestimonials_Data.map(practiceTestimonalsCard)}
+
+      {/* Testimonials FULL WIDTH */}
+      <div className="businesstesi-section">
+          <h2 className="testimonial-heading" style={{textAlign: "center", width: "100%"}}>
+              Testimonials of businesses we work with
+          </h2>
+        <div className="businesstesi_parentcontainer">      
+          <div className="businesstesi-showcontainer">
+            {practicetestimonials_Data.map(practiceTestimonalsCard)}
+          </div>
         </div>
       </div>
 
-      {/* Banner sponsor */}
-      <div className="sponsor-container">
-        {sponsored_Data.map(sponsorCard)}
+      {/* Sponsor Section */}
+      <div className="about-content">
+        <div className="sponsor-container">
+          {sponsored_Data.map(sponsorCard)}
+        </div>
       </div>
 
     </div>
@@ -131,4 +148,4 @@ function Home() {
 }
 
 
-export default Home;
+export default About;

@@ -1,5 +1,5 @@
 .time-button {
-  height: 30px;
+  height: 40px;
   border: none;
   border-radius: 10px;
   color: #1f3a5f;
@@ -7,6 +7,7 @@
 
 .time-button.time-button-available {
   background-color: #f2f3f7;
+  border: 3px solid #f2f3f7;
   color: #333333;
 }
 
@@ -17,10 +18,12 @@
 
 .time-button.time-button-booked {
   background-color: #ffc72c;
+  border: 3px solid #ffc72c;
   cursor: not-allowed;
 }
 
 .time-button.active-btn {
   background-color: #ffc72c;
+  border: 3px solid #ffc72c;
   outline-offset: 1px;
 }

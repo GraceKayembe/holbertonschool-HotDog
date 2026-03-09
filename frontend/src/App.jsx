@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext.jsx";
 
@@ -44,11 +44,15 @@ import ManageAppointmentProvider from "./pages/ProviderPages/ManageAppointmentsP
 
 export default function App() {
   const { user } = useContext(AuthContext);
+  const location = useLocation();
+
+  const hideHeaderRoutes = ["/login", "/register"];
+  const hideHeader = hideHeaderRoutes.includes(location.pathname);
 
   return (
     <div className="app">
       {/* Show TOP header if Guest + User */}
-      {user?.role !== "provider" && <Header />}
+      {!hideHeader && user?.role !== "provider" && <Header />}
 
       {/* Show Side Provider NavBar if Provider */}
       {user?.role === "provider" && <ProviderNav />}
@@ -136,7 +140,7 @@ export default function App() {
         </Routes>
       </main>
 
-      {user?.role !== "provider" && <Footer />}
+      {!hideHeader && user?.role !== "provider" && <Footer />}
     </div>
   );
 }

@@ -11,9 +11,6 @@ function ProviderNav() {
     <ul className="provider-links">
       <img src={yellowLogo} alt="HotDog Logo" className="bluehotdog-logo" />
       <li>
-        <Link to="/ProviderDashboard">Dashboard</Link>
-      </li>
-      <li>
         <Link to="/provider/appointments">Appointments</Link>
       </li>
       <li>

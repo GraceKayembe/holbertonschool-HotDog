@@ -36,7 +36,7 @@ function SearchButton({
         setAllProviders(names);
 
         const fuseInstance = new Fuse(names, {
-          threshold: 0.35, // stricter but still typo-tolerant
+          threshold: 0.35,
           ignoreLocation: true,
           minMatchCharLength: 2,
         });
@@ -57,15 +57,11 @@ function SearchButton({
         setShowProviders(false);
       }
     };
-
     document.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  //select a service dropdown
+  // Service input handlers
   const handleServiceInput = (value) => {
     setServiceInput(value);
     onServiceChange?.(value);
@@ -77,7 +73,7 @@ function SearchButton({
     }
 
     const filtered = service_ListsWithAll.filter((s) =>
-      s.toLowerCase().includes(value.toLowerCase()),
+      s.toLowerCase().includes(value.toLowerCase())
     );
 
     setServiceResults(filtered);
@@ -88,17 +84,11 @@ function SearchButton({
     setServiceInput(service);
     setProviderInput("");
     onSearchChange?.("");
-
-    if (service === "All Services" || !service) {
-      onServiceChange?.("");
-    } else {
-      onServiceChange?.(service);
-    }
-
+    onServiceChange?.(service === "All Services" ? "" : service);
     setShowServices(false);
   };
 
-  // Search by provider names
+  // Provider input handlers
   const handleProviderInput = (value) => {
     setProviderInput(value);
     onSearchChange?.(value);
@@ -115,16 +105,11 @@ function SearchButton({
     }
 
     let results = [];
-
-    if (fuse) {
-      results = fuse.search(value).map((r) => r.item);
-    }
-
-    if (results.length === 0) {
+    if (fuse) results = fuse.search(value).map((r) => r.item);
+    if (results.length === 0)
       results = allProviders.filter((p) =>
-        p.toLowerCase().includes(value.toLowerCase()),
+        p.toLowerCase().includes(value.toLowerCase())
       );
-    }
 
     setProviderResults(results);
     setShowProviders(true);
@@ -133,27 +118,20 @@ function SearchButton({
   const selectProvider = (provider) => {
     setProviderInput(provider);
     onSearchChange?.(provider);
-
     setServiceInput("");
     onServiceChange?.("");
-
     setShowProviders(false);
   };
 
-  //search button
   const handleSearch = () => {
     if (!serviceInput.trim() && !providerInput.trim()) return;
     if (onSearch) onSearch();
 
     const params = new URLSearchParams();
-
     if (serviceInput && serviceInput !== "All Services") {
       params.append("service", serviceInput);
     }
-
-    if (providerInput) {
-      params.append("provider", providerInput);
-    }
+    if (providerInput) params.append("provider", providerInput);
 
     if (location.pathname === "/") {
       navigate(`/services?${params.toString()}`);
@@ -164,6 +142,7 @@ function SearchButton({
     <div className="search-bar-wrapper" ref={wrapperRef}>
       {/* Search bar */}
       <div className="search-bar">
+        {/* Service selector */}
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -174,18 +153,14 @@ function SearchButton({
             strokeWidth="2"
             className={`dropdown-icon ${showServices ? "open" : ""}`}
             onClick={() => {
-              // if (showServices) setShowServices(false);
-              // else {
               setServiceResults(service_ListsWithAll);
               setShowServices(!showServices);
-              // }
             }}
           >
             <polyline points="6 9 12 3 18 9"></polyline>
           </svg>
         </div>
 
-        {/* Service selector */}
         <input
           type="text"
           placeholder="Select a Service"
@@ -195,24 +170,10 @@ function SearchButton({
           onFocus={() => {
             setServiceResults(service_ListsWithAll);
             setShowServices(true);
+            setShowProviders(false); // hide provider dropdown
           }}
           className="provider-search-filter"
         />
-
-        {showServices && (
-          <ul className="service-results">
-            {/* {serviceResults.length > 0 &&  */}
-            {serviceResults.map((service, idx) => (
-              <li
-                key={idx}
-                className="service-item"
-                onClick={() => selectService(service)}
-              >
-                {service}
-              </li>
-            ))}
-          </ul>
-        )}
 
         {/* Search button */}
         <button className="search-btn" onClick={handleSearch}>
@@ -232,26 +193,47 @@ function SearchButton({
           placeholder="Search Provider by name"
           value={providerInput}
           onChange={(e) => handleProviderInput(e.target.value)}
+          onFocus={() => {
+            setShowProviders(true);
+            setShowServices(false); // hide service dropdown
+          }}
           className="provider-search-filter"
         />
-        {showProviders && (
-          <ul className="search-results">
-            {providerResults.length > 0 ? (
-              providerResults.map((provider, idx) => (
-                <li
-                  key={idx}
-                  className="result-item"
-                  onClick={() => selectProvider(provider)}
-                >
-                  {provider}
-                </li>
-              ))
-            ) : (
-              <li className="no-results">No providers found</li>
-            )}
-          </ul>
-        )}
       </div>
+
+      {/* Service Dropdown */}
+      {showServices && (
+        <ul className="search-dropdown">
+          {serviceResults.map((service, idx) => (
+            <li
+              key={idx}
+              className="dropdown-item"
+              onClick={() => selectService(service)}
+            >
+              {service}
+            </li>
+          ))}
+        </ul>
+      )}
+
+      {/* Provider Dropdown */}
+      {showProviders && (
+        <ul className="search-dropdown">
+          {providerResults.length > 0 ? (
+            providerResults.map((provider, idx) => (
+              <li
+                key={idx}
+                className="dropdown-item"
+                onClick={() => selectProvider(provider)}
+              >
+                {provider}
+              </li>
+            ))
+          ) : (
+            <li className="no-results">No providers found</li>
+          )}
+        </ul>
+      )}
     </div>
   );
 }

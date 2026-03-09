@@ -104,7 +104,7 @@ export default function PetCard({ pet }) {
           </div>
         </div>
 
-        <div className="pet-card-footer">
+        <div className="patient-card-footer">
           <div className="notes-label">
             <BasicPopover
               placement="right"
@@ -112,7 +112,7 @@ export default function PetCard({ pet }) {
               body={pet.notes}
               buttonText="See Notes"
               headerClassName="popover-header"
-              buttonClassName="popover-button"
+              buttonClassName="popover-buttons"
               bodyClassName="popover-body"
             />
           </div>

@@ -20,8 +20,8 @@ const advert_Data = [
   },
   {
     id: 3,
-    title: "A centralized platform for pet care services.",
-    subtitle: "Are you a provider looking to join our network?",
+    title: "Are you a provider looking to join our network?",
+    subtitle: "A centralized platform for pet care services.",
     showButton: true,
   },
   {

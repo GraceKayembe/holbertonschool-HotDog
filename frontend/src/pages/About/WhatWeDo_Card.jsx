@@ -3,7 +3,7 @@ import AvatarImages from "../../components/AvatarImages/AvatarImages.jsx";
 
 function WhatWeDo_Card(props) {
   return (
-    <div className="adout-bannershow-card">
+    <div className="about-bannershow-card">
       {/* icons */}
       {props.img && (
         <img src={props.img} className="icon-whatwedo" />
@@ -12,8 +12,8 @@ function WhatWeDo_Card(props) {
       {/* Banner slide show */}
       {props.title && props.description && (
         <>
-          <p className="adout-banner-title">{props.title}</p>
-          <p className="adout-banner-description">{props.description}</p>
+          <p className="about-banner-title">{props.title}</p>
+          <p className="about-banner-description">{props.description}</p>
         </>
       )}
       

@@ -1,17 +1,36 @@
-.form-card {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.form-card { 
+  min-height: 100vh; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  padding: 1rem;
+} 
+
+.form-card form { 
+  background: white; 
+  padding: 2rem; 
+  border-radius: 12px; 
+  width: 450px; 
+  box-shadow: 0 4px 10px rgba(31, 58, 95,0.4); 
+  align-items: center; 
 }
 
-.form-card form {
-  background: white;
-  padding: 2rem;
-  border-radius: 12px;
-  width: 450px;
-  box-shadow: 0 0 15px 0px rgba(0, 0, 0, 0.239);
-  align-items: center;
+.form-card form input,
+.form-card form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 3px solid #e8eaee;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  font-family: 'Open Sans', sans-serif;
+  transition: all 0.2s ease;
+}
+
+.form-card form input:focus,
+.form-card form textarea:focus {
+  outline: none;
+  border: 3px solid #1f3a5f;
 }
 
 .justify-left {
@@ -23,14 +42,93 @@
   width: 100%;
   margin-bottom: 30px;
   font-weight: 600;
-  font-family:
-    Open Sans,
-    sans-serif;
+  font-family: Open Sans, sans-serif;
   color: #1f3a5f;
   border: none;
-  font-size: 1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  transition: all 0.2s ease;
+}
+
+.btn.login-btn:hover {
+  color: #ffc72c;
+  background-color: #1f3a5f;
 }
 
 .sub-text {
   font-size: small;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 200px;           
+}
+
+.HotDogLogo {
+  width: 30%;
+  max-width: 150px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.login-h2 {
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-family: "nunito";
+  text-align: center;
+}
+
+.subtitle-text {
+  font-size: clamp(1.25rem, 2.25vw, 1.5rem) !important;
+  text-align: center;
+}
+
+
+
+/* ============================
+   RESPONSIVE
+============================== */
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .form-card form {
+    width: 80%;
+    padding: 2rem;
+  }
+
+  .HotDogLogo {
+    width: 20%;
+  }
+
+  .login-h2 {
+    font-size: clamp(1.8rem, 3vw, 2.2rem);
+  }
+
+  .subtitle-text {
+    font-size: clamp(1.1rem, 2vw, 1.4rem);
+  }
+}
+
+/* Mobiles */
+@media (max-width: 600px) {
+  .form-card form {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .HotDogLogo {
+    width: 30%;
+  }
+
+  .login-h2 {
+    font-size: clamp(1.5rem, 5vw, 2rem);
+  }
+
+  .subtitle-text {
+    font-size: clamp(1rem, 4vw, 1.25rem);
+  }
+
+  .btn.login-btn {
+    font-size: clamp(0.9rem, 3vw, 1rem);
+  }
 }

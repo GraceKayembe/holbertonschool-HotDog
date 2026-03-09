@@ -3,7 +3,7 @@ import AvatarImages from "../../components/AvatarImages/AvatarImages.jsx";
 
 function PracticeTestimonials_Card(props) {
   return (
-    <div className="adout-bannershow-card">
+    <div className="about-bannershow-card">
       {/* profiles */}
       {props.img && (
         <img src={props.img} className="icon-businesstesi" />
@@ -12,9 +12,9 @@ function PracticeTestimonials_Card(props) {
       {/* Banner slide show */}
       {props.name && props.companyName && props.description && (
         <>
-          <p className="adout-banner-title">{props.name}</p>
-          <p className="adout-banner-companyName ">{props.companyName}</p>
-          <p className="adout-banner-description">{props.description}</p>
+          <p className="about-banner-title">{props.name}</p>
+          <p className="about-banner-companyName ">{props.companyName}</p>
+          <p className="about-banner-description">{props.description}</p>
         </>
       )}
       

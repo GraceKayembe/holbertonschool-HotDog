@@ -1,6 +1,7 @@
 import Practitioner2 from "../../assets/images/Practitioner 2.png";
 import Practitioner4 from "../../assets/images/Practitioner 4.png";
 import Practitioner3 from "../../assets/images/Practitioner 3.png";
+import Practitioner1 from "../../assets/images/Practitioner 1.png";
 
 const practicetestimonials_Data = [
   {
@@ -20,6 +21,14 @@ const practicetestimonials_Data = [
   {
     id: 3,
     img: Practitioner3,
+    name: "Sandrine Leigh",
+    companyName: "Canine Smiles Dental",
+    description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+  },
+
+  {
+    id: 1,
+    img: Practitioner1,
     name: "Sandrine Leigh",
     companyName: "Canine Smiles Dental",
     description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",

@@ -1,5 +1,6 @@
 import { Button, Modal } from "react-bootstrap";
 import "../../pages/UserProfile/UserProfile.css";
+import "./ConfirmModal.css";
 
 export default function ConfirmModal({
   show,
@@ -11,13 +12,24 @@ export default function ConfirmModal({
   primaryButton,
 }) {
   return (
-    <Modal show={show} onHide={handleClose} centered>
+    <Modal
+      show={show}
+      onHide={handleClose}
+      centered
+      dialogClassName="cc-confirm-modal"
+    >
       <Modal.Header closeButton>
         <Modal.Title>{heading}</Modal.Title>
       </Modal.Header>
       <Modal.Body>{body}</Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+        <Button
+          variant="secondary"
+          onClick={handleClose}
+          style={{
+            border: "none",
+          }}
+        >
           {secondaryButton}
         </Button>
         <Button

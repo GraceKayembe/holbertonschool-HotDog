@@ -4,6 +4,7 @@ import "./EditPetDetails.css";
 import { getPetById } from "../../api/pet";
 import catImage from "../../assets/images/cat.jpg";
 import dogImage from "../../assets/images/dog.jpg";
+import ConfirmModal from "../../components/modals/ConfirmModal";
 
 export default function EditPetDetails() {
   const { petId } = useParams();
@@ -21,6 +22,7 @@ export default function EditPetDetails() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const breedMap = {
     dog: [
@@ -115,19 +117,15 @@ export default function EditPetDetails() {
       const updatedPet = await res.json();
       console.log("Updated:", updatedPet);
 
-      navigate(-1);
+      alert("Pet information saved successfully!");
+      navigate("/pets");
     } catch (err) {
       console.error(err);
       setError("Could not save changes");
     }
   };
 
-  const handleDelete = async () => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this pet?",
-    );
-    if (!confirmed) return;
-
+  const handleDeleteConfirm = async () => {
     try {
       const res = await fetch(`/api/pets/${petId}`, {
         method: "DELETE",
@@ -141,12 +139,18 @@ export default function EditPetDetails() {
       }
 
       console.log("Pet deleted successfully");
-
+      alert("Pet deleted successfully!");
       navigate("/pets");
     } catch (err) {
       console.error(err);
       setError("Could not delete pet");
+    } finally {
+      setShowDeleteModal(false);
     }
+  };
+
+  const handleDelete = () => {
+    setShowDeleteModal(true);
   };
 
   const handleCancel = () => {
@@ -166,6 +170,15 @@ export default function EditPetDetails() {
 
   return (
     <div className="edit-pet-container">
+      <ConfirmModal
+        show={showDeleteModal}
+        handleClose={() => setShowDeleteModal(false)}
+        handlePrimary={handleDeleteConfirm}
+        heading="Delete Pet"
+        body="Are you sure you want to permanently remove this pet?"
+        secondaryButton="Close"
+        primaryButton="Delete Pet"
+      />
       <div className="edit-pet-header">
         <h1 className="edit-pet-title">Edit {pet?.name || "Pet"} Details</h1>
         <button className="return-button" onClick={handleCancel}>

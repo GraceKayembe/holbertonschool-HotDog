@@ -38,13 +38,13 @@ def create_app():
     # enable CORS: allow Vite site to access API with CORS -- Deployment
     CORS(
         app,
-        resources={r"/api/.*": {"origins": [
+        origins=[
             "http://localhost:5173", # local development URL
-            "https://holbertonschool-hotdog-frontend.onrender.com" # replace with your actual frontend URL
-        ]}},
+            "https://holbertonschool-hotdog-frontend.onrender.com", # replace with your actual frontend URL
+        ],
         allow_headers=["Content-Type", "Authorization"],
         methods=["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-        supports_credentials=True
+        supports_credentials=True,
     )
 
     # load configurations

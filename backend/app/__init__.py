@@ -35,11 +35,17 @@ def create_app():
         static_folder="../static",
         static_url_path="/static")
     
-    # allow Vite site to access API with CORS -- Deployment
-    CORS(app, resources={r"/api/*": {"origins": [
-        "http://localhost:5173/", # local development URL
-        "https://holbertonschool-hotdog-frontend.onrender.com" # replace with your actual frontend URL
-    ]}}, supports_credentials=True)
+    # enable CORS: allow Vite site to access API with CORS -- Deployment
+    CORS(
+        app,
+        resources={r"/api/*": {"origins": [
+            "http://localhost:5173", # local development URL
+            "https://holbertonschool-hotdog-frontend.onrender.com" # replace with your actual frontend URL
+        ]}},
+        allow_headers=["Content-Type", "Authorization"],
+        methods=["GET", "POST", "PATCH", "DELETE"]
+        supports_credentials=True
+    )
 
     # load configurations
     app.config.from_object(Config)
@@ -56,14 +62,6 @@ def create_app():
     db_path = os.path.join(app.instance_path, db_name)
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{db_path}'
     print(f"✅ Database URI:  {app.config['SQLALCHEMY_DATABASE_URI']}")
-
-    # enable CORS
-    CORS(
-        app,
-        resources={r"/api/*": {"origins": "http://localhost:5173"}},
-        allow_headers=["Content-Type", "Authorization"],
-        methods=["GET", "POST", "PATCH", "PUT", "DELETE", "OPTIONS"],
-    )
 
     # initialise extensions
     db.init_app(app)

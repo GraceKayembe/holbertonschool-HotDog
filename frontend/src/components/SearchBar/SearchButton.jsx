@@ -29,7 +29,7 @@ function SearchButton({
   useEffect(() => {
     const fetchProviderNames = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/providers");
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/providers`);
         const data = await res.json();
 
         const names = data.map((p) => p.name);

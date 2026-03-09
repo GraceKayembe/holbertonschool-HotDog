@@ -1,5 +1,5 @@
 export async function deleteUser(user, token) {
-  const API_DELETE_URL = `http://localhost:5000/api/users/${user.id}`;
+  const API_DELETE_URL = `${import.meta.env.VITE_API_URL}/api/users/${user.id}`;
 
   const response = await fetch(`${API_DELETE_URL}`, {
     method: "DELETE",
@@ -25,7 +25,7 @@ export async function deleteUser(user, token) {
 }
 
 export async function updateUser(token, user, body) {
-  const API_UPDATE_USER_URL = `http://localhost:5000/api/users/${user.id}`;
+  const API_UPDATE_USER_URL = `${import.meta.env.VITE_API_URL}/api/users/${user.id}`;
 
   console.log("Calling PATCH:", API_UPDATE_USER_URL, body); // ✅ log request
 

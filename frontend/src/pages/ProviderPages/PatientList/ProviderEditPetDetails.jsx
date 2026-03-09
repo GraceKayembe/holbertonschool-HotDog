@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "../../PetProfile/EditPetDetails.css";
 import catImage from "../../../assets/images/cat.jpg";
 import dogImage from "../../../assets/images/dog.jpg";
+import ConfirmModal from "../../../components/modals/ConfirmModal";
 
 export default function ProviderEditPetDetails() {
   const { petId } = useParams();
@@ -21,6 +22,7 @@ export default function ProviderEditPetDetails() {
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const breedMap = {
     dog: [
@@ -124,12 +126,7 @@ export default function ProviderEditPetDetails() {
     }
   };
 
-  const handleDelete = async () => {
-    const confirmed = window.confirm(
-      "Are you sure you want to delete this patient?",
-    );
-    if (!confirmed) return;
-
+  const handleDeleteConfirm = async () => {
     try {
       const res = await fetch(`/api/pets/${petId}`, {
         method: "DELETE",
@@ -143,12 +140,18 @@ export default function ProviderEditPetDetails() {
       }
 
       console.log("Pet deleted successfully");
-
+      alert("Patient deleted successfully!");
       navigate(-1);
     } catch (err) {
       console.error(err);
       setError("Could not delete patient");
+    } finally {
+      setShowDeleteModal(false);
     }
+  };
+
+  const handleDelete = () => {
+    setShowDeleteModal(true);
   };
 
   const handleCancel = () => {
@@ -168,6 +171,15 @@ export default function ProviderEditPetDetails() {
 
   return (
     <div className="edit-pet-container">
+      <ConfirmModal
+        show={showDeleteModal}
+        handleClose={() => setShowDeleteModal(false)}
+        handlePrimary={handleDeleteConfirm}
+        heading="Delete Patient"
+        body="Are you sure you want to permanently remove this patient?"
+        secondaryButton="Close"
+        primaryButton="Delete Patient"
+      />
       <div className="edit-pet-header">
         <h1 className="edit-pet-title">Edit {pet?.name || "Pet"} Details</h1>
         <button className="back-btn" onClick={handleCancel}>

@@ -1,5 +1,7 @@
+const API_URL = import.meta.env.VITE_API_URL; // for deployment purposes, keep as is
+
 export const getMyPets = async (token) => {
-  const response = await fetch("/api/pets/", {
+  const response = await fetch(`${API_URL}/api/pets/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -15,7 +17,7 @@ export const getMyPets = async (token) => {
 };
 
 export const getPetById = async (petId, token) => {
-  const response = await fetch(`/api/pets/${petId}`, {
+  const response = await fetch(`${API_URL}/api/pets/${petId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -32,7 +34,7 @@ export const getPetById = async (petId, token) => {
 
 // created api function for posting a pet
 export const createPet = async (petData, token) => {
-  const response = await fetch("/api/pets/", {
+  const response = await fetch(`${API_URL}/api/pets/`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

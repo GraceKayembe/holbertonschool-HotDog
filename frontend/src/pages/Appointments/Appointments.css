@@ -122,8 +122,11 @@
   height: 30px;
   border: none;
   border-radius: 10px;
+<<<<<<< HEAD
   background-color: #e8eaee;
   border: 3px solid #e8eaee;
+=======
+>>>>>>> e15e7a189fdc61d2538a33d8b462f9ab0d16497b
   color: #1f3a5f;
 }
 
@@ -175,11 +178,6 @@
   color: #ffc72c;
   border: 3px solid #1f3a5f !important;
 }
-
-.active-btn {
-  background-color: #ffc72c;
-}
-
 
 /* popup css */
 body.modal-open {

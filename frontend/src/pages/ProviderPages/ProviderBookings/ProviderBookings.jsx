@@ -1,6 +1,6 @@
 import "./ProviderBookings.css";
 import UpcomingEvents from "../../../components/ProviderSideAppointments/UpcomingEvents";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import DateStep from "../../Appointments/DateStep";
@@ -14,6 +14,14 @@ import {
 } from "../../../api/providerBookings";
 
 dayjs.extend(utc);
+
+function sortAppointmentsByDateTime(items = []) {
+  return [...items].sort((a, b) => {
+    const aTs = dayjs(a.date_time).valueOf();
+    const bTs = dayjs(b.date_time).valueOf();
+    return aTs - bTs;
+  });
+}
 
 export default function ProviderBookings() {
   const token = localStorage.getItem("token");
@@ -146,13 +154,13 @@ export default function ProviderBookings() {
     });
   };
 
-  const loadAppointments = async () => {
+  const loadAppointments = useCallback(async () => {
     if (!token) {
       return;
     }
     const response = await getProviderAppointments(token);
     setAppointments(response.appointments || []);
-  };
+  }, [token]);
 
   const loadAvailableTimes = async (date = selectedDate) => {
     if (!provider?.id || !date) {
@@ -197,7 +205,32 @@ export default function ProviderBookings() {
     };
 
     load();
-  }, [token]);
+  }, [token, loadAppointments]);
+
+  useEffect(() => {
+    if (!token) {
+      return;
+    }
+
+    const intervalId = setInterval(() => {
+      loadAppointments();
+    }, 30000);
+
+    const handleVisibilityOrFocus = () => {
+      if (document.visibilityState === "visible") {
+        loadAppointments();
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityOrFocus);
+    window.addEventListener("focus", handleVisibilityOrFocus);
+
+    return () => {
+      clearInterval(intervalId);
+      document.removeEventListener("visibilitychange", handleVisibilityOrFocus);
+      window.removeEventListener("focus", handleVisibilityOrFocus);
+    };
+  }, [token, loadAppointments]);
 
   useEffect(() => {
     loadAvailableTimes(selectedDate);
@@ -271,13 +304,21 @@ export default function ProviderBookings() {
       }
 
       const dateTime = buildDateTimeFromSlot();
-      await createProviderBooking(token, {
+      const createdBooking = await createProviderBooking(token, {
         pet_id: bookingPetId,
         service_type: serviceType,
         date_time: dateTime,
         notes,
       });
 
+      if (createdBooking?.booking) {
+        setAppointments((prev) => {
+          const withoutDuplicate = prev.filter((appt) => appt.id !== createdBooking.booking.id);
+          return sortAppointmentsByDateTime([...withoutDuplicate, createdBooking.booking]);
+        });
+      }
+
+      // Reconcile with backend source of truth.
       await loadAppointments();
       await loadAvailableTimes(selectedDate);
       closeModalAfterBooking();

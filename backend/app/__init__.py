@@ -43,7 +43,7 @@ def create_app():
             "https://holbertonschool-hotdog-frontend.onrender.com" # replace with your actual frontend URL
         ]}},
         allow_headers=["Content-Type", "Authorization"],
-        methods=["GET", "POST", "PATCH", "DELETE"]
+        methods=["GET", "POST", "PATCH", "DELETE"],
         supports_credentials=True
     )
 

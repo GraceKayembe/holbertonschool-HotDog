@@ -19,7 +19,7 @@ function BookingSteps1({ closePopup, onNext, services }) {
       }
 
       try {
-        const res = await fetch("http://localhost:5000/api/pets/", {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/pets/`, {
           headers: { Authorization: `Bearer ${token}` },
         });
 

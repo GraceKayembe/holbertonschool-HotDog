@@ -56,7 +56,7 @@ function Services() {
         if (inputQuery) params.append("name", inputQuery);
 
         const response = await fetch(
-          `http://localhost:5000/api/providers?${params.toString()}`
+          `${import.meta.env.VITE_API_URL}/api/providers?${params.toString()}`
         );
         
         if (!response.ok) {

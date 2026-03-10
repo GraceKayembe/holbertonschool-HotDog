@@ -205,7 +205,7 @@ export default function ManageAppointments() {
               </div>
 
               <button
-                className="cancel-btn"
+                className="cancel-button"
                 onClick={() => handleCancelClick(appointment.id)}
                 disabled={cancellingId === appointment.id}
               >

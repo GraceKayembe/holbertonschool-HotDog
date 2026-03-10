@@ -44,6 +44,25 @@ def create_pet():
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
 
+# ====================================
+# GET BREED OPTIONS FROM BACKEND ENUMS
+# ====================================
+@pets_bp.route("/options", methods=["GET"])
+@jwt_required()
+def get_pet_options():
+    from app.models.pet import SpeciesEnum, DogBreedEnum, CatBreedEnum, GenderEnum
+
+    species = [s.value for s in SpeciesEnum]
+    dog_breeds = [b.value for b in DogBreedEnum]
+    cat_breeds = [b.value for b in CatBreedEnum]
+    genders = [g.value for g in GenderEnum]
+
+    return jsonify({
+        "species": species,
+        "dogBreeds": dog_breeds,
+        "catBreeds": cat_breeds,
+        "genders": genders
+    }), 200
 
 # =====================
 # GET ALL PETS FOR USER

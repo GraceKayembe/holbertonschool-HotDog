@@ -7,6 +7,7 @@ import FormRadio from "../../components/Form/FormRadio";
 import ToggleSwitch from "../../components/buttons/ToggleSwitch";
 import { loginUser } from "../../api/auth";
 import { AuthContext } from "../../context/AuthContext";
+import HotDogLogo from "../../assets/logo/hotdog_logo.svg";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -58,15 +59,22 @@ export default function Login() {
   return (
     <div className="auth-page">
       <div className="form-card">
+        
+        
         <Form onSubmit={handleSubmit}>
+          <div className="logo-container">
+            <img src={HotDogLogo} alt="HotDog Logo" className="HotDogLogo"/>
+          </div>
+
+          <h2 className="login-h2" style={{ color: "#1f3a5f", fontWeight: 700 }}>Login</h2>
+          <p className="mb-3 subtitle-text">Access your dashboard now! </p>
+
           <ToggleSwitch
             firstRadio={"Login"}
             firstPath={"/login"}
             secondRadio={"Sign Up"}
             secondPath={"/register"}
           />
-          <h2 style={{ color: "#1f3a5f", fontWeight: 700 }}>Login</h2>
-          <p className="mb-3 sub-text">Access your dashboard now! </p>
           <FormLabel
             className="justify-left mb-3"
             controlId="loginEmail"

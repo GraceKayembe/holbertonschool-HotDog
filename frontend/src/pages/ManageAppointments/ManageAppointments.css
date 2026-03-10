@@ -1,29 +1,31 @@
 .manage-appt-container {
+  width: 100%;
   background-color: #f2f3f7;
-  min-height: 150vh;
+  margin: 0 auto;
+  padding-top: clamp(2.5rem, 3.5vw, 4rem);
+  padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
 }
 
 .manage-appointments {
   max-width: 1000px;
   margin: 0 auto;
-  padding-top: 30px;
-  min-height: 100vh;
 }
 
 .manage-appointments-header {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 15px;
-  margin-bottom: 30px;
+  gap: 10px;
+  margin-bottom: clamp(0rem, 0.40vw, 0.93rem);
 }
 
 .back-btn {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 1.5vw, 1.25rem);
   color: #1f3a5f;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 8px;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +33,7 @@
 }
 
 .back-btn:hover {
-  transform: scale(2);
+  transform: scale(1.2);
   color: #1f3a5f;
 }
 
@@ -41,10 +43,12 @@
 }
 
 .manage-appointments-header h1 {
-  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 2.25vw, 1.5rem);
   font-weight: 600;
   color: #1f3a5f;
   margin: 0;
+  text-align: left;
+  padding-top: clamp(1.4rem, 1.5vw, 2rem);
 }
 
 .loading,
@@ -77,10 +81,10 @@
 .appointment-card {
   background: white;
   border-radius: 8px;
-  padding: 25px;
+  padding: clamp(1rem, 2.5vw, 2rem);
   box-shadow: 0 2px 8px rgba(31, 58, 95, 0.1);
   display: flex;
-  max-width: 760px;
+  max-width: 800px;
   width: 100%;
   justify-content: space-between;
   gap: 20px;
@@ -106,8 +110,9 @@
   gap: 10px;
   font-weight: 600;
   color: #1f3a5f;
+  color: #333333;
   width: 200px;
-  font-size: 0.93rem;
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
 }
 
 .detail-label .icon {
@@ -122,11 +127,11 @@
 
 .detail-value {
   color: #333333;
-  font-size: 0.93rem;
+  font-size: clamp(0.93rem,1.25vw, 1rem);
   padding-left: 10px;
 }
 
-.appointment-card .cancel-btn {
+.appointment-card .cancel-button {
   border: 3px solid #ffc72c !important;
   background-color: transparent;
   color: #1f3a5f;
@@ -135,18 +140,18 @@
   width: 100px;
   height: 40px;
   font-weight: 700;
-  font-size: 0.93rem;
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
   cursor: pointer;
   transition: background-color 0.3s;
   margin-top: auto
 }
 
-.appointment-card .cancel-btn:hover:not(:disabled) {
+.appointment-card .cancel-button:hover:not(:disabled) {
   background-color: #e8eaee;
-  border: none !important;
+  border: 3px solid #e8eaee !important;
 }
 
-.appointment-card .cancel-btn:disabled {
+.appointment-card .cancel-button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
@@ -220,11 +225,11 @@
   border: 3px solid #ffc72c;
   color: #1f3a5f;
   border-radius: 6px;
-  width: 200px;
-  height: 40px;
+  width: clamp(11rem, 25vw, 12.5rem);
+  height: clamp(2.1875rem, 5vw, 2.5rem);
   border-radius: 20px;
   font-weight: 600;
-  font-size: 0.93rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   cursor: pointer;
   transition: background-color 0.3s;
   min-width: 250px;
@@ -241,22 +246,122 @@
   transform: scale(0.98);
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+
+
+/* ============================
+   RESPONSIVE
+============================== */
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
   .manage-appointments {
-    padding: 15px;
+    max-width: 90%;
+    padding: 0 35px;
   }
 
-  .manage-appointments-header h1 {
-    font-size: 20px;
+  .manage-appointments-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .back-btn {
+    font-size: clamp(1.1rem, 1.5vw, 1.25rem);
+    padding: 6px;
   }
 
   .appointment-card {
     flex-direction: column;
     align-items: flex-start;
+    padding: clamp(0.8rem, 2vw, 1.5rem);
+    max-width: 100%;
+    gap: 15px;
   }
 
-  .cancel-btn {
-    align-self: flex-start;
+  .appointment-card .cancel-button {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .detail-row {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+}
+
+
+/* Mobiles */
+@media (max-width: 600px) { 
+  .manage-appt-container {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .manage-appointments {
+    max-width: 95%;
+    padding: 0 25px;
+  }
+
+  .manage-appointments-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .back-btn {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+    padding: 6px;
+  }
+
+  .manage-appointments-header h1 {
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
+  }
+
+  .appointments-list {
+    gap: 15px;
+  }
+
+  .appointment-card {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: clamp(0.8rem, 3vw, 1.5rem);
+    width: 100%;
+    max-width: 100%;
+    gap: 12px;
+  }
+
+  .appointment-details {
+    gap: 8px;
+  }
+
+  .detail-row {
+    grid-template-columns: 1fr;
+    gap: 5px;
+  }
+
+  .appointment-card .cancel-button {
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    margin-top: 10px;
+    background-color: #e8eaee;
+    border: none !important;
+  }
+
+  .appointment-card .cancel-button:hover {
+    background-color: #f2f3f7 !important;
+    border: 3px solid #ffc72c !important;
+  }
+
+  .make-another-appointment-section {
+    margin: 30px 0 15px 0;
+  }
+
+  .make-appointment-btn {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    font-size: clamp(0.95rem, 4vw, 1.05rem);
   }
 }

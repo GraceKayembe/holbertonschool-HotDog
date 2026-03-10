@@ -23,14 +23,16 @@ const Review = ({ userName, review, rating }) => {
   };
 
   return (
-    
-    <div className="review-card">
-      <div className="review-header">
-        <h4 className="reviewer-name">{userName}</h4>
-      </div>
-      <p className="review-text">{review}</p>
-      <div className="review-rating">
-        {renderStars(rating)}
+    <div className="review-section">
+      <div className="review-card">
+        <div className="review-header">
+          <h4 className="reviewer-name">{userName}</h4>
+        </div>
+        <p className="review-text">{review}</p>
+        <div className="review-rating">
+          {renderStars(rating)}
+        </div>
+        < hr/>
       </div>
     </div>
   );

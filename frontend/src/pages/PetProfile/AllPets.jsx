@@ -32,38 +32,45 @@ export default function AllPets() {
 
   return (
     <div className="pets-container">
-      <div className="all-pets-content">
-        <div className="all-pets-header">
-          <h2>Your Pet(s)</h2>
-        </div>
-        <div className="all-pets-actions">
-          <div>All({pets.length})</div>
-          <Popup
-            trigger={<button className="btn-yellow">+ Add Pet(s)</button>}
-            position="bottom center" 
-            closeOnDocumentClick
-            nested
-            arrow={false}  
-            overlayStyle={{ background: "none" }}
-            contentStyle={{ padding: 0, border: "none", background: "none" }}
-          >
-            {(close) => (
-              <div>
-                <FormAddPet 
-                closePopup={close} 
-                onPetAdded={refreshPets}
-                />
-              </div>
-            )}
-          </Popup>
-        </div>
+      <div className="pets-section">
+        <div className="all-pets-content">
+          <div className="all-pets-header">
+            <h2>Your Pet(s)</h2>
+          </div>
+          <div className="all-pets-actions">
+            <div>All({pets.length})</div>
+              {/* <div class="popup-content"> */}
+                <Popup
+                  trigger={<button className="btn-yellow">+ Add Pet(s)</button>}
+                  position="bottom center"
+                  closeOnDocumentClick
+                  arrow={false}
+                  contentStyle={{ 
+                    padding: 0,
+                    border: "none",
+                    background: "transparent",
+                    boxShadow: "none",
+                    transform: "translateX(-150px)"
+                  }}
+                >
+                  {(close) => (
+                    <div>
+                      <FormAddPet 
+                      closePopup={close} 
+                      onPetAdded={refreshPets}
+                      />
+                    </div>
+                  )}
+                </Popup>
+              {/* </div> */}
+          </div>
 
-        <div className="pets-list">
-          {pets.map(pet => (
-            <PetCard key={pet.id} pet={pet} />
-          ))}
+          <div className="pets-list">
+            {pets.map(pet => (
+              <PetCard key={pet.id} pet={pet} />
+            ))}
+          </div>
         </div>
-
       </div>
     </div>
   );

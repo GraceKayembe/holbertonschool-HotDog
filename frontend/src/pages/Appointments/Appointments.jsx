@@ -284,6 +284,8 @@ export default function Appointments() {
             <img src={provider.img_url} alt="provider-image" />
           </div>
 
+          <div className="provider-details">{provider.description}</div>
+
           <div className="provider-info">
             <div className="provider-address flex-gap">
               <img src={LocationIcon} alt="Bootstrap" />
@@ -298,7 +300,6 @@ export default function Appointments() {
               <span>{provider.phone}</span>
             </div>
           </div>
-          <div className="provider-details">{provider.description}</div>
         </div>
         <div className="bookings">
           <div className="bookings-banner">

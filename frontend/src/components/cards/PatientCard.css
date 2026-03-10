@@ -3,11 +3,13 @@
 .pet-card {
   display: grid;
   width: 100%;
+  height: 300px;
   grid-template-columns: 13rem 1fr;
   gap: 1rem;
   background: white;
   margin: 1.5rem 0rem;
   align-items: stretch;
+  /* padding-bottom: 20px; */
 }
 
 /*LEFT OF CARD*/
@@ -31,6 +33,7 @@
 
 .pet-name {
   color: #1f3a5f;
+  font-size: 1.5rem;
   font-weight: bold;
   font-family:
     Open Sans,
@@ -51,6 +54,7 @@
     sans-serif;
   color: #1f3a5f;
   font-weight: bold;
+  margin-top: 1rem;
 }
 
 .pet-info-grid {
@@ -58,7 +62,7 @@
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 55px);
   gap: 1rem 2rem;
-  outline: black;
+  outline: #333333;
   justify-items: left;
   align-self: center;
 }
@@ -83,7 +87,7 @@
   font-family:
     Open Sans,
     sans-serif;
-  color: #1f3a5f;
+  color: #333333;
   margin: 0;
 }
 
@@ -91,6 +95,8 @@
 .pet-card-footer {
   display: flex;
   flex-direction: row;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .notes-label {
@@ -101,39 +107,45 @@
 
 .pet-card-actions {
   display: flex;
-  gap: 0.3rem;
+  gap: 10px;
   margin-left: auto;
 }
 
 .pet-card-footer button {
   border-radius: 10px;
   border: none;
-  font-size: 0.8rem;
+  font-size: 0.93rem;
   width: 5rem;
   font-weight: bold;
-  padding: 0.3rem;
+  /* padding: 0.3rem; */
 }
 
 /*'SEE NOTES' POPOVER*/
 
 .popover-header.popover-header {
-  background-color: #757677;
-  color: white;
+  background-color: #e8eaee;
+  color: #1f3a5f;
   font-weight: bold;
 }
 
-.btn.btn-primary.popover-button {
-  background-color: #757677;
-  color: white;
+.patient-card-footer .notes-label .btn.btn-primary.popover-buttons {
+  background-color: #e8eaee;
+  border: 3px solid #e8eaee;
+  min-width: 110px;
+  height: 35px;
+  color: #1f3a5f;
   font-weight: bold;
+  border-radius: 20px !important;
 }
 
-.btn.btn-primary.popover-button:hover {
-  background-color: #999b9d;
+.notes-label .btn.btn-primary.popover-buttons:hover {
+  background-color: #e8eaee;
+  border: 3px solid #ffc72c;
 }
 
 .popover-body.popover-body {
   font-family:
     Open Sans,
     sans-serif;
+  color: #333333;
 }

@@ -5,7 +5,7 @@ function ChooseUs_Card(props) {
     <div className="sponsor-card">
       {/* description */}
       {props.description && (
-        <p className="adout-body-text">{props.description}</p>
+        <p className="about-body-text">{props.description}</p>
       )}
       
     </div>

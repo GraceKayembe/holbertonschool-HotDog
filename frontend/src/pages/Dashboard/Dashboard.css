@@ -1,8 +1,17 @@
+/* =========================
+   GOOGLE FONTS
+========================= */
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:wght@400;700&display=swap");
 
+
+/* =========================
+   DASHBOARD BASE
+========================= */
 .dash {
   width: 100%;
-  
+  margin: 0 auto;
+  margin-top: clamp(2.5rem, 3.5vw, 4rem);
+  margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
 }
 
 .dash h1,
@@ -14,57 +23,109 @@
 
 .dash-container {
   max-width: 1000px;
-  margin: 50px auto 0;
-  min-height: 100vh;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
 }
 
-/* Intro */
+
+/* =========================
+   INTRO SECTION
+========================= */
 .intro {
   display: grid;
   grid-template-columns: 1fr;
   align-items: center;
-  margin-bottom: 30px;
 }
 
 .intro-title {
   margin: 0;
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
   font-weight: 800;
   line-height: 1.15;
-  max-width: 720px;
   justify-self: center;
   text-align: center;
   color: #1f3a5f;
-  margin-bottom: 20px;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
 }
 
-/* Grid section */
+
+/* =========================
+   SEARCH (COMMENTED OUT)
+========================= */
+/*
+.search {
+  margin: 22px 0 26px;
+  display: flex;
+  justify-content: center;
+}
+
+.search-box {
+  display: grid;
+  grid-template-columns: 1fr 1px 1fr auto;
+  gap: 0;
+  align-items: center;
+  border: 1px solid #d9d9d9;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #fff;
+  width: 100%;
+  max-width: 640px;
+}
+
+.search-input {
+  border: 0;
+  padding: 12px 14px;
+  outline: none;
+  font-size: 14px;
+}
+
+.search-divider {
+  height: 100%;
+  background: #e6e6e6;
+}
+
+.search-btn {
+  border: 0;
+  cursor: pointer;
+  padding: 12px 14px;
+  background: #ffd24d;
+}
+*/
+
+
+/* =========================
+   MAIN GRID LAYOUT
+========================= */
 .grid-2col {
   display: grid;
-  grid-template-columns: 1.35fr 1.35fr;
+  grid-template-columns: 1.90fr 1.35fr;
   gap: 30px;
-  margin: 10px 0 50px;
+  margin-top: clamp(2rem, 3.5vw, 3rem);
+  margin-bottom: clamp(3rem, 3.5vw, 3rem);
 }
 
 .panel {
-  /* border: 1px solid #e8e8e8; */
   width: 100%;
   border-radius: 14px;
   background: #fff;
-  /* padding: 16px; */
 }
 
 .panel-title {
   margin: 0 0 12px;
-  font-size: 1.25rem;
+  font-size: clamp(1.25rem, 1.5vw, 1.25rem);
   font-weight: 700;
   text-align: left;
   color: #1f3a5f;
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-bottom: clamp(1rem, 0.40vw, 0.93rem);
 }
 
-/* services */
+
+/* =========================
+   SERVICES GRID
+========================= */
 .service-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -75,26 +136,27 @@
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  /* border: 1px solid #efefef; */
 }
 
 .top-service-card img.service-img {
   width: 100%;
-  aspect-ratio: 1 / 1; /* make image square */
+  aspect-ratio: 1 / 1;
   height: auto;
   object-fit: cover;
   display: block;
 }
 
-/* Overlay label on top of the image */
+
+/* =========================
+   SERVICE IMAGE LABEL
+========================= */
 .service-label {
   position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
   padding: 8px 10px;
-  font-size: 0.80rem;
-  /* font-weight: 700; */
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
   color: #ffffff;
   background: rgba(31, 58, 95, 0.9);
   text-overflow: ellipsis;
@@ -106,9 +168,12 @@
   background: rgba(31, 58, 95, 2);
 }
 
-/* events */
+
+/* =========================
+   EVENTS PANEL
+========================= */
 .panel-events {
-  margin-top: 75px;
+  padding-top: 2.5rem;
 }
 
 .events {
@@ -118,7 +183,7 @@
 
 .events-tabs {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 3fr;
 }
 
 .tab {
@@ -129,6 +194,7 @@
   font-weight: 700;
   text-align: left;
   border-radius: 12px 0 0 0;
+  transition: all 0.2s ease;
 }
 
 .tab:hover {
@@ -141,20 +207,45 @@
   border-radius: 0 12px 0 0;
 }
 
+
+/* =========================
+   EVENTS LIST
+========================= */
 .events-list {
-  padding: 12px !important;
-  height: 275px;
   border: none !important;
+  min-height: 330px;
+  max-height: 330px;
+  padding-bottom: clamp(0.93rem, 1.25vw, 1rem);
+
   overflow-y: auto;
-  overflow-x: hidden;
+  scrollbar-width: none;    
+  -ms-overflow-style: none;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+}
+
+.events-list > * {
+    scroll-snap-align: start;
+  }
+
+.events-list::-webkit-scrollbar {
+  display: none;    
 }
 
 .event-row {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 10px;
-  padding: 10px 0;
-  border-top: 1px solid #e8eaee;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  padding: 10px 10px;
+  margin-top: 10px;
+  border-top: 3px solid #e8eaee;
+  transition: all 0.2s ease;
+}
+
+.event-row:hover {
+  border-top: 3px solid #ffc72c;;
+  border: 3px solid #ffc72c;
+  border-radius: 10px;
 }
 
 .event-row:first-child {
@@ -163,27 +254,31 @@
 
 .event-date {
   font-weight: 700;
-  font-size: 0.93rem;
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
 }
 
 .event-title {
-  font-size: 0.93rem;
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
 }
 
 .event-service {
-  font-size: 0.93rem;
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
   color: #333333;
 }
 
-/* banner */
+
+/* =========================
+   PROMOTIONAL BANNER
+========================= */
 .banner {
-  background: #173a66;
-  color: #fff;
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 20px;
   width: 100%;
-  height: 500px;
+  max-height: 350px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
+  padding: clamp(2rem, 5vw, 3rem);
+  background-color: #1f3a5f;
   overflow: hidden;
 }
 
@@ -191,15 +286,13 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  width: 90%;
+  justify-content: flex-start;
 }
 
 .banner-title {
   color: #ffc72c;
-  font-size: 2.1rem;
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
   font-weight: 900;
-  margin-left: 50px;
   text-align: left;
 }
 
@@ -208,22 +301,22 @@
   font-family: "nunito";
   font-weight: 900;
   text-align: left;
-  font-size: 2.1rem;
-  margin-left: 50px;
-  margin-bottom: 40px;
+  font-size: clamp(1.5rem, 4.5vw, 2rem);
   line-height: 1.2;
+  padding-bottom: clamp(0.93rem, 2.5vw, 2rem);
 }
 
-.banner-btn {
-  border-radius: 20px;
+.banner-dashboard-btn {
   background-color: transparent;
   border: 3px solid #ffc72c;
   color: #ffc72c;
   cursor: pointer;
-  font-weight: 700;
-  margin-left: 50px;
-  width: 200px;
-  height: 40px;
+  font-weight: 900;
+  font-size: clamp(1rem, 2vw, 1.1rem) !important;
+  width: clamp(11rem, 25vw, 12.5rem);
+  height: clamp(2.1875rem, 5vw, 2.5rem);
+  border-radius: 20px;
+  transition: all 0.2s ease;
 }
 
 .banner-btn:hover {
@@ -232,44 +325,26 @@
 }
 
 .banner-image {
-  width: 80%;
+  width: 100%;
+  max-width: 230px;
   height: auto;
   object-fit: cover;
   display: block;
+  transform: translateY(clamp(-1rem, -4vw, -3rem));
 }
 
 
-/* .stylist-card {
-  background: transparent;
-  text-align: center;
-  padding: 12px 8px;
-}
-
-.stylist-avatar {
-  width: 74px;
-  height: 74px;
-  border-radius: 999px;
-  background: #d8d8d8;
-  margin: 0 auto 10px;
-}
-
-.stylist-name {
-  margin: 0 0 8px;
-  font-size: 14px;
-}
-
-.stylist-blurb {
-  margin: 0 auto 10px;
-  font-size: 12px;
-  max-width: 260px;
-  color: #444;
-} */
-
+/* =========================
+   STARS (RATING)
+========================= */
 .stars {
   font-size: 14px;
-} */
+}
 
-/* pager + CTA */
+
+/* =========================
+   PAGINATION / CTA
+========================= */
 .pager {
   display: flex;
   justify-content: center;
@@ -303,21 +378,155 @@
   font-weight: 800;
 }
 
-/* responsive */
-@media (max-width: 390px) {
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+/* Tablets */
+@media (min-width: 601px) and (max-width: 1024px) {
+
+  .dash-container {
+    padding: 0 35px;
+  }
+
   .grid-2col {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
+
+  .grid-2col .panel-events {
+    order: -1;
+  }
+
+  .events-list {
+    min-height: 100px;
+  }
+
+  .panel-events {
+    order: -1;
+    padding-top: 0.93rem;
+  }
+
   .service-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
   }
-  .stylist-grid {
-    grid-template-columns: 1fr;
-  }
+
   .banner {
+    grid-template-columns: repeat(2, 1fr);
+    min-height: 350px;
+  }
+
+  .banner-content {
+    align-items: flex-start;
+  }
+
+  .banner-title,
+  .banner-text {
+    text-align: left;
+  }
+
+  .banner-image {
+    width: 90%;
+    margin-top: 10px;
+  }
+
+  .events-tabs {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .event-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    border-top: 3px solid #e8eaee;
+    transition: all 0.2s ease;
+  }
+
+  .event-row:hover {
+    border-top: 3px solid #ffc72c;
+  }
+
+  .event-date,
+  .event-title,
+  .event-service {
+    text-align: left;
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+  .dash-container {
+    padding: 0 25px;
+  }
+
+  .grid-2col {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
-  .banner-visual {
-    justify-content: flex-start;
+
+  .grid-2col .panel-events {
+    order: -1;
   }
+
+  .events-list {
+    min-height: 100px;
+  }
+
+  .panel-events {
+    order: -1;
+    padding-top: 0.93rem;
+  }
+
+  .service-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+  }
+
+  .banner {
+    grid-template-columns: repeat(2, 1fr);
+    max-height: 260px;
+  }
+
+  .banner-content {
+    align-items: flex-start;
+  }
+
+  .banner-title,
+  .banner-text {
+    text-align: left;
+  }
+
+  .banner-image {
+    width: 90%;
+    margin-top: 10px;
+  }
+
+  .events-tabs {
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .event-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    border-top: 3px solid #e8eaee;
+    transition: all 0.2s ease;
+  }
+
+  .event-row:hover {
+    border-top: 3px solid #ffc72c;
+  }
+
+  .event-date,
+  .event-title,
+  .event-service {
+    text-align: left;
+  }
+
 }

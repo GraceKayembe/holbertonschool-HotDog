@@ -63,24 +63,26 @@ export default function Dashboard() {
           text="Get your furry friend the care they need!"
           ctaText="Find a Provider"
         />
-      </div>
 
-      {/* <PetStylistReviews
-        stylists={STYLISTS}
-        onBookClick={() => console.log('Book appointment')}
-      /> */}
-      <div className="banner-advert-container">
-        {advert_Data
-        .filter(ad => ad.id === 1 || ad.id === 2 || ad.dashboardSubtitle)
-        .map(advert =>(
-          <Advert
-            key={advert.id}
-            img={advert.img}
-            name={advert.name}
-            description={advert.description}
-            dashboardSubtitle={advert.dashboardSubtitle}
-          />
-        ))}
+          {/* <PetStylistReviews
+          stylists={STYLISTS}
+          onBookClick={() => console.log('Book appointment')}
+        /> */}
+        <div className="banner-advert-section">
+          <div className="banner-advert-container ">
+            {advert_Data
+            .filter(ad => ad.id === 1 || ad.id === 2 || ad.dashboardSubtitle)
+            .map(advert =>(
+              <Advert
+                key={advert.id}
+                img={advert.img}
+                name={advert.name}
+                description={advert.description}
+                dashboardSubtitle={advert.dashboardSubtitle}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
     </div>

@@ -6,13 +6,13 @@ function CardBanner(props) {
       {/* heading*/}
       {props.bannerTitle && (
         <>
-          <h1 className="home-banner-h1">{props.bannerTitle}</h1>
+          <h2 className="home-banner-h1">{props.bannerTitle}</h2>
           {props.showButton && (
           <button 
             className="home-banner-btn"
             onClick={props.onButtonClick}
           >
-            Find a Practice Now!
+            Find a Provider!
           </button>
           )}
         </>

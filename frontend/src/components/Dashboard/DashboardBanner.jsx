@@ -17,7 +17,7 @@ export default function DashboardBanner({ title, text, ctaText, onCtaClick }) {
       <div className="banner-content">
         <h2 className="banner-title">{title}</h2>
         <p className="banner-text">{text}</p>
-        <button className="banner-btn" type="button" onClick={handleCta}>
+        <button className="banner-dashboard-btn" type="button" onClick={handleCta}>
           {ctaText}
         </button>
       </div>

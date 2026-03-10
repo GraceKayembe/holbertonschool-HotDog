@@ -16,20 +16,25 @@ function Advert(props) {
       )}
 
       {/* Home banner: title + subtitle */}
-      {props.title && props.subtitle && (
-        <>
-          <h1 className="advert-h1">{props.title}</h1>
-          <p className="advert-subtitle">{props.subtitle}</p>
-          {props.showButton && (
-            <button 
-              className="advert-btn"
-              onClick={props.registerNowBtnClick}
-            >
-              Register With Us Now!
-            </button>
-          )}
-        </>
-      )}
+      
+        {props.title && props.subtitle && (
+          <>
+            <div className="advert-title-container">
+              <h1 className="advert-h1">{props.title}</h1>
+              <p className="advert-subtitle">{props.subtitle}</p>
+  
+              {props.showButton && (
+                <button 
+                  className="advert-btn"
+                  onClick={props.registerNowBtnClick}
+                >
+                  Register Now!
+                </button>
+              )}
+            </div>
+          </>
+        )}
+        
 
       {/* Dashboard-only banner */}
       {props.dashboardSubtitle && !props.subtitle && (

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import DateStep from "../../Appointments/DateStep";
-import TimeStep from "../../Appointments/TimeStep";
+import TimeStep from "../../Appointments/BookingTimeStep/BookingTimeStep";
 import {
   createCustomerAndPetFromProvider,
   createProviderBooking,

@@ -4,21 +4,20 @@ body {
 
 }
 
-
 .bookingsequence-container {
-  background-color: white;
+  background-color: white !important;
   color: #333333;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(31, 58, 95, 0.2);
-  padding: 50px 30px;
+  padding: 40px 30px;
   transition: transform 0.2s;
   width: 450px;
+  height: 330px;
   text-align: center;
   margin: auto;
   font-size: 15px;
-  line-height: 2;
+  /* line-height: 2; */
 }
-
 
 .bookingsequence-container label {
   font-size: 15px;
@@ -65,37 +64,43 @@ body {
   padding: 0px 15px;
 }
 
+.button-group {
+  padding-top: 15px;
+}
 
 .bookingsequence-cancelbutton {
   /* padding: 10px 15px; */
+  background-color: transparent;
+  border: 3px solid #ffc72c;
+  color: #1f3a5f;
   border-radius: 20px;
   margin: 15px;
-  border: none;
-  color: #1f3a5f;
-  background-color: #e8eaee;
   width: 100px;
   height: 40px;
   font-weight: 700;
 }
 
 .bookingsequence-cancelbutton:hover {
-  color: #1f3a5f;
+  background-color: #e8eaee;
+  border: none;
 }
 
 .bookingsequence-submitbutton {
   /* padding: 10px 15px; */
+  background-color: transparent;
+  border: 3px solid#1f3a5f;
+  color: #1f3a5f;
   border-radius: 20px;
   margin: 15px;
-  border: none;
-  color: #1f3a5f;
-  background-color: #ffc72c;
   width: 100px;
   height: 40px;
   font-weight: 700;
 }
 
 .bookingsequence-submitbutton:hover {
-  color: white;
+  color: #ffc72c;
+  background-color: #16325b;
+  border: none;
 }
 
 .bookingsequence-backbutton {

@@ -7,7 +7,7 @@ function BookingSteps2({ closePopup, handleNext, goBack }) {
   };
 
   return (
-    <div className="bookingsequence-container">
+    <div className="bookingsequence2-container">
       <h4 className="bookingsequence-h4">Please note this appointment type is not suitable for procedures.</h4>
       <p>If you require a procedure, please call reception to allocate proper resources.</p>
       <hr />

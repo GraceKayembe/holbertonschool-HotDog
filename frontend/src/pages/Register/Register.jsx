@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Register.css";
 import "../../styles/common.css";
@@ -9,8 +9,15 @@ import ToggleSwitch from "../../components/buttons/ToggleSwitch";
 import { registerUser } from "../../api/auth";
 
 export default function Register() {
-
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.documentElement.classList.add("no-margin-header");
+
+    return () => {
+      document.documentElement.classList.remove("no-margin-header");
+    };
+  }, []);
 
   const [formData, setFormData] = useState({
     first_name: "",
@@ -19,7 +26,7 @@ export default function Register() {
     email: "",
     password: "",
     confirmPassword: "",
-  })
+  });
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -57,7 +64,9 @@ export default function Register() {
 
       navigate("/login");
     } catch (err) {
-      setError(err.response?.data?.message || err.message || "Registration failed");
+      setError(
+        err.response?.data?.message || err.message || "Registration failed",
+      );
     } finally {
       setLoading(false);
     }
@@ -80,7 +89,7 @@ export default function Register() {
             Keep on top of your pet's appointments and create an account!{" "}
           </p>
 
-          {error && <p style={{ color: 'red'}}>{error}</p>}
+          {error && <p style={{ color: "red" }}>{error}</p>}
 
           <Row className="mb-3">
             <FormLabel

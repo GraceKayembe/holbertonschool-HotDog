@@ -1,18 +1,18 @@
-.form-card { 
-  min-height: 100vh; 
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+.form-card {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 1rem;
-} 
+}
 
-.form-card form { 
-  background: white; 
-  padding: 2rem; 
-  border-radius: 12px; 
-  width: 450px; 
-  box-shadow: 0 4px 10px rgba(31, 58, 95,0.4); 
-  align-items: center; 
+.form-card form {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 450px;
+  box-shadow: 0 4px 10px rgba(31, 58, 95, 0.4);
+  align-items: center;
 }
 
 .form-card form input,
@@ -23,7 +23,7 @@
   border: 3px solid #e8eaee;
   border-radius: 8px;
   margin-bottom: 1rem;
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   transition: all 0.2s ease;
 }
 
@@ -42,7 +42,9 @@
   width: 100%;
   margin-bottom: 30px;
   font-weight: 600;
-  font-family: Open Sans, sans-serif;
+  font-family:
+    Open Sans,
+    sans-serif;
   color: #1f3a5f;
   border: none;
   font-size: clamp(1rem, 2vw, 1.1rem);
@@ -60,9 +62,9 @@
 
 .logo-container {
   display: flex;
-  justify-content: center; 
-  align-items: center;    
-  height: 200px;           
+  justify-content: center;
+  align-items: center;
+  height: 200px;
 }
 
 .HotDogLogo {
@@ -83,7 +85,9 @@
   text-align: center;
 }
 
-
+html.no-margin-header {
+  margin-top: 0;
+}
 
 /* ============================
    RESPONSIVE

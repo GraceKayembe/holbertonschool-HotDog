@@ -1,5 +1,5 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useContext, useState, useEffect } from "react";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 import { Form, Button } from "react-bootstrap";
 import FormLabel from "../../components/Form/FormLabel";
@@ -12,6 +12,14 @@ import HotDogLogo from "../../assets/logo/hotdog_logo.svg";
 export default function Login() {
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
+
+  useEffect(() => {
+    document.documentElement.classList.add("no-margin-header");
+
+    return () => {
+      document.documentElement.classList.remove("no-margin-header");
+    };
+  }, []);
 
   // State for form inputs and error messages
   const [formData, setFormData] = useState({
@@ -59,14 +67,19 @@ export default function Login() {
   return (
     <div className="auth-page">
       <div className="form-card">
-        
-        
         <Form onSubmit={handleSubmit}>
-          <div className="logo-container">
-            <img src={HotDogLogo} alt="HotDog Logo" className="HotDogLogo"/>
-          </div>
+          <Link to={"/"}>
+            <div className="logo-container">
+              <img src={HotDogLogo} alt="HotDog Logo" className="HotDogLogo" />
+            </div>
+          </Link>
 
-          <h2 className="login-h2" style={{ color: "#1f3a5f", fontWeight: 700 }}>Login</h2>
+          <h2
+            className="login-h2"
+            style={{ color: "#1f3a5f", fontWeight: 700 }}
+          >
+            Login
+          </h2>
           <p className="mb-3 subtitle-text">Access your dashboard now! </p>
 
           <ToggleSwitch
@@ -102,7 +115,7 @@ export default function Login() {
             Login
           </Button>
           <p className="sub-text justify-left">
-            New to HotDog? <a href="../register">Sign up</a>
+            New to HotDog? <Link to="/register">Sign up</Link>
           </p>
         </Form>
       </div>

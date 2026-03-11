@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Login.css";
 import { Form, Button } from "react-bootstrap";
 import FormLabel from "../../components/Form/FormLabel";
@@ -113,7 +113,7 @@ export default function Login() {
             Login
           </Button>
           <p className="sub-text justify-left">
-            New to HotDog? <a href="../register">Sign up</a>
+            New to HotDog? <Link to="/register">Sign up</Link>
           </p>
         </Form>
       </div>

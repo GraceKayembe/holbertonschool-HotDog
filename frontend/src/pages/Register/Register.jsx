@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./Register.css";
 import "../../styles/common.css";
 import { Form, Button, Col, Row } from "react-bootstrap";
@@ -158,7 +158,7 @@ export default function Register() {
           </Button>
           <p className="sub-text justify-left">
             {" "}
-            Already have an account? <a href="../login">Login</a>
+            Already have an account? <Link to="/login">Login</Link>
           </p>
         </Form>
       </div>

@@ -68,9 +68,11 @@ export default function Login() {
     <div className="auth-page">
       <div className="form-card">
         <Form onSubmit={handleSubmit}>
-          <div className="logo-container">
-            <img src={HotDogLogo} alt="HotDog Logo" className="HotDogLogo" />
-          </div>
+          <Link to={"/"}>
+            <div className="logo-container">
+              <img src={HotDogLogo} alt="HotDog Logo" className="HotDogLogo" />
+            </div>
+          </Link>
 
           <h2
             className="login-h2"

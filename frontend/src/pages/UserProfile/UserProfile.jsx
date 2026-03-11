@@ -259,7 +259,7 @@ export default function UserProfile() {
                             mobileNumber,
                           );
                         }}
-                        className="btn-layout btn-yellow"
+                        className="btn-style button-yellow"
                       >
                         Save details
                       </button>
@@ -267,7 +267,7 @@ export default function UserProfile() {
                   ) : (
                     <button
                       onClick={openEditMode}
-                      className="btn-layout btn-yellow"
+                      className="btn-style button-yellow"
                     >
                       Edit Details
                     </button>
@@ -304,7 +304,7 @@ export default function UserProfile() {
                   </Form>
                   {error && <p style={{ color: "red" }}>{error}</p>}
                   <button
-                    className="btn-layout btn-yellow"
+                    className="btn-style button-yellow"
                     onClick={() => {
                       handleUpdatePassword(newPassword, confirmPassword);
                     }}
@@ -333,7 +333,7 @@ export default function UserProfile() {
                   </p>
                   <button
                     type="button"
-                    className="btn-layout btn-navy"
+                    className="btn-style button-navy"
                     onClick={() => {
                       setShowModal(true);
                     }}

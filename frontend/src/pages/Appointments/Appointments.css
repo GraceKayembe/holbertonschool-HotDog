@@ -51,9 +51,9 @@
   display: flex;
   flex-direction: column;
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 8px;
   font-size: clamp(1rem, 2vw, 1.25rem);
-  text-align: center;
+  text-align: left;
   color: #333333;
 }
 
@@ -68,6 +68,10 @@
   display: flex;
   gap: 20px;
   margin-bottom: 3px;
+}
+
+.bookings {
+  margin-bottom: 100px;
 }
 
 .bookings-banner {

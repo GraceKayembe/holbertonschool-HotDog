@@ -13,7 +13,6 @@ import BookingSteps1 from "../../components/BookingSteps/BookingSteps1";
 import BookingSteps2 from "../../components/BookingSteps/BookingSteps2";
 import BookingSteps3 from "../../components/BookingSteps/BookingSteps3";
 
-
 export default function Appointments() {
   const providerID = useParams();
   const today = dayjs();
@@ -53,7 +52,7 @@ export default function Appointments() {
   const handleNext = async (dataFromStep) => {
     const updatedBookingData = {
       ...bookingData,
-      ...dataFromStep
+      ...dataFromStep,
     };
 
     setBookingData(updatedBookingData);
@@ -64,22 +63,20 @@ export default function Appointments() {
       if (!success) return;
     }
 
-    setStep(prev => prev + 1);
+    setStep((prev) => prev + 1);
   };
 
   // Submit appointment to backend
   const submitAppointment = async (dataFromStep1) => {
     const token = localStorage.getItem("token");
 
-    if (!dataFromStep1.pet_id || 
-      !dataFromStep1.booking_type || 
-      !selectedTime) {
+    if (!dataFromStep1.pet_id || !dataFromStep1.booking_type || !selectedTime) {
       alert("Please make sure all required fields are selected.");
       return false;
     }
 
     setIsSubmitting(true);
-    
+
     try {
       const fullDateTime = selectedDate
         .hour(dayjs(selectedTime, ["h:mm A"]).hour())
@@ -108,25 +105,26 @@ export default function Appointments() {
       const data = await response.json();
 
       if (!response.ok) {
-        throw new Error(data.error || data.msg || "Failed to create appointment");
+        throw new Error(
+          data.error || data.msg || "Failed to create appointment",
+        );
       }
 
-      setBookingData(prev => ({
+      setBookingData((prev) => ({
         ...prev,
-        appointment_id: data.booking.id
+        appointment_id: data.booking.id,
       }));
 
       return true;
 
       // Store the appointment ID for Step 3 display
-      } catch (err) {
-        alert("Failed to create appointment: " + err.message);
-        return false;  // 👈 failed
-      } finally {
-        setIsSubmitting(false);
-      }
-    };
-
+    } catch (err) {
+      alert("Failed to create appointment: " + err.message);
+      return false; // 👈 failed
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   // FETCH SERVICE PROVIDER DETAILS
   useEffect(() => {
@@ -279,7 +277,7 @@ export default function Appointments() {
     <div className="appointment-page">
       <div className="appointment-container">
         <div className="provider-content">
-          <h1>{provider.name}</h1>
+          <h1 class="mb-4">{provider.name}</h1>
           <div className="provider-img-container">
             <img src={provider.img_url} alt="provider-image" />
           </div>
@@ -336,7 +334,12 @@ export default function Appointments() {
               >
                 Cancel
               </button>
-              <button className="action-btn-format navy-btn" onClick={openPopup}>Book</button>
+              <button
+                className="action-btn-format navy-btn"
+                onClick={openPopup}
+              >
+                Book
+              </button>
             </div>
           )}
         </div>
@@ -345,8 +348,20 @@ export default function Appointments() {
         {isPopupOpen && (
           <div className="provider-modal-overlay">
             <div className="provider-modal">
-              {step === 1 && <BookingSteps1 closePopup={closePopup} onNext={handleNext} services={provider.services} />}
-              {step === 2 && <BookingSteps2 closePopup={closePopup} handleNext={handleNext} goBack={goBack} />}
+              {step === 1 && (
+                <BookingSteps1
+                  closePopup={closePopup}
+                  onNext={handleNext}
+                  services={provider.services}
+                />
+              )}
+              {step === 2 && (
+                <BookingSteps2
+                  closePopup={closePopup}
+                  handleNext={handleNext}
+                  goBack={goBack}
+                />
+              )}
               {step === 3 && (
                 <BookingSteps3
                   closePopup={closePopup}

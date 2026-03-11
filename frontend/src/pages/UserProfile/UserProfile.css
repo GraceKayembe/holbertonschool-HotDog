@@ -74,6 +74,7 @@
   background: #ffc72c;
   color: #1f3a5f;
   width: fit-content;
+  border-radius: 20px;
 }
 
 .btn-navy {
@@ -118,4 +119,15 @@
   color: #1f3a5f;
   border-radius: 20px;
   padding: 10px;
+}
+
+
+
+
+
+
+.form-control:disabled {
+    background-color: var(--bs-secondary-bg);
+    opacity: 1;
+    border: 3px solid #e8eaee;
 }

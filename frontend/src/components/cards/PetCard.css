@@ -96,7 +96,7 @@
   border-radius: 20px;
   font-size: clamp(0.93rem, 0.93vw, 0.93rem);
   font-weight: bold;
-  padding: 6px 14px;
+  padding: 0 14px;
 }
 
 .pet-card-footer .notes-label .btn.btn-primary.popover-buttons {
@@ -107,6 +107,7 @@
   color: #1f3a5f;
   font-weight: bold;
   border-radius: 20px !important;
+  padding: 0 12px; /* override bootstrap */
 }
 
 .pet-card-actions .btn-yellow {
@@ -175,8 +176,6 @@
     sans-serif;
 }
 
-
-
 /* ============================
    RESPONSIVE
 ============================== */
@@ -193,9 +192,8 @@
   }
 }
 
-
 /* Mobiles */
-@media (max-width: 600px) { 
+@media (max-width: 600px) {
   .pet-card {
     grid-template-columns: 1fr;
     text-align: center;
@@ -232,7 +230,7 @@
   } */
 
   .pet-card-footer .notes-label .btn.btn-primary.popover-buttons {
-     display: none;
+    display: none;
   }
 
   .notes-label {
@@ -247,5 +245,4 @@
   .pet-card-actions button {
     width: 120px;
   }
-
 }

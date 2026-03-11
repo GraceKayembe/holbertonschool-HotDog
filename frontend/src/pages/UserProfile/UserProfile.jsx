@@ -105,6 +105,10 @@ export default function UserProfile() {
       const result = await submitUpdate(body);
       console.log(result.message);
       setShowPasswordSuccess(true);
+      // Close success modal after 2 seconds
+      setTimeout(() => {
+        setShowPasswordSuccess(false);
+      }, 1500);
     } catch (error) {
       setError(error.message);
       console.error(error);
@@ -143,7 +147,7 @@ export default function UserProfile() {
 
   return (
     <div className="profile-background">
-      <div className="profile-container">
+      <div className="user-profile-container">
         <h1 className="mb-5" style={{ fontWeight: "800", color: "#1f3a5f" }}>
           My Profile
         </h1>
@@ -340,17 +344,23 @@ export default function UserProfile() {
               </Form>
             )}
 
-            <SuccessToast
-              showToast={showDeleteSuccess}
-              onClose={() => setShowDeleteSuccess(false)}
-              message="Your account was deleted successfully!"
-            />
+            {showDeleteSuccess && (
+              <div className="success-modal">
+                <div className="success-modal-content">
+                  <h2>✅ Account Deleted</h2>
+                  <p>Your account has been permanently deleted.</p>
+                </div>
+              </div>
+            )}
 
-            <SuccessToast
-              showToast={showPasswordSuccess}
-              onClose={() => setShowPasswordSuccess(false)}
-              message="Your password was updated successfully!"
-            />
+            {showPasswordSuccess && (
+              <div className="success-modal">
+                <div className="success-modal-content">
+                  <h2>✅ Password Updated</h2>
+                  <p>Your password was successfully updated.</p>
+                </div>
+              </div>
+            )}
 
             <ConfirmModal
               show={showModal}

@@ -10,7 +10,7 @@
   background: white;
   padding: 2rem;
   border-radius: 12px;
-  width: 450px;
+  width: 475px;
   box-shadow: 0 4px 10px rgba(31, 58, 95, 0.4);
   align-items: center;
 }
@@ -83,6 +83,9 @@
 .subtitle-text {
   font-size: clamp(1.25rem, 2.25vw, 1.5rem) !important;
   text-align: center;
+  font-family:
+    Open Sans,
+    sans-serif;
 }
 
 html.no-margin-header {

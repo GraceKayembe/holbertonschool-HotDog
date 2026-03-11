@@ -85,7 +85,7 @@ export default function Register() {
           <h2 style={{ color: "#1f3a5f", fontWeight: 700 }}>
             Create a HotDog Account
           </h2>
-          <p className="mb-5 sub-text">
+          <p className="mb-4 subtitle-text">
             Keep on top of your pet's appointments and create an account!{" "}
           </p>
 

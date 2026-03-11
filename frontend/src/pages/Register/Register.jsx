@@ -82,16 +82,16 @@ export default function Register() {
             secondRadio={"Sign Up"}
             secondPath={"/register"}
           />
-          <h2 style={{ color: "#1f3a5f", fontWeight: 700 }}>
+          <h2 style={{ color: "#1f3a5f", fontWeight: 700, marginBottom: 25 }}>
             Create a HotDog Account
           </h2>
-          <p className="mb-4 subtitle-text">
+          <p className="subtitle-text" style={{ marginBottom: 40 }}>
             Keep on top of your pet's appointments and create an account!{" "}
           </p>
 
           {error && <p style={{ color: "red" }}>{error}</p>}
 
-          <Row className="mb-3">
+          <Row>
             <FormLabel
               className="justify-left"
               controlId="formGridFirstName"

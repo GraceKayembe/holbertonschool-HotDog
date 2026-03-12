@@ -99,7 +99,7 @@ export default function UserProfile() {
       return setError("Passwords do not match");
     }
 
-    const body = { password: "newPassword" };
+    const body = { password: newPassword };
 
     try {
       const result = await submitUpdate(body);

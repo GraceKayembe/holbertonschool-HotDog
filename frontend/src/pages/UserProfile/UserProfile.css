@@ -31,12 +31,13 @@
   gap: 24px;
   max-width: 800px;
   width: 100%;
+  padding-bottom: 50px;
+  height: 850px;
 }
 
 .form-nav {
   background: white;
   border-radius: 12px;
-  height: 45rem;
   top: 24px;
   width: 200px;
 }

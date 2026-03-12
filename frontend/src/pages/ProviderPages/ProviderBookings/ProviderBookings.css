@@ -94,7 +94,7 @@
   grid-auto-rows: minmax(64px, auto);
   gap: 0.85rem;
   width: 100%;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   align-self: start;
 }
 
@@ -136,7 +136,7 @@
   max-height: 90vh;
   overflow: auto;
   background: white;
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 18px;
   position: relative;
 }
@@ -160,7 +160,7 @@
 .provider-modal-block {
   margin-bottom: 14px;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #f2f4f7;
 }
 
@@ -194,7 +194,7 @@
   margin-top: 8px;
   padding: 10px;
   border: 1px solid #1f3a5f;
-  border-radius: 6px;
+  border-radius: 12px;
 }
 
 .provider-notes {
@@ -203,12 +203,19 @@
 
 .provider-secondary-btn {
   margin-top: 12px;
-  border: none;
-  border-radius: 12px;
+  border: 3px solid #1f3a5f;
+  border-radius: 20px;
   padding: 8px 12px;
-  background: #ffc72c;
+  background-color: transparent;
   color: #1f3a5f;
-  font-weight: 800;
+  font-weight: 700;
+  width: 110px;
+}
+
+.provider-secondary-btn:hover {
+  background-color: #1f3a5f;
+  color: #ffc72c;
+  border: 3px solid #1f3a5f 
 }
 
 .provider-checkbox-row {
@@ -231,21 +238,33 @@
 }
 
 .modal-btn-cancel {
-  background: #1f3a5f;
-  color: #ffc72c;
-  border: none;
-  border-radius: 12px;
+  background-color: transparent;
+  border: 3px solid #ffc72c;
+  border-radius: 20px; /* replicate user's booking side */
   padding: 8px 12px;
-  font-weight: 500;
+  font-weight: 700;
+  width: 110px;
 }
 
-.modal-btn-continue {
-  background: #ffc72c;
+.modal-btn-cancel:hover {
+  background-color: #e8eaee;
+  border: 3px solid #e8eaee;
+}
+
+.modal-btn-book {
+  border: 3px solid #1f3a5f;
+  background-color: transparent;
   color: #1f3a5f;
-  border: none;
-  border-radius: 12px;
+  border-radius: 20px;
   padding: 8px 12px;
-  font-weight: 800;
+  font-weight: 700;
+  width: 110px;
+}
+
+.modal-btn-book:hover {
+  background-color: #1f3a5f;
+  color: #ffc72c;
+  border: 3px solid #1f3a5f;
 }
 
 @media (max-width: 768px) {

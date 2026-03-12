@@ -627,7 +627,7 @@ export default function ProviderBookings() {
                 Cancel
               </button>
               <button
-                className="modal-btn-continue"
+                className="modal-btn-book"
                 onClick={handleCreateBooking}
                 disabled={(
                   (existingOwner === "yes" && !selectedPetId)
@@ -644,7 +644,7 @@ export default function ProviderBookings() {
                   || !selectedTime
                 )}
               >
-                Continue
+                Book
               </button>
             </div>
           </div>

@@ -12,10 +12,13 @@
   box-shadow: 0 0 20px rgba(31, 58, 95, 0.2);
   padding: 30px;
   width: 500px;
+  max-width: 100%;
   min-height: 700px;
+  max-height: min(86vh, 900px);
+  overflow-y: auto;
   text-align: center;
   font-size: 15px;
-  margin: 10px auto;
+  margin: 0 auto;
 }
 
 .pet-form-container label {

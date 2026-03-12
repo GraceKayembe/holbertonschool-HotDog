@@ -50,14 +50,13 @@ class UserService():
             if "email" in data and data["email"]:
                 new_email = data["email"].strip().lower()
 
-                # if new_email == user.email:
-                #     raise ValueError("New email must be different from current email")
+                # Only run email uniqueness check if email changed
+                if new_email != user.email:
+                    existing = User.query.filter_by(email=new_email).first()
+                    if existing:
+                        raise ValueError("Email already in use")
                     
-                existing = User.query.filter_by(email=new_email).first()
-                if existing and existing.id != user.id:
-                    raise ValueError("Email already in use")
-                
-                user.email = new_email
+                    user.email = new_email
 
             # Password change
             if "password" in data and data["password"]:

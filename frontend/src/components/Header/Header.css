@@ -72,10 +72,10 @@ header {
 
 /* User greeting */
 .intro-hi {
-  margin: 0;   
-  line-height: 1; 
-   display: flex;
-  align-items: center; 
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
   font-size: 15px;
   font-weight: 700;
   color: #1f3a5f;
@@ -113,9 +113,9 @@ header {
 } */
 
 .login {
-  background: transparent;
+  background: #1f3a5f;
   border: 3px solid #1f3a5f;
-  color: #1f3a5f;
+  color: #ffc72c;
   font-size: 15px;
   font-weight: 700;
   padding: 8px 16px;
@@ -137,9 +137,9 @@ header {
 }
 
 .login:hover {
-  background-color: #1f3a5f;
+  background: transparent;
   border: 3px solid #1f3a5f;
-  color: #ffc72c;
+  color: #1f3a5f;
 }
 
 .signup:hover {

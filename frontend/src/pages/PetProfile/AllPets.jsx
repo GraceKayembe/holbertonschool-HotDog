@@ -42,15 +42,23 @@ export default function AllPets() {
               {/* <div class="popup-content"> */}
                 <Popup
                   trigger={<button className="btn-yellow">+ Add Pet(s)</button>}
-                  position="bottom center"
+                  modal
                   closeOnDocumentClick
-                  arrow={false}
+                  overlayStyle={{
+                    background: "rgba(31, 58, 95, 0.35)",
+                    zIndex: 1200,
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "flex-start",
+                    paddingTop: "120px",
+                  }}
                   contentStyle={{ 
                     padding: 0,
                     border: "none",
                     background: "transparent",
                     boxShadow: "none",
-                    transform: "translateX(-150px)"
+                    width: "min(92vw, 540px)",
+                    margin: 0,
                   }}
                 >
                   {(close) => (

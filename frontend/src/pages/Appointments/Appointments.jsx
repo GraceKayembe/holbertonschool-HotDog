@@ -234,13 +234,13 @@ export default function Appointments() {
         setHasAppointment(false); // Hide the "Add a Review" button after submission
       } else {
         alert(
-          "❌ Backend rejected it: " +
+          "❌ Error: " +
             (data.error || data.msg || "Unknown error"),
         );
       }
     } catch (error) {
       console.error("Network error submitting review:", error);
-      alert("❌ Network Error. Is your Flask backend running?");
+      alert("❌ Network Error. Please try again later.");
     }
   };
 

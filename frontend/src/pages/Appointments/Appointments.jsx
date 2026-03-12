@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import { useState, useEffect } from "react";
 import "./Appointments.css";
 import DateStep from "./DateStep";
@@ -12,6 +13,8 @@ import PhoneIcon from "../../assets/icons/telephone-icon.png";
 import BookingSteps1 from "../../components/BookingSteps/BookingSteps1";
 import BookingSteps2 from "../../components/BookingSteps/BookingSteps2";
 import BookingSteps3 from "../../components/BookingSteps/BookingSteps3";
+
+dayjs.extend(utc);
 
 export default function Appointments() {
   const providerID = useParams();
@@ -48,6 +51,29 @@ export default function Appointments() {
 
   const goBack = () => setStep((prev) => Math.max(prev - 1, 1));
 
+  const buildDateTimeFromSlot = () => {
+    const match = selectedTime.match(/^(\d{1,2}):(\d{2})\s?(AM|PM)$/i);
+    if (!match) {
+      throw new Error("Invalid time slot format");
+    }
+
+    let hour = Number(match[1]);
+    const minute = Number(match[2]);
+    const meridiem = match[3].toUpperCase();
+
+    if (meridiem === "PM" && hour !== 12) {
+      hour += 12;
+    }
+    if (meridiem === "AM" && hour === 12) {
+      hour = 0;
+    }
+
+    const dateStr = selectedDate.format("YYYY-MM-DD");
+    const hh = String(hour).padStart(2, "0");
+    const mm = String(minute).padStart(2, "0");
+    return dayjs.utc(`${dateStr}T${hh}:${mm}:00Z`).toISOString();
+  };
+
   // Move popup steps
   const handleNext = async (dataFromStep) => {
     const updatedBookingData = {
@@ -78,12 +104,7 @@ export default function Appointments() {
     setIsSubmitting(true);
 
     try {
-      const fullDateTime = selectedDate
-        .hour(dayjs(selectedTime, ["h:mm A"]).hour())
-        .minute(dayjs(selectedTime, ["h:mm A"]).minute())
-        .second(0)
-        .millisecond(0)
-        .toISOString();
+      const fullDateTime = buildDateTimeFromSlot();
 
       const response = await fetch("/api/appointments/", {
         method: "POST",

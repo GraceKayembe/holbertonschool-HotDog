@@ -11,16 +11,15 @@
   margin: 0 auto;
 }
 
-.manage-appointments-header {
-  display: grid;
-  grid-template-columns: auto 1fr;
+.manage-appointments-header{
+  display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 10px;
   margin-bottom: clamp(0rem, 0.40vw, 0.93rem);
 }
 
 .back-btn {
-  font-size: clamp(1.25rem, 1.5vw, 1.25rem);
   color: #1f3a5f;
   background: none;
   border: none;
@@ -29,7 +28,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
   transition: transform 0.2s;
+  flex-shrink: 0;
 }
 
 .back-btn:hover {
@@ -42,13 +43,13 @@
   height: 24px;
 }
 
-.manage-appointments-header h1 {
+.back-btn, .manage-appointments-header h1 {
   font-size: clamp(1.25rem, 2.25vw, 1.5rem);
   font-weight: 600;
   color: #1f3a5f;
   margin: 0;
   text-align: left;
-  padding-top: clamp(1.4rem, 1.5vw, 2rem);
+  line-height: 1.2;
 }
 
 .loading,
@@ -260,15 +261,12 @@
   }
 
   .manage-appointments-header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+  
     gap: 10px;
   }
 
-  .back-btn {
-    font-size: clamp(1.1rem, 1.5vw, 1.25rem);
-    padding: 6px;
-  }
+ 
 
   .appointment-card {
     flex-direction: column;
@@ -304,19 +302,13 @@
   }
 
   .manage-appointments-header {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    
     gap: 8px;
   }
 
-  .back-btn {
-    font-size: clamp(1rem, 4vw, 1.2rem);
-    padding: 6px;
-  }
 
-  .manage-appointments-header h1 {
-    font-size: clamp(1.1rem, 4vw, 1.4rem);
-  }
+
 
   .appointments-list {
     gap: 15px;

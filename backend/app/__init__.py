@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
@@ -22,11 +23,15 @@ except ImportError:
 try:
     from dotenv import load_dotenv
 except ImportError:
-    def load_dotenv():
+    def load_dotenv(*args, **kwargs):
         return False
 
 def create_app():
-    load_dotenv() # make sure Flask can read .env
+    # Load env vars from both backend/.env and backend/app/.env.
+    app_dir = Path(__file__).resolve().parent
+    load_dotenv(app_dir.parent / ".env")
+    load_dotenv(app_dir / ".env")
+    load_dotenv() # fallback default discovery
     if certifi:
         os.environ["SSL_CERT_FILE"] = certifi.where()
 

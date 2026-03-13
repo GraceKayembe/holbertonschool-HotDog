@@ -20,7 +20,6 @@ export default function UserProfile() {
   const [lastName, setLastName] = useState(user?.last_name || "");
   const [email, setEmail] = useState(user?.email || "");
   const [mobileNumber, setMobileNumber] = useState(user?.phone_number || "");
-  const [emergencyNumber, setEmergencyNumber] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -56,7 +55,6 @@ export default function UserProfile() {
     lastName,
     email,
     mobileNumber,
-    // emergencyNumber,
   ) => {
     console.log("handleUpdateUser triggered with:", {
       firstName,
@@ -231,18 +229,6 @@ export default function UserProfile() {
                       value={mobileNumber}
                       onChange={(e) => {
                         setMobileNumber(e.target.value);
-                      }}
-                    />
-                    <FormLabel
-                      className="justify-left mb-3"
-                      controlId="emergencyNumber"
-                      type="emergencyNumber"
-                      name="Emergency Phone Number"
-                      disabled={!editMode}
-                      readOnly={!editMode}
-                      // value={user.emergency_number}
-                      onChange={(e) => {
-                        setEmergencyNumber(e.target.value);
                       }}
                     />
                   </Form>

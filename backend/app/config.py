@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 # Full absolute path to this file
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -6,6 +7,7 @@ BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.getenv("SECRET_KEY", "default_secret_key")
     JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY", "dev-jwt-secret-key")
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(minutes=30)
 
     SQLALCHEMY_DATABASE_URI = (
         # /backend/database/app.db

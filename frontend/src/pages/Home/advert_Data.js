@@ -7,7 +7,7 @@ const advert_Data = [
     img: WomanWithDog,
     name: "Jamie Jason",
     description:
-      "HotDog made it really easy to find a reliable dog walker for my Labrador. I love being able to keep all of my pet’s details and bookings in one place.",
+      "HotDog made it really easy to find a reliable dog walker for my Labrador. Booking was quick and I love being able to manage all of his appointments in one place.",
     showButton: false,  
   },
   {
@@ -15,7 +15,7 @@ const advert_Data = [
     img: ManWithCat,
     name: "Tony Samuels",
     description:
-      "I booked a vet appointment through HotDog and the provider was able to update my cat’s details during the visit. It’s great having everything kept up to date in one place.",
+      "I booked a vet appointment through HotDog and the vet was able to update my cat’s details during the visit. It’s reassuring knowing her records are always up to date.",
     showButton: false,
   },
   {

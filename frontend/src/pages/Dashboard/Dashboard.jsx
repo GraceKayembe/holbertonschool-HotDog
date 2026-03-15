@@ -44,7 +44,7 @@ export default function Dashboard() {
         
         <DashboardHero
           displayGreeting={false}
-          title="Welcome to HotDog, where quality care and everything your pet needs come together."
+          title={<>Welcome to HotDog!<br />Everything your pet needs, all in one place.</>}
         />
 
         {/* <DashboardSearch

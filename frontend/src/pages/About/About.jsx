@@ -95,7 +95,10 @@ function About() {
 
         {/* Subheading */}
         <p className="about-body-text">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper uscipitlobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+          HotDog simplifies how pet owners and service providers connect. We believe booking care for your pet should be easy, reliable, and stress-free.
+        </p>
+        <p className="about-body-text">
+          With booking, scheduling, and communication in one place, HotDog helps providers manage their services while giving pet owners a simple way to book the care their pets need.
         </p>
         </div>
 
@@ -103,7 +106,7 @@ function About() {
         <div className="whatwedo_parentcontainer">
           <h1 className="about-heading">What we do for you</h1>
           <p className="whatwedo-subheading">
-            HotDog makes it easier for patients to find, book, and return to your practice.
+            HotDog makes it easier for pet owners to find, book, and return to your practice.
           </p>
 
           <div className="whatwedo-showcontainer">
@@ -117,9 +120,7 @@ function About() {
             Are you a provider interested <br /> in our platform?
           </h1>
 
-          <div className="about-body-text">
-            {chooseUs_Card_Data.map(chooseUsCard)}
-          </div>
+          {chooseUs_Card_Data.map(chooseUsCard)}
         </div>
 
       </div>

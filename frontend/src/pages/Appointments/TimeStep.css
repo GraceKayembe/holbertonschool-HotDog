@@ -1,45 +1,37 @@
 .time-button {
-  height: 40px;
-  border: none;
-  border-radius: 10px;
-  color: #1f3a5f;
+  width: 100%;
+  min-height: 42px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 8px 12px;     
+  color: #1f2a44;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .time-button.time-button-available {
-  background-color: #ffc72c;
+  background-color: #fff6e2;
   cursor: pointer;
 }
 
-.time-button.time-button-booked {
-  background-color: #c5c3c3;
-  color: #6b7280;
-  cursor: not-allowed;
+.time-button.time-button-available:hover {
+  background-color: #feebc5;
+  transform: translateY(-1px);
 }
 
 .time-button:disabled {
-  background-color: #c5c3c3;
-  color: #6b7280;
-  background-color: #f2f3f7;
-  border: 3px solid #f2f3f7;
-  color: #333333;
+  opacity: 1;
 }
 
-.time-button.time-button-available:hover {
-  border: 3px solid #ffc72c;
-  background-color: transparent;
-}
-
-.time-button.time-button-booked {
-  background-color: #ffc72c;
-  border: 3px solid #ffc72c;
+.time-button.time-button-unavailable {
+  background-color: #e8eaee;
+  color: #9ca3af;
   cursor: not-allowed;
+  text-decoration: line-through;
 }
 
-.time-button.active-btn {
-  background-color: #1f3a5f;
-  color: #ffc72c;
-  outline: 2px solid #1f3a5f;
-  background-color: #ffc72c;
-  border: 3px solid #ffc72c;
-  outline-offset: 1px;
+.time-button.time-button-selected {
+  background-color: #f6c21f;
+  color: #1f2a44;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
 }

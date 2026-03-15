@@ -133,7 +133,7 @@ function SearchButton({
     }
     if (providerInput) params.append("provider", providerInput);
 
-    if (location.pathname === "/") {
+    if (location.pathname !== "/services") {
       navigate(`/services?${params.toString()}`);
     }
   };

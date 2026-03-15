@@ -99,16 +99,54 @@
   color: #1f3a5f;
   font-family: "nunito";
   line-height: 1.2;
-  padding-bottom: clamp(0.93rem, 1.25vw, 1rem);
+  margin-bottom: 28px;
 }
 
 .about-body-text {
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  max-width: 900px;
+  margin: 0 auto 32px;
+  font-size: 1.1rem;
   font-weight: 400;
   text-align: center;
-  color: #333333;
-  line-height: 1.5;
+  color: #333;
+  line-height: 1.7;
   font-family: "Open Sans";
+}
+
+.using-hotDog-container {
+  width: min(100%, 920px);
+  margin: 2rem auto 3rem;
+  padding: 2.25rem 2rem;
+  background: #ffffff;
+  border: 1px solid #e3e7ee;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(31, 58, 95, 0.06);
+}
+
+.using-hotDog-container > .about-heading {
+  margin-bottom: 1.25rem;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+  letter-spacing: 0.2px;
+  position: relative;
+}
+
+.using-hotDog-container > .about-heading::after {
+  content: "";
+  display: block;
+  width: 84px;
+  height: 5px;
+  margin: 0.8rem auto 0;
+  border-radius: 999px;
+  background: #ffc72c;
+}
+
+.using-hotDog-container > p.about-body-text {
+  max-width: 70ch;
+  margin: 0 auto 1.2rem;
+  text-align: left;
+  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
+  line-height: 1.85;
+  color: #2b2f36;
 }
 
 /* wHAT WE DO FOR YOU */
@@ -423,6 +461,15 @@
     padding: 0 25px;
   }
 
+  .using-hotDog-container {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+
+  .using-hotDog-container > p.about-body-text {
+    text-align: left;
+  }
+
   .about-banner-card {
     justify-content: flex-start;
     align-items: flex-start;
@@ -531,4 +578,202 @@
     font-size: clamp(0.95rem, 3vw, 1.2rem);
   }
 
+}
+
+/* ============================
+   ABOUT VISUAL REFRESH
+============================== */
+
+.about-content {
+  gap: 1.25rem;
+}
+
+.whatwedo_parentcontainer {
+  width: min(100%, 920px);
+  max-height: none;
+  background: #ffffff;
+  border: 1px solid #e3e7ee;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(31, 58, 95, 0.06);
+  padding: 2.25rem 2rem;
+  margin: 0 auto 2.5rem;
+  overflow: visible;
+}
+
+.whatwedo_parentcontainer .about-heading {
+  margin-bottom: 0.75rem;
+  position: relative;
+  font-size: clamp(2rem, 4vw, 2.7rem);
+}
+
+.whatwedo_parentcontainer .about-heading::after {
+  content: "";
+  display: block;
+  width: 84px;
+  height: 5px;
+  margin: 0.8rem auto 0;
+  border-radius: 999px;
+  background: #ffc72c;
+}
+
+.whatwedo-subheading {
+  margin: 0 auto 1.5rem;
+  max-width: 70ch;
+  text-align: center;
+  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+  line-height: 1.6;
+}
+
+.whatwedo-showcontainer {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0;
+}
+
+.whatwedo-showcontainer .about-bannershow-card {
+  background: #f8fafc;
+  border: 1px solid #e3e7ee;
+  border-radius: 14px;
+  min-height: 230px;
+  padding: 1rem 0.8rem;
+  justify-content: flex-start;
+}
+
+.whatwedo-showcontainer .about-banner-title {
+  font-size: clamp(1rem, 1.2vw, 1.15rem);
+  margin-bottom: 8px;
+}
+
+.whatwedo-showcontainer .about-banner-description {
+  min-height: auto;
+  font-size: clamp(0.9rem, 1vw, 0.98rem);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.businesstesi-section {
+  width: 100%;
+  background: linear-gradient(180deg, #f2f3f7 0%, #eceff5 100%);
+  padding: 3rem 0;
+  margin-bottom: 2.5rem;
+  overflow: visible;
+}
+
+.testimonial-heading {
+  margin-bottom: 1.75rem;
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+}
+
+.businesstesi_parentcontainer {
+  width: min(100%, 1000px);
+  margin: 0 auto;
+  padding: 0 1rem;
+  background: transparent;
+  max-height: none;
+  overflow: visible;
+}
+
+.businesstesi-showcontainer {
+  width: 100%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  padding: 0;
+}
+
+.businesstesi-showcontainer .about-bannershow-card {
+  background: #ffffff;
+  border: 1px solid #e3e7ee;
+  border-radius: 14px;
+  min-height: 320px;
+  padding: 1.25rem 1rem;
+  box-shadow: 0 8px 22px rgba(31, 58, 95, 0.06);
+  justify-content: flex-start;
+}
+
+.icon-businesstesi {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.75rem;
+}
+
+.businesstesi-showcontainer .about-banner-title {
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.businesstesi-showcontainer .about-banner-companyName {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.businesstesi-showcontainer .about-banner-description {
+  font-size: 0.93rem;
+  line-height: 1.55;
+  min-height: auto;
+  font-weight: 400;
+}
+
+@media (min-width: 601px) and (max-width: 1024px) {
+  .whatwedo_parentcontainer {
+    padding: 2rem 1.25rem;
+  }
+
+  .whatwedo-showcontainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .businesstesi_parentcontainer {
+    display: block;
+    grid-auto-flow: unset;
+    grid-auto-columns: unset;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .businesstesi-showcontainer {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .businesstesi-showcontainer .about-bannershow-card {
+    min-height: 290px;
+  }
+}
+
+@media (max-width: 600px) {
+  .whatwedo_parentcontainer {
+    padding: 1.5rem 1rem;
+    border-radius: 12px;
+  }
+
+  .whatwedo-showcontainer {
+    grid-template-columns: 1fr;
+  }
+
+  .whatwedo-showcontainer .about-bannershow-card {
+    min-height: auto;
+  }
+
+  .businesstesi-section {
+    padding: 2rem 0;
+  }
+
+  .businesstesi_parentcontainer {
+    display: block;
+    grid-auto-flow: unset;
+    grid-auto-columns: unset;
+    overflow: visible;
+    scroll-snap-type: none;
+  }
+
+  .businesstesi-showcontainer {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .businesstesi-showcontainer .about-bannershow-card {
+    min-height: auto;
+  }
 }

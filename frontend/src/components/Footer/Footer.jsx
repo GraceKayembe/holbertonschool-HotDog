@@ -20,7 +20,7 @@ function Footer() {
             <li><Link to="/services">Find a Practice</Link></li>
             <li><Link to="">Dashboard</Link></li>
             <li><a href="/pets">My Pet(s)</a></li>
-            <li><a href="/account">My Account</a></li>
+            <li><Link to="/dashboard">My Account</Link></li>
           </ul>
 
           <ul className="footer-links">

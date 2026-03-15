@@ -7,7 +7,7 @@ const advert_Data = [
     img: WomanWithDog,
     name: "Jamie Jason",
     description:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      "HotDog made it really easy to find a reliable dog walker for my Labrador. I love being able to keep all of my pet’s details and bookings in one place.",
     showButton: false,  
   },
   {
@@ -15,18 +15,18 @@ const advert_Data = [
     img: ManWithCat,
     name: "Tony Samuels",
     description:
-      "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+      "I booked a vet appointment through HotDog and the provider was able to update my cat’s details during the visit. It’s great having everything kept up to date in one place.",
     showButton: false,
   },
   {
     id: 3,
-    title: "Are you a provider looking to join our network?",
-    subtitle: "A centralized platform for pet care services.",
+    title: "Are you a pet care provider looking to join our network?",
+    subtitle: "Connect with pet owners, manage bookings, and grow your services in one place.",
     showButton: true,
   },
   {
     id: 4,
-    dashboardSubtitle: "Here’s what HotDog users have to say!",
+    dashboardSubtitle: "See what other pet owners are saying about HotDog!",
     showButton: true,
   },
 ];

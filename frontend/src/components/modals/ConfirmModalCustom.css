@@ -27,8 +27,8 @@
   position: absolute;
   top: 15px;
   right: 15px;
-  background: none;
-  border: none;
+  background: #d2d7de;
+  border: 3px solid #d2d7de;
   font-size: 24px;
   cursor: pointer;
   color: #1f3a5f;
@@ -41,7 +41,8 @@
 }
 
 .close-btn:hover {
-  color: red;
+  color: #a5aebd;
+  border: 3px solid #a5aebd;
 }
 
 .confirm-modal-content {
@@ -60,9 +61,9 @@
 }
 
 .confirm-modal-confirm-btn {
-  background-color: #ffc72c;
+  background-color: transparent;
   color: #1f3a5f;
-  border: none;
+  border: 3pc solid #ffc72c;
   border-radius: 10px;
   padding: 12px 24px;
   font-weight: 600;
@@ -72,7 +73,7 @@
 }
 
 .confirm-modal-confirm-btn:hover:not(:disabled) {
-  background-color: #ffb60a;
+  background-color: #ffc72c;
 }
 
 .confirm-modal-confirm-btn:disabled {

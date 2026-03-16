@@ -2,7 +2,7 @@
   width: 100%;
   background-color: #f2f3f7;
   margin: 0 auto;
-  padding-top: calc(var(--header-height) + 50px);
+  padding-top: calc(var(--header-height) + 50px) !important;
   padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
 }
 
@@ -16,7 +16,7 @@
   flex-direction: row;
   align-items: center;
   gap: 10px;
-  margin-bottom: clamp(0rem, 0.40vw, 0.93rem);
+  margin-bottom: clamp(0rem, 1vw, 1rem);
 }
 
 .back-btn {
@@ -132,8 +132,8 @@
 }
 
 .appointment-card .cancel-button {
-  border: 3px solid #ffc72c !important;
-  background-color: transparent;
+  border: 3px solid #d2d7de!important;
+  background-color: #d2d7de;
   color: #1f3a5f;
   border: none;
   border-radius: 20px;
@@ -147,8 +147,8 @@
 }
 
 .appointment-card .cancel-button:hover:not(:disabled) {
-  background-color: #e8eaee;
-  border: 3px solid #e8eaee !important;
+  background-color: #a5aebd;
+  border: 3px solid #a5aebd !important;
 }
 
 .appointment-card .cancel-button:disabled {

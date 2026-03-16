@@ -66,8 +66,15 @@ function ServicesFilters_Card(props) {
       <div className="service-overlay">
         <div className="availability-container">
           <span className="today">Today</span>
-          {props.availability.split(" ").map((time) => (
-            <span key={time} className="times">{time}</span>
+          {props.availability &&
+            props.availability.map((time) => (
+              <span
+                key={time}
+                className="times clickable"
+                onClick={() => props.onSlotClick(time)}
+              >
+                {time}
+              </span>
           ))}
         </div>
 

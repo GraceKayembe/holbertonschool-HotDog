@@ -1,11 +1,11 @@
 import dayjs from "dayjs";
 import utc from "dayjs/plugin/utc";
 import { useState, useEffect } from "react";
+import { useParams, useLocation } from "react-router-dom";
 import "./Appointments.css";
 import DateStep from "./DateStep";
 import TimeStep from "./TimeStep";
 import { ReviewList } from "../../components/Review";
-import { useParams } from "react-router-dom";
 import LocationIcon from "../../assets/icons/location.png";
 import EmailIcon from "../../assets/icons/email_icon.png";
 import PhoneIcon from "../../assets/icons/telephone-icon.png";
@@ -16,12 +16,12 @@ import BookingSteps3 from "../../components/BookingSteps/BookingSteps3";
 
 dayjs.extend(utc);
 
-export default function Appointments() {
+export default function Appointments({ previewMode = false, providerData = null }) {
   const providerID = useParams();
   const today = dayjs();
   const [selectedDate, setSelectedDate] = useState(today); // store selected date
   const [availableTimes, setAvailableTimes] = useState([]);
-  const [selectedTime, setSelectedTime] = useState("");
+  const [selectedTime, setSelectedTime] = useState(""); 
   const [provider, setProvider] = useState({});
 
   // Start with an empty array so we don't flash dummy data before the real data loads
@@ -33,6 +33,26 @@ export default function Appointments() {
   const [step, setStep] = useState(1);
   const [bookingData, setBookingData] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+
+  const location = useLocation();
+  const preselectedTimeRaw = location.state?.preselectedTime || "";
+  
+
+  function formatTo12Hour(time24) {
+    if (!time24) return "";
+    const [hourStr, minute] = time24.split(":");
+    let hour = Number(hourStr);
+    const ampm = hour >= 12 ? "PM" : "AM";
+    hour = hour % 12 || 12;
+    return `${hour}:${minute.toString().padStart(2, "0")} ${ampm}`;
+  }
+
+  useEffect(() => {
+    if (preselectedTimeRaw) {
+      setSelectedTime(formatTo12Hour(preselectedTimeRaw));
+    }
+  }, [preselectedTimeRaw]);
 
   // popup handler functions
   const openPopup = () => {
@@ -149,6 +169,10 @@ export default function Appointments() {
 
   // FETCH SERVICE PROVIDER DETAILS
   useEffect(() => {
+    if (previewMode && providerData) {
+      setProvider(providerData);
+      return;
+    }
     // 1. Explicitly extract the ID string
     const idString = providerID.id;
     if (!idString) return;
@@ -184,40 +208,39 @@ export default function Appointments() {
 
   // FETCH AVAILABLE TIME SLOTS (CONNECTED TO BACKEND)
   useEffect(() => {
-    const fetchAvailableTimes = async () => {
-      if (!selectedDate || !providerID?.id) return;
+    if (previewMode) return;
 
+    const fetchAvailableTimes = async () => {
       const formattedDate = selectedDate.format("YYYY-MM-DD");
-      setSelectedTime(""); // Clear previously selected time when date changes
 
       try {
-        // Hit the new dynamic backend endpoint
         const response = await fetch(
           `/api/providers/${providerID.id}/slots?date=${formattedDate}`,
         );
 
-        if (!response.ok) {
-          throw new Error(`Failed to fetch time slots: ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`Failed to fetch time slots: ${response.status}`);
 
         const data = await response.json();
 
-        // Keep all slots so booked ones remain visible but disabled in UI
         const slots = Array.isArray(data.slots)
           ? data.slots
           : (data.available_slots || []).map((slot) => ({
               time: slot.time || slot,
               is_booked: slot.is_booked || false,
             }));
+
         setAvailableTimes(slots);
+
+        // Only reset selectedTime if there is no preselected time
+        if (!preselectedTimeRaw) setSelectedTime("");
       } catch (error) {
-        console.error("Error fetching times from backend:", error);
-        setAvailableTimes([]); // Fallback to empty array on error
+        console.error("Error fetching times:", error);
+        setAvailableTimes([]);
       }
     };
 
     fetchAvailableTimes();
-  }, [selectedDate, providerID.id]);
+  }, [selectedDate, providerID.id, preselectedTimeRaw]);
 
   // 4. SUBMIT A NEW REVIEW
   const handleAddReview = async (reviewData) => {
@@ -298,7 +321,7 @@ export default function Appointments() {
     <div className="appointment-page">
       <div className="appointment-container">
         <div className="provider-content">
-          <h1 class="mb-4">{provider.name}</h1>
+          <h1 className="mb-4">{provider.name}</h1>
           <div className="provider-img-container">
             <img src={provider.img_url} alt="provider-image" />
           </div>
@@ -328,7 +351,7 @@ export default function Appointments() {
             <div className="date-container">
               <DateStep
                 value={selectedDate}
-                onChange={setSelectedDate}
+                onChange={previewMode ? () => {} : setSelectedDate}
                 sx={{
                   margin: 0,
                   padding: 0,
@@ -340,12 +363,12 @@ export default function Appointments() {
             <div className="time-container">
               <TimeStep
                 selectedTime={selectedTime}
-                setSelectedTime={setSelectedTime}
+                setSelectedTime={previewMode ? () => {} : setSelectedTime}
                 times={availableTimes}
               />
             </div>
           </div>
-          {selectedTime != "" && (
+          {!previewMode && selectedTime != "" && (
             <div className="action-btn-container">
               <button
                 className="action-btn-format grey-btn"
@@ -366,7 +389,7 @@ export default function Appointments() {
         </div>
 
         {/* Booking Sequence */}
-        {isPopupOpen && (
+        {!previewMode && isPopupOpen && (
           <div className="provider-modal-overlay">
             <div className="provider-modal">
               {step === 1 && (
@@ -397,12 +420,14 @@ export default function Appointments() {
         )}
 
         {/* Reviews section - only show if user has completed appointment */}
-        <ReviewList
-          title={`${provider.name} Reviews`}
-          reviews={reviews}
-          hasAppointment={hasAppointment}
-          onAddReview={handleAddReview}
-        />
+        {!previewMode && (
+          <ReviewList
+            title={`${provider.name} Reviews`}
+            reviews={reviews}
+            hasAppointment={hasAppointment}
+            onAddReview={handleAddReview}
+          />
+        )}
       </div>
     </div>
   );

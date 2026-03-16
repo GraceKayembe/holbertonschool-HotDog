@@ -10,8 +10,8 @@
 .dash {
   width: 100%;
   margin: 0 auto;
-  margin-top: clamp(2.5rem, 3.5vw, 4rem);
-  margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
+  padding-top: calc(var(--header-height) + 50px);
+  padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
 }
 
 .dash h1,

@@ -11,7 +11,8 @@
 .about-container {
   width: 100%;
   margin: 0 auto;
-  margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
+  padding-top: var(--header-height);
+  padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
 }
 
 .about-content {

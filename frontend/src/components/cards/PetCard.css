@@ -79,18 +79,18 @@
   flex-wrap: wrap;
 }
 
-.notes-label {
+/* .notes-label {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   justify-content: center;
-}
+} */
 
-.pet-card-actions {
+/* .pet-card-actions {
   display: flex;
   gap: 10px;
   margin-left: auto;
-}
+} */
 
 .pet-card-actions button {
   border-radius: 20px;
@@ -162,12 +162,15 @@
   white-space: nowrap;
   width: auto;
   min-width: fit-content;
-  padding: 0.35rem 0.75rem;
+  max-height: 35px;
+  /* padding: 0.35rem 0.75rem; */
   border-radius: 20px;
+  border: 3px solid #e8eaee
 }
 
 .btn.btn-primary.popover-button:hover {
-  border: 3px solid #ffc72c !important;
+  border: 3px solid #a5aebd !important;
+  background-color: #a5aebd !important;
 }
 
 .popover-body.popover-body {

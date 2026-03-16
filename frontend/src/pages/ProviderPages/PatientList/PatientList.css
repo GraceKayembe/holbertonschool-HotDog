@@ -1,6 +1,9 @@
 .all-patients-container {
   display: flex;
   justify-content: center;
+  padding-top: var(--header-height);
+  padding-bottom: clamp(3rem, 5.5vw, 5rem);
+  background-color: #f2f3f7;
 }
 
 .all-patients-content {
@@ -9,8 +12,7 @@
   width: 100%;
   max-width: 800px;
   align-items: flex-start;
-  padding-bottom: 40px;
-  margin: 2.5rem auto;
+  margin: 0 auto;
 }
 
 .all-patients-header {
@@ -18,6 +20,12 @@
 }
 
 .all-patients-header h1 {
-  font-weight: 700;
+  font-weight: 800;
   color: #1f3a5f;
+  padding-bottom: clamp(2rem, 3.5vw, 3rem) !important;
 }
+
+.all-pets-actions-patient-list {
+  margin-top: 40px !important;
+}
+

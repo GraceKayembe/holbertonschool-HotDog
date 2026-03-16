@@ -1,8 +1,10 @@
-.profile-page {
+.profile-background {
   width: 100%;
   display: flex;
   justify-content: center;
-  background-color: #e9ecf0;
+  background-color: #f2f3f7;
+  padding-top: var(--header-height) !important;
+  padding-bottom: clamp(3rem, 5.5vw, 5rem);
 }
 
 .profile-container {
@@ -11,7 +13,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 5rem 0;
+  margin: 0 auto;
 }
 
 /* .form-panel {
@@ -51,3 +53,52 @@
   font-size: small;
   font-weight: bold;
 }
+
+
+.form-label-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-label-group label {
+  font-weight: 600;
+  color: #1f3a5f;
+}
+
+.business-description {
+  min-height: 100px; 
+  padding: 0.5rem 0.75rem;
+  border: 3px solid #e8eaee;
+  border-radius: 0.75rem;
+  font-size: 0.93rem;
+  font-family: "Nunito", sans-serif;
+  resize: vertical; 
+  background-color: white;
+  transition: border 0.2s;
+}
+
+.business-description:disabled {
+  background-color: var(--bs-secondary-bg);
+  opacity: 1;
+  border: 3px solid #e8eaee;
+}
+
+.business-description:focus {
+  outline: none;
+  border-color: #e8eaee;
+}
+
+
+.account-mb-5 {
+  font-size: clamp(2rem, 3.5vw, 2.5rem) !important;
+  font-family: "Nunito", sans-serif;
+  font-weight: 900;
+  color: #1f3a5f;
+  text-align: left;
+  width: 100%;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+}
+
+/* .preview {
+  
+} */

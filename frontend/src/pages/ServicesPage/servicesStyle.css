@@ -4,14 +4,14 @@
 .service-container {
   width: 100%;
   margin: 0 auto;
+  padding-top: calc(var(--header-height) + 50px);
+  padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
 }
 
 .service-content {
   max-width: 1000px !important;
   min-height: 115vh;
   margin: 0 auto;
-  margin-top: clamp(2.5rem, 3.5vw, 4rem);
-  margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -236,6 +236,26 @@
   color: #1f3a5f;
   background-color: #ffc72c;
 }
+
+
+/* ============================
+   AVALIABILITY
+============================== */
+.times {
+  cursor: pointer;
+  transition: 0.2s;
+  color: #ffc72c;
+  transition: all 0.2s ease;
+}
+
+.times:hover {
+  color: white;
+}
+
+.times:hover {
+  transform: translateY(-1px);
+}
+
 
 /* ============================
    RESPONSIVE

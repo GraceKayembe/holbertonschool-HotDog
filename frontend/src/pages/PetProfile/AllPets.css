@@ -2,7 +2,7 @@
   width: 100%;
   background-color: #f2f3f7;
   margin: 0 auto;
-  padding-top: clamp(2.5rem, 3.5vw, 4rem);
+  padding-top: calc(var(--header-height) + 50px);
   padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
 }
 

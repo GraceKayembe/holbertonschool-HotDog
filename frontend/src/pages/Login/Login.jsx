@@ -54,7 +54,7 @@ export default function Login() {
 
       if (userData.role === "provider") {
         // curretnly navigating to patientlist as provider dashboard not ready
-        navigate("/patients");
+        navigate("/provider/appointments");
       } else {
         navigate("/dashboard");
       }

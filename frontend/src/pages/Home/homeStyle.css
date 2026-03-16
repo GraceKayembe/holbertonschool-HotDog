@@ -233,7 +233,7 @@
 .advert-description {
   color: #333333;
   font-family: "Open Sans";
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: clamp(1rem, 2vw, 1.1rem);
   line-height: 1.5;
   max-width: 300px;
 }

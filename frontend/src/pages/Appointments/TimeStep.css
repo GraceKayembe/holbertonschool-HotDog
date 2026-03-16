@@ -28,6 +28,7 @@
 .time-button.time-button-unavailable {
   background-color: #e8eaee;
   color: #9ca3af;
+  border: none;
   cursor: not-allowed;
   text-decoration: line-through;
 }

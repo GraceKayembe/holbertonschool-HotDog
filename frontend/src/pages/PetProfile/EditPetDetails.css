@@ -115,12 +115,13 @@ main {
 }
 
 .pet-avatar {
-  width: 100%;
-  height: clamp(240px, 28vw, 320px);
+  width: clamp(240px, 28vw, 320px);
+  aspect-ratio: 1 / 1;
   border-radius: 12px;
   object-fit: cover;
   background: #e8eaee;
   margin-bottom: 12px;
+  display: block;
 }
 
 .pet-card-name {

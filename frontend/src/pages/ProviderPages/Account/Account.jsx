@@ -171,9 +171,8 @@ export default function Account() {
         body: JSON.stringify({ password: newPassword })
       });
 
-      const data = await res.json();
-
       if (!res.ok) {
+        const data = await res.json();
         throw new Error(data.error || "Failed to update password");
       }
 
@@ -202,46 +201,20 @@ export default function Account() {
   const deleteAccount = async () => {
     try {
 
-      setDeleting(true);
-
       const token = localStorage.getItem("token");
 
-      const meRes = await fetch("/api/users/me", {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-
-      const userData = await meRes.json();
-
-      await fetch(`/api/users/${userData.id}`, {
+      await fetch(`/api/users/${user.id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      try {
-        const result = await deleteUser(user, token);
-        console.log(result.message);
-        setShowModal(false);
-        setShowDeleteSuccess(true);
-        setTimeout(() => {
-          logout(); // log the usr out after account is deleted
-        }, 1500); // Delay logout for 1.5 seconds to show toast
-      } catch (err) {
-        console.error(err);
-      }
-
+      setShowDeleteSuccess(true);
+      setTimeout(logout, 1500);
     } catch (err) {
-
       console.error(err);
       alert("Failed to delete account");
-
-    } finally {
-
-      setDeleting(false);
-      setShowDeleteModal(false);
-
     }
   };
-
 
   if (!user || !provider) return <p>Loading...</p>;
 

@@ -406,7 +406,7 @@ export default function Account() {
                 <div className="form-block">
 
                   {/* CHANGE PASSWORD */}
-                  <h6 style={{ marginBottom: "10px" }}>Change Password</h6>
+                  <h6 style={{ marginBottom: "10px", fontSize: "1.25rem" }}>Change Password</h6>
                   <Form>
 
                     <FormLabel
@@ -442,7 +442,7 @@ export default function Account() {
                   <hr style={{ margin: "35px 0" }} />
 
                   {/* DELETE ACCOUNT */}
-                  <h6>Delete Account</h6>
+                  <h6 style={{ fontSize: "1.25rem"}}>Delete Account</h6>
                   <p>
                     We're sorry to see you go 😢
                     <br /><br />

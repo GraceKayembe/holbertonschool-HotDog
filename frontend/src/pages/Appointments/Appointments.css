@@ -125,10 +125,10 @@
   width: 85%;
   min-height: 42px;
   border-radius: 12px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 1rem;
   padding: 8px 12px;
-  color: #1f2a44;
+  color: #333333;
   transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 

@@ -12,8 +12,8 @@ import "./account.css";
 import "../../../styles/common.css";
 
 export default function Account() {
+  const { user, logout } = useContext(AuthContext);
 
-  const [user, setUser] = useState(null);
   const [provider, setProvider] = useState(null);
   const [needsOnboarding, setNeedsOnboarding] = useState(false);
 
@@ -23,15 +23,13 @@ export default function Account() {
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  const [showToast, setShowToast] = useState(false);
-
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
-  const [showPasswordSuccess, setShowPasswordSuccess] = useState(false);
+
+  cconst [showPasswordSuccess, setShowPasswordSuccess] = useState(false);
+  const [showDeleteSuccess, setShowDeleteSuccess] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 
   // ============================
@@ -191,8 +189,13 @@ export default function Account() {
         body: JSON.stringify({ password: newPassword })
       });
 
-      if (!res.ok) throw new Error("Failed to update password");
+      const data = await res.json();
 
+      if (!res.ok) {
+        throw new Error(data.error || "Failed to update password");
+      }
+
+      // SUCCESS
       setShowPasswordSuccess(true);
       setNewPassword("");
       setConfirmPassword("");
@@ -204,7 +207,8 @@ export default function Account() {
     } catch (err) {
 
       console.error(err);
-      setPasswordError("Failed to update password");
+      setPasswordError(err.message);
+
     }
   };
 
@@ -214,15 +218,16 @@ export default function Account() {
   // ============================
 
   const deleteAccount = async () => {
-
     try {
 
       setDeleting(true);
 
       const token = localStorage.getItem("token");
+
       const meRes = await fetch("/api/users/me", {
         headers: { Authorization: `Bearer ${token}` }
       });
+
       const userData = await meRes.json();
 
       await fetch(`/api/users/${userData.id}`, {
@@ -230,8 +235,17 @@ export default function Account() {
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      localStorage.removeItem("token");
-      window.location.href = "/";
+      try {
+        const result = await deleteUser(user, token);
+        console.log(result.message);
+        setShowModal(false);
+        setShowDeleteSuccess(true);
+        setTimeout(() => {
+          logout(); // log the usr out after account is deleted
+        }, 1500); // Delay logout for 1.5 seconds to show toast
+      } catch (err) {
+        console.error(err);
+      }
 
     } catch (err) {
 
@@ -242,6 +256,7 @@ export default function Account() {
 
       setDeleting(false);
       setShowDeleteModal(false);
+
     }
   };
 
@@ -433,6 +448,7 @@ export default function Account() {
                   <button
                     className="btn-style button-yellow"
                     onClick={updatePassword}
+                    disabled={!newPassword || !confirmPassword}
                     style={{ marginTop: "10px" }}
                   >
                     Change Password
@@ -472,28 +488,32 @@ export default function Account() {
           </div>
         </div>
 
-        <SuccessToast
-          showToast={showToast}
-          onClose={() => setShowToast(false)}
-          message="Profile saved successfully!"
-        />
+        {showDeleteSuccess && (
+          <div className="success-modal">
+            <div className="success-modal-content">
+              <h2>Account Deleted</h2>
+              <p>Your account has been permanently deleted.</p>
+            </div>
+          </div>
+        )}
 
         {showPasswordSuccess && (
-          <SuccessToast
-            showToast={showPasswordSuccess}
-            onClose={() => setShowPasswordSuccess(false)}
-            message="Password updated successfully!"
-          />
+          <div className="success-modal">
+            <div className="success-modal-content">
+              <h2>Password Updated</h2>
+              <p>Your password was successfully updated.</p>
+            </div>
+          </div>
         )}
 
         <ConfirmModal
           show={showDeleteModal}
           handleClose={() => setShowDeleteModal(false)}
+          handlePrimary={deleteAccount}
           heading="Delete Account"
           body="Are you sure you want to permanently delete your account?"
           primaryButton="Delete Account"
           secondaryButton="Cancel"
-          onPrimaryClick={deleteAccount}
         />
       </div>
     </div>

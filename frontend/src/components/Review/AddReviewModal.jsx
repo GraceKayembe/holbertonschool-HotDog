@@ -107,7 +107,7 @@ const AddReviewModal = ({ isOpen, onClose, onSubmit }) => {
           <div className="form-actions">
             <button
               type="button"
-              className="btn-cancel"
+              className="review-btn-cancel"
               onClick={handleClose}
             >
               Cancel

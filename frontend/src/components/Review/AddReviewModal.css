@@ -174,33 +174,37 @@
   border-top: 1px solid #e0e0e0;
 }
 
-.btn-cancel,
+.review-btn-cancel,
 .btn-submit {
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 15px;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.btn-cancel {
-  background-color: #f0f0f0;
-  color: #333;
+.review-btn-cancel {
+  background-color:#d2d7de;
+  border: 3px solid #d2d7de;
+  color: #1f3a5f;
 }
 
-.btn-cancel:hover {
-  background-color: #e0e0e0;
+.review-btn-cancel:hover {
+  background-color:  #a5aebd;
+  border: 3px solid #a5aebd;
 }
 
 .btn-submit {
-  background-color: #1f3a5f;
-  color: white;
+  background-color:transparent;
+  border: 3px solid #ffc72c;
+  color: #1f3a5f;
 }
 
 .btn-submit:hover {
-  background-color: #1f3a5f;
+  background-color:#ffc72c;
+  border: 3px solid #ffc72c;
 }
 
 .btn-submit:active {

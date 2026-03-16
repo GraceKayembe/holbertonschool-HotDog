@@ -19,7 +19,7 @@
   max-width: 1000px;
   min-height: auto;
   margin: 0 auto;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -95,7 +95,7 @@
 /* USING HOTDOG TO DELIEVER */
 .about-heading {
   font-weight: 900;
-  font-size: clamp(1.5rem, 4.5vw, 2rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
   text-align: center;
   color: #1f3a5f;
   font-family: "nunito";
@@ -106,7 +106,7 @@
 .about-body-text {
   max-width: 900px;
   margin: 0 auto 32px;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 400;
   text-align: center;
   color: #333;
@@ -115,18 +115,18 @@
 }
 
 .using-hotDog-container {
-  width: min(100%, 920px);
+  width: min(100%, 1000px);
   margin: 2rem auto 3rem;
-  padding: 2.25rem 2rem;
+  /* padding: 2.25rem 2rem;
   background: #ffffff;
-  border: 1px solid #e3e7ee;
+  border: 1px solid #e3e7ee; */
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(31, 58, 95, 0.06);
+  /* box-shadow: 0 10px 30px rgba(31, 58, 95, 0.06); */
 }
 
 .using-hotDog-container > .about-heading {
   margin-bottom: 1.25rem;
-  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
   letter-spacing: 0.2px;
   position: relative;
 }
@@ -144,9 +144,9 @@
 .using-hotDog-container > p.about-body-text {
   max-width: 70ch;
   margin: 0 auto 1.2rem;
-  text-align: left;
-  font-size: clamp(1.05rem, 1.4vw, 1.3rem);
-  line-height: 1.85;
+  text-align: center;
+  font-size: clamp(1.05rem, 1.25vw, 1.25rem);
+  line-height: 1.7;
   color: #2b2f36;
 }
 
@@ -154,7 +154,7 @@
 .whatwedo_parentcontainer {
   width: 100%;
   max-height: 450px;
-  background-color: #f2f3f7;
+  /* background-color: #f2f3f7; */
   padding-top: clamp(2.5rem, 3.5vw, 4rem);
   margin-top: clamp(2.5rem, 3.5vw, 4rem);
   margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
@@ -586,16 +586,16 @@
 ============================== */
 
 .about-content {
-  gap: 1.25rem;
+  gap: 0rem;
 }
 
 .whatwedo_parentcontainer {
-  width: min(100%, 920px);
+  width: min(100%, 1000px);
   max-height: none;
-  background: #ffffff;
-  border: 1px solid #e3e7ee;
+  /* background: #ffffff;
+  border: 1px solid #e3e7ee; */
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(31, 58, 95, 0.06);
+  /* box-shadow: 0 10px 30px rgba(31, 58, 95, 0.06); */
   padding: 2.25rem 2rem;
   margin: 0 auto 2.5rem;
   overflow: visible;
@@ -604,7 +604,7 @@
 .whatwedo_parentcontainer .about-heading {
   margin-bottom: 0.75rem;
   position: relative;
-  font-size: clamp(2rem, 4vw, 2.7rem);
+  font-size: clamp(1.6rem, 2.6vw, 2.2rem);
 }
 
 .whatwedo_parentcontainer .about-heading::after {
@@ -632,8 +632,8 @@
 }
 
 .whatwedo-showcontainer .about-bannershow-card {
-  background: #f8fafc;
-  border: 1px solid #e3e7ee;
+  background: #f2f3f7;
+  border: 1px solid #f2f3f7;
   border-radius: 14px;
   min-height: 230px;
   padding: 1rem 0.8rem;
@@ -647,7 +647,7 @@
 
 .whatwedo-showcontainer .about-banner-description {
   min-height: auto;
-  font-size: clamp(0.9rem, 1vw, 0.98rem);
+  font-size: clamp(0.9rem, 1vw, 1.1em);
   line-height: 1.5;
   font-weight: 500;
 }
@@ -663,6 +663,16 @@
 .testimonial-heading {
   margin-bottom: 1.75rem;
   font-size: clamp(1.6rem, 2.6vw, 2.2rem);
+}
+
+.businesstesi-section > .testimonial-heading::after {
+    content: "";
+    display: block;
+    width: 84px;
+    height: 5px;
+    margin: 0.8rem auto 0;
+    border-radius: 999px;
+    background: #ffc72c;
 }
 
 .businesstesi_parentcontainer {
@@ -682,19 +692,17 @@
 }
 
 .businesstesi-showcontainer .about-bannershow-card {
-  background: #ffffff;
-  border: 1px solid #e3e7ee;
+  /* background: #ffffff;
+  border: 1px solid #e3e7ee; */
   border-radius: 14px;
   min-height: 320px;
   padding: 1.25rem 1rem;
-  box-shadow: 0 8px 22px rgba(31, 58, 95, 0.06);
+  /* box-shadow: 0 8px 22px rgba(31, 58, 95, 0.06); */
   justify-content: flex-start;
 }
 
 .icon-businesstesi {
-  width: 88px;
-  height: 88px;
-  border-radius: 50%;
+  width: 70%;
   object-fit: cover;
   margin-bottom: 0.75rem;
 }
@@ -710,7 +718,7 @@
 }
 
 .businesstesi-showcontainer .about-banner-description {
-  font-size: 0.93rem;
+  font-size: 1.1rem;
   line-height: 1.55;
   min-height: auto;
   font-weight: 400;

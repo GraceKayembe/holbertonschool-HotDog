@@ -206,20 +206,17 @@ main {
   flex-direction: column;
 }
 
-.form-label {
+.form-group .edit-pet-form-label {
   font-family: "Open Sans", sans-serif;
   font-size: clamp(0.93rem, 0.93vw, 0.93rem);
   font-weight: 700;
   color: #1f3a5f;
   margin-bottom: 8px;
   display: flex;
-  align-items: center;
+  align-items: left;
   gap: 8px;
 }
 
-.edit-pet-form-label {
-  align-items: left;
-}
 
 .form-group .form-input,
 .form-group .form-textarea {

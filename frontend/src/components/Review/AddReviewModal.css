@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: white;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +12,7 @@
 }
 
 .modal-content {
-  background-color: white;
+  background-color: white !important;
   border-radius: 12px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   max-width: 500px;
@@ -46,13 +46,14 @@
   font-size: 1.5rem;
   font-weight: 700;
   color: #1f3a5f;
+  padding-top: 20px;
 }
 
 .modal-close-btn {
   background: none;
   border: none;
   font-size: 2rem;
-  color: #999;
+  color: #a5aebd;
   cursor: pointer;
   padding: 0;
   width: 2rem;
@@ -69,6 +70,7 @@
 
 .review-form {
   padding: 2rem;
+  background-color: white;
 }
 
 .form-group {
@@ -104,7 +106,7 @@
 }
 
 .star-btn.empty {
-  color: #e8eaee;
+  color: #d2d7de;
 }
 
 .star-btn:hover {

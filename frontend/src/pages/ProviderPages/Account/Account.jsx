@@ -259,6 +259,7 @@ export default function Account() {
             <div>
               <h3
                 style={{
+                  fontSize: "clamp(1.25rem, 2.25vw, 1.5rem)",
                   paddingLeft: "16px",
                   paddingTop: "30px",
                   paddingBottom: "30px",

@@ -114,6 +114,11 @@ class ServiceProviderService:
         if "slot_duration" in data: provider.slot_duration = int(data["slot_duration"])
         if "img_url" in data: provider.img_url = data["img_url"]
         if "logo_url" in data: provider.logo_url = data["logo_url"]
+
+        if "opening_time" in data:
+            provider.opening_time = datetime.strptime(data["opening_time"], "%H:%M").time()
+        if "closing_time" in data:
+            provider.closing_time = datetime.strptime(data["closing_time"], "%H:%M").time()
         
         db.session.commit()
         return provider

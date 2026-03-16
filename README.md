@@ -7,7 +7,8 @@ A full-stack application for Pet care management platform.
 1. [Prerequisites](#prerequisites)  
 2. [Backend Installation](#backend-installation)  
 3. [Frontend Installation](#frontend-installation)
-4. [License](#license)  
+4. [Deployment](#deployment)
+5. [License](#license)  
 
 
 ## Prerequisites
@@ -70,6 +71,47 @@ npm run dev
 ```
 > The frontend server should now be running at: http://localhost:5173
 
+## Deployment
+HotDog is deployed using **Render**, which hosts both the frontend and backend services.
+
+### Services
+Our app consists of two services:
+
+| Service | Description |
+|------|------|
+| Frontend | React + Vite application (user interface) |
+| Backend | Python Flask API handling authentication, appointments, and database operations |
+
+Both services are connected to this GitHub repository and automatically deploy when changes are merged into **main**.
+
+### Deployment Flow
+1. Our GitHub repo is linked to Render 
+2. Code is merged into the **main** on GitHub
+3. Render detects the update automatically
+4. Render builds the service
+5. The new version is deployed online
+
+### Environment Variables
+The backend requires the following in Render:
+- JWT_SECRET_KEY
+- SENDGRID_API_KEY
+- DATABASE_URL
+
+### Live Application
+- Frontend: https://holbertonschool-hotdog.onrender.com (our entry main point, accessed directly by users)
+- Backend API: https://holbertonschool-hotdog-backend.onrender.com (not meant to be accessed directly by users, instead, the frontend sends requests to this API to perform actions and retrieve data.
+
+#### How the application flow works:
+1. User opens the frontend link
+2. Frontend sends API requests
+3. Backend processes the request
+4. Database retrieves data
+5. Backend returns response
+6. Frontend displays the result to the user
+
+### Useful Render Locations
+- Logs (check this for the affected service when debugging): Under Monitor on the left nav bar, select Logs)
+- Manual Deploy: My Projects -> Production -> select the backend/frontend service -> Manual Deploy (black button) -> select how you want to deploy (at the latest commit, specific commit)
 
 ## License
 

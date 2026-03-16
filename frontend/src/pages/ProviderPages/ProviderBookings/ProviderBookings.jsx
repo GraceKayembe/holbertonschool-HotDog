@@ -690,30 +690,31 @@ export default function ProviderBookings() {
 
               {submitError && <p className="provider-error">{submitError}</p>}
 
-            <div className="modal-actions">
-              <button className="modal-btn-cancel" onClick={closeModal}>
-                Cancel
-              </button>
-              <button
-                className="modal-btn-book"
-                onClick={handleCreateBooking}
-                disabled={(
-                  (existingOwner === "yes" && !selectedPetId)
-                  || (existingOwner === "no" && (
-                    !intakeData.owner.first_name
-                    || !intakeData.owner.last_name
-                    || !intakeData.owner.email
-                    || !intakeData.pet.name
-                    || !intakeData.pet.species
-                    || !intakeData.pet.breed
-                    || !intakeData.pet.gender
-                  ))
-                  || !serviceType
-                  || !selectedTime
-                )}
-              >
-                Book
-              </button>
+              <div className="modal-actions">
+                <button className="modal-btn-cancel" onClick={closeModal}>
+                  Cancel
+                </button>
+                <button
+                  className="modal-btn-book"
+                  onClick={handleCreateBooking}
+                  disabled={(
+                    (existingOwner === "yes" && !selectedPetId)
+                    || (existingOwner === "no" && (
+                      !intakeData.owner.first_name
+                      || !intakeData.owner.last_name
+                      || !intakeData.owner.email
+                      || !intakeData.pet.name
+                      || !intakeData.pet.species
+                      || !intakeData.pet.breed
+                      || !intakeData.pet.gender
+                    ))
+                    || !serviceType
+                    || !selectedTime
+                  )}
+                >
+                  Book
+                </button>
+              </div>
             </div>
           </div>
         )}

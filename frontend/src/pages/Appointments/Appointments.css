@@ -13,7 +13,7 @@
 
 .appointment-container {
   display: grid;
-  grid-template-rows: auto 450px auto;
+  grid-template-rows: auto auto auto;
   max-width: 1000px;
   width: 100%;
 }
@@ -71,7 +71,7 @@
 }
 
 .bookings {
-  margin-bottom: 100px;
+  margin-bottom: 0;
 }
 
 .bookings-banner {
@@ -113,49 +113,48 @@
 
 .appointment-page .time-container {
   display: grid;
-  font-size: clamp(0.93rem, 1.5vw, 1.25rem);
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(6, 40px);
-  gap: 0.5rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-auto-rows: minmax(40px, auto);
+  gap: 0.80rem;
   margin-top: 20px;
   justify-content: center;
-  align-items: center;
+  align-content: start;
 }
 
-.time-button {
-  font-size: clamp(0.93rem, 1.5vw, 1.25rem);
-  height: 30px;
-  border: none;
-  border-radius: 10px;
-  background-color: #e8eaee;
-  border: 3px solid #e8eaee;
-  color: #1f3a5f;
+.appointment-page .time-container .time-button {
+  width: 85%;
+  min-height: 42px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 8px 12px;
+  color: #1f2a44;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .action-btn-container {
-  height: 100%;
+  height: auto;
   display: flex;
   justify-content: flex-end;
-  gap: 0.5rem;
+  gap: 10px;
+  margin: 12px 20px 0 auto;
+  align-items: center;
 }
 
 .action-btn-format {
-  width: 80px;
-  max-height: 40px;
-  border-radius: 10px;
   text-align: center;
-  border: none;
+  background: transparent;
+  min-width: 110px;
 }
 
 .grey-btn {
   background-color: transparent;
   border: 3px solid #ffc72c;
   color: #1f3a5f;
-  width: clamp(11rem, 25vw, 12.5rem);
-  height: clamp(2.1875rem, 5vw, 2.5rem);
   border-radius: 20px;
+  padding: 8px 12px;
   font-weight: 700;
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  width: 110px;
 }
 
 .grey-btn:hover {
@@ -164,21 +163,19 @@
 }
 
 .action-btn-container .navy-btn {
-  border: 3px solid #1f3a5f !important;
+  border: 3px solid #1f3a5f;
   background-color: transparent;
   color: #1f3a5f;
-  width: clamp(11rem, 25vw, 12.5rem);
-  height: clamp(2.1875rem, 5vw, 2.5rem);
-  border: none;
   border-radius: 20px;
+  padding: 8px 12px;
   font-weight: 700;
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  width: 110px;
 }
 
 .action-btn-container .navy-btn:hover {
   background-color: #1f3a5f;
   color: #ffc72c;
-  border: 3px solid #1f3a5f !important;
+  border: 3px solid #1f3a5f;
 }
 
 /* popup css */
@@ -228,7 +225,7 @@ body.modal-open {
 @media (min-width: 601px) and (max-width: 1024px) {
   .appointment-container {
     max-width: 90%;
-    grid-template-rows: auto 400px auto;
+    grid-template-rows: auto auto auto;
   }
 
   .provider-content h1 {
@@ -245,19 +242,18 @@ body.modal-open {
   }
 
   .action-btn-container {
-    margin-bottom: 50% !important;
+    margin-bottom: 0;
   }
 
   .appointment-page .time-container {
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(6, 40px);
-    gap: 0.4rem;
+    grid-auto-rows: minmax(56px, auto);
+    gap: 0.7rem;
   }
 
   .grey-btn,
   .action-btn-container .navy-btn {
-    width: 90px;
-    height: 40px;
+    min-width: 100px;
     font-size: clamp(0.9rem, 2vw, 1rem);
   }
 
@@ -328,20 +324,20 @@ body.modal-open {
   }
 
   .appointment-page .time-container {
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 35px);
-    gap: 0.93rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(50px, auto);
+    gap: 0.75rem;
   }
 
-  .time-button {
-    height: 30px;
-    font-size: 0.85rem;
+  .appointment-page .time-container .time-button {
+    min-height: 48px;
+    font-size: 0.95rem;
   }
 
   .grey-btn,
   .action-btn-container .navy-btn {
-    width: 100%;
-    height: 45px;
+    min-width: 100px;
+    width: auto;
     font-size: clamp(0.9rem, 2.5vw, 1rem);
   }
 

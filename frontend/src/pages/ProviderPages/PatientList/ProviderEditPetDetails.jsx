@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "../../PetProfile/EditPetDetails.css";
-import catImage from "../../../assets/images/cat.jpg";
-import dogImage from "../../../assets/images/dog.jpg";
+import catImage from "../../../assets/images/cat_default.png";
+import dogImage from "../../../assets/images/dog_default.png";
 import ConfirmModal from "../../../components/modals/ConfirmModal";
 
 export default function ProviderEditPetDetails() {
@@ -161,6 +161,8 @@ export default function ProviderEditPetDetails() {
   if (loading) return <div className="edit-pet-loading">Loading...</div>;
 
   const getPetImage = () => {
+    if (pet?.img_url) return pet.img_url;
+
     const species = formData.species?.toLowerCase();
 
     if (species === "cat") return catImage;

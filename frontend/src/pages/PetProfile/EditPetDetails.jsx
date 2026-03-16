@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./EditPetDetails.css";
 import { getPetById } from "../../api/pet";
-import catImage from "../../assets/images/cat.jpg";
-import dogImage from "../../assets/images/dog.jpg";
+import catImage from "../../assets/images/cat_default.png";
+import dogImage from "../../assets/images/dog_default.png";
 import ConfirmModal from "../../components/modals/ConfirmModal";
 
 export default function EditPetDetails() {
@@ -160,6 +160,8 @@ export default function EditPetDetails() {
   if (loading) return <div className="edit-pet-loading">Loading...</div>;
 
   const getPetImage = () => {
+    if (pet?.img_url) return pet.img_url;
+
     const species = formData.species?.toLowerCase();
 
     if (species === "cat") return catImage;
@@ -170,6 +172,15 @@ export default function EditPetDetails() {
 
   return (
     <div className="edit-pet-container">
+      <ConfirmModal
+        show={showDeleteModal}
+        handleClose={() => setShowDeleteModal(false)}
+        handlePrimary={handleDeleteConfirm}
+        heading="Delete Pet"
+        body="Are you sure you want to permanently remove this pet?"
+        secondaryButton="Close"
+        primaryButton="Delete Pet"
+      />
       
       <div className="edit-pet-header">
         <h1 className="edit-pet-title">Edit {pet?.name || "Pet"} Details</h1>

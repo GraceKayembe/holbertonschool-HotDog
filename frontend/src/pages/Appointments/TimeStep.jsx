@@ -32,9 +32,9 @@ export default function TimeStep({ times, setSelectedTime, selectedTime }) {
   return normalizedSlots.map((slot) => {
     const isSelected = slot.time === selectedTime && !slot.is_booked;
     const buttonClass = slot.is_booked
-      ? "time-button time-button-booked"
+      ? "time-button time-button-unavailable"
       : isSelected
-        ? "active-btn time-button time-button-available"
+        ? "time-button time-button-selected"
         : "time-button time-button-available";
 
     return (
@@ -50,7 +50,7 @@ export default function TimeStep({ times, setSelectedTime, selectedTime }) {
 
           setSelectedTime(slot.time);
         }}
-        title={slot.is_booked ? "Booked" : "Available"}
+        title={slot.is_booked ? "Unavailable" : "Available"}
       >
         {slot.time}
       </button>

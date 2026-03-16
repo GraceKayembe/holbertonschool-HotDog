@@ -9,29 +9,29 @@ const practicetestimonials_Data = [
     img: Practitioner2,
     name: "Anastasie Stevens",
     companyName: "Sparkle Paws Grooming",
-    description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    description: "HotDog helps us fill last-minute gaps fast, and booking confirmations cut our admin follow-up by hours each week.",
   },
   {
     id: 2,
     img: Practitioner4,
     name: "Monique Tims",
     companyName: "Happy Tails Dog Walking",
-    description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    description: "Our schedule is now in one place, and clients can book without back-and-forth messages. It has streamlined our day.",
   },
   {
     id: 3,
     img: Practitioner3,
     name: "Sandrine Leigh",
     companyName: "Canine Smiles Dental",
-    description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    description: "Since joining HotDog, more pet owners are discovering our clinic and arriving informed with the right appointment type.",
   },
 
   {
-    id: 1,
+    id: 4,
     img: Practitioner1,
-    name: "Sandrine Leigh",
-    companyName: "Canine Smiles Dental",
-    description: "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
+    name: "Elena Park",
+    companyName: "Paws & Claws Veterinary",
+    description: "Cancellation handling is much smoother now. Rebooking from the same flow has improved attendance and reduced no-shows.",
   },
 ];
 

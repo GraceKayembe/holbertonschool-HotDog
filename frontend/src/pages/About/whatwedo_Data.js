@@ -8,25 +8,25 @@ const whatwedo_Data = [
     id: 1,
     img: FindIcon,
     title: "Find",
-    description: "Detailed search brings the right patients to you",
+    description: "Help pet owners find the right care",
   },
   {
     id: 2,
     img: EasyBookingIcon,
-    title: "Easy booking",
-    description: "Easy to book appointments with just a few clicks",
+    title: "Book",
+    description: "Schedule appointments in just a few clicks",
   },
   {
     id: 3,
     img: CentralisedIcon,
-    title: "Centralised",
-    description: "Easy access to your service from over 1 million people",
+    title: "Reach",
+    description: "Get your services to more pet owners",
   },
   {
     id: 4,
     img: CancellationIcon,
-    title: "Cancellation",
-    description: "Easy cancellation",
+    title: "Cancel",
+    description: "Offer easy rescheduling and cancellation",
   },
   
 ];

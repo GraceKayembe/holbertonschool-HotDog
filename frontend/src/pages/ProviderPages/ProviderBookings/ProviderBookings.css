@@ -100,7 +100,7 @@
   /* grid-auto-rows: minmax(64px, auto); */
   gap: 0.85rem;
   width: 100%;
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   align-self: start;
 }
 
@@ -149,7 +149,7 @@
   max-height: 90vh;
   overflow: auto;
   background: white;
-  border-radius: 14px;
+  border-radius: 12px;
   padding: 18px;
   position: relative;
 }
@@ -176,7 +176,7 @@
 .provider-modal-block {
   margin-bottom: 14px;
   padding: 12px;
-  border-radius: 8px;
+  border-radius: 12px;
   background: #f2f4f7;
 }
 

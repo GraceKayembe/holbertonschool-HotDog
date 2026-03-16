@@ -5,7 +5,6 @@ import DashboardHero from '../../components/Dashboard/DashboardHero.jsx';
 import SearchBar from '../../components/SearchBar/SearchButton.jsx';
 import TopServicesAndEvents from '../../components/Dashboard/TopServicesAndEvents.jsx';
 import DashboardBanner from '../../components/Dashboard/DashboardBanner.jsx';
-import PetStylistReviews from '../../components/Dashboard/PetStylistReviews.jsx';
 import Advert from '../../pages/Home/Advert.jsx';
 import advert_Data from '../../pages/Home/advert_Data.js';
 
@@ -44,7 +43,7 @@ export default function Dashboard() {
         
         <DashboardHero
           displayGreeting={false}
-          title="Welcome to HotDog, where quality care and everything your pet needs come together."
+          title={<>Welcome to HotDog!<br />Everything your pet needs, all in one place.</>}
         />
 
         {/* <DashboardSearch

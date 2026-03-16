@@ -13,8 +13,8 @@
   padding: 30px;
   width: 500px;
   max-width: 100%;
-  min-height: 700px;
-  max-height: min(86vh, 900px);
+  min-height: 600px;
+  max-height: min(86vh, 650px);
   overflow-y: auto;
   text-align: center;
   font-size: 15px;
@@ -147,8 +147,8 @@
 
 
 .pet-form-container .cancelbutton {
-  background-color: transparent;
-  border: 3px solid #1f3a5f;
+  background-color: #d2d7de;
+  border: 3px solid #d2d7de;
   color: #1f3a5f;
   border-radius: 20px;
   margin: 15px;
@@ -159,8 +159,8 @@
 }
 
 .pet-form-container .cancelbutton:hover {
-  background-color: #e8eaee;
-  border: 3px solid #e8eaee;
+  background-color: #a5aebd;
+  border: 3px solid #a5aebd;
 }
 
 .pet-form-container .submitbutton {

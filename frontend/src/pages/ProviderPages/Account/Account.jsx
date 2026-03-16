@@ -234,7 +234,7 @@ export default function Account() {
                   paddingTop: "30px",
                   paddingBottom: "30px",
                   color: "#1f3a5f",
-                  fontWeight: "800",
+                  fontWeight: 800,
                 }}
               >
                 Account
@@ -262,39 +262,18 @@ export default function Account() {
                 <div className="form-block">
                   <Form>
                     <FormLabel
-                      name="First Name"
-                      value={user.first_name}
+                      name="Business Name"
+                      value={provider.name}
                       disabled={!editMode}
-                      onChange={e =>
-                        setUser(prev => ({
-                          ...prev,
-                          first_name: e.target.value
-                        }))
-                      }
-                    />
-
-                    <FormLabel
-                      name="Last Name"
-                      value={user.last_name}
-                      disabled={!editMode}
-                      onChange={e =>
-                        setUser(prev => ({
-                          ...prev,
-                          last_name: e.target.value
-                        }))
-                      }
+                      onChange={(e) => updateField("name", e.target.value)}
                     />
 
                     <FormLabel
                       name="Email"
-                      value={user.email}
+                      type="email"
+                      value={provider.email || user.email}
                       disabled={!editMode}
-                      onChange={e =>
-                        setUser(prev => ({
-                          ...prev,
-                          email: e.target.value
-                        }))
-                      }
+                      onChange={(e) => updateField("email", e.target.value)}
                     />
 
                     <FormLabel
@@ -350,7 +329,7 @@ export default function Account() {
                   {editMode ? (
                     <button
                       className="btn-style button-yellow"
-                      onClick={saveChanges}
+                      onClick={saveProvider}
                       disabled={saving}
                     >
                       {saving ? "Saving..." : "Save Details"}
@@ -403,7 +382,6 @@ export default function Account() {
                   <button
                     className="btn-style button-yellow"
                     onClick={updatePassword}
-                    disabled={!newPassword || !confirmPassword}
                     style={{ marginTop: "10px" }}
                   >
                     Change Password
@@ -423,9 +401,7 @@ export default function Account() {
                   <button
                     className="btn-style button-navy"
                     onClick={() => setShowDeleteModal(true)}
-                    disabled={deleting}
                   >
-                    {deleting ? "Deleting..." : "Delete Account"}
                   </button>
                 </div>
               </>

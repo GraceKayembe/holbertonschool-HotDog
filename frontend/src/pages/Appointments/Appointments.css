@@ -148,8 +148,8 @@
 }
 
 .grey-btn {
-  background-color: transparent;
-  border: 3px solid #ffc72c;
+  background-color: #d2d7de;
+  border: 3px solid #d2d7de;
   color: #1f3a5f;
   border-radius: 20px;
   padding: 8px 12px;
@@ -158,12 +158,12 @@
 }
 
 .grey-btn:hover {
-  background-color: #e8eaee;
-  border: 3px solid #e8eaee;
+  background-color: #a5aebd;
+  border: 3px solid #a5aebd;
 }
 
 .action-btn-container .navy-btn {
-  border: 3px solid #1f3a5f;
+  border: 3px solid #ffc72c;
   background-color: transparent;
   color: #1f3a5f;
   border-radius: 20px;
@@ -173,9 +173,9 @@
 }
 
 .action-btn-container .navy-btn:hover {
-  background-color: #1f3a5f;
-  color: #ffc72c;
-  border: 3px solid #1f3a5f;
+  background-color: #ffc72c;
+  color: #1f3a5f;
+  border: 3px solid #ffc72c;
 }
 
 /* popup css */

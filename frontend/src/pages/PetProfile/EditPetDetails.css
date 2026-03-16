@@ -217,6 +217,16 @@ main {
   gap: 8px;
 }
 
+.form-label {
+  font-family: "Open Sans", sans-serif;
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
+  font-weight: 700;
+  color: #1f3a5f;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: left;
+  gap: center;
+}
 
 .form-group .form-input,
 .form-group .form-textarea {

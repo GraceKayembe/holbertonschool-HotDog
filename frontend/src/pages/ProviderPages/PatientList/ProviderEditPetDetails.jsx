@@ -173,7 +173,7 @@ export default function ProviderEditPetDetails() {
 
   return (
     <div className="edit-pet-container">
-      <div className="edit-pet-contents-container">
+      <div className="edit-pet-provider-contents-container">
         <ConfirmModal
           show={showDeleteModal}
           handleClose={() => setShowDeleteModal(false)}
@@ -185,14 +185,14 @@ export default function ProviderEditPetDetails() {
         />
         <div className="edit-pet-header">
           <h1 className="edit-pet-title">Edit {pet?.name || "Pet"} Details</h1>
-          <button className="back-btn" onClick={handleCancel}>
+          <button className="return-button" onClick={handleCancel}>
             &lt; Back
           </button>
         </div>
 
         {error && <div className="error-message">{error}</div>}
 
-        <div className="edit-pet-content">
+        <div className="edit-pet-provider-content">
           {/* Pet Card Section */}
           <div className="pet-card-section">
             <div className="pet-profile">

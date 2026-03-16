@@ -1,3 +1,21 @@
+/* provider edit pet detail */
+
+.edit-pet-provider-contents-container{
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  font-family: "Open Sans", sans-serif;
+}
+
+.edit-pet-provider-content {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 28px;
+  align-items: stretch;
+}
+
+
+/* patient list */
 .all-patients-container {
   display: flex;
   justify-content: center;

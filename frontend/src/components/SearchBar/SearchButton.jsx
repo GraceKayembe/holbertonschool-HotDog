@@ -25,6 +25,7 @@ function SearchButton({
   const [fuse, setFuse] = useState(null);
 
   const wrapperRef = useRef(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
     const fetchProviderNames = async () => {
@@ -96,6 +97,7 @@ function SearchButton({
     if (value.trim()) {
       setServiceInput("");
       onServiceChange?.("");
+      setIsExpanded(true);
     }
 
     if (!value.trim()) {
@@ -132,48 +134,78 @@ function SearchButton({
       params.append("service", serviceInput);
     }
     if (providerInput) params.append("provider", providerInput);
-
     if (location.pathname === "/") {
       navigate(`/services?${params.toString()}`);
     }
+
+    setServiceInput("");     
+    setProviderInput("");    
+    setShowServices(false);   
+    setShowProviders(false);   
+    setIsExpanded(false);     
+
+    onServiceChange?.("");
+    onSearchChange?.("");
   };
+
+  const isActive =
+    showServices || showProviders || serviceInput.trim() !== "" || providerInput.trim() !== "";
 
   return (
     <div className="search-bar-wrapper" ref={wrapperRef}>
       {/* Search bar */}
       <div className="search-bar">
-        {/* Service selector */}
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            className={`dropdown-icon ${showServices ? "open" : ""}`}
-            onClick={() => {
+        <div className={`service-input-wrapper ${isActive ? "active" : ""}`}>
+          {/* Service selector */}
+          <div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              className={`dropdown-icon ${showServices ? "open" : ""}`}
+              onClick={() => {
+                setServiceResults(service_ListsWithAll);
+                setShowServices(!showServices);
+              }}
+            >
+              <polyline points="6 9 12 3 18 9"></polyline>
+            </svg>
+          </div>
+
+          <input
+            type="text"
+            placeholder="Select a Service"
+            value={serviceInput}
+            readOnly
+            onChange={(e) => handleServiceInput(e.target.value)}
+            onFocus={() => {
               setServiceResults(service_ListsWithAll);
-              setShowServices(!showServices);
+              setShowServices(true);
+              setShowProviders(false); // hide provider dropdown
+              setIsExpanded(true);  // hide provider dropdown
             }}
-          >
-            <polyline points="6 9 12 3 18 9"></polyline>
-          </svg>
+            className="provider-search-filter"
+          />
+
+          {/* Service Dropdown */}
+          {showServices && (
+            <ul className="search-dropdown">
+              {serviceResults.map((service, idx) => (
+                <li
+                  key={idx}
+                  className="dropdown-item"
+                  onClick={() => selectService(service)}
+                >
+                  {service}
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
-        <input
-          type="text"
-          placeholder="Select a Service"
-          value={serviceInput}
-          readOnly
-          onChange={(e) => handleServiceInput(e.target.value)}
-          onFocus={() => {
-            setServiceResults(service_ListsWithAll);
-            setShowServices(true);
-            setShowProviders(false); // hide provider dropdown
-          }}
-          className="provider-search-filter"
-        />
 
         {/* Search button */}
         <button className="search-btn" onClick={handleSearch}>
@@ -187,53 +219,42 @@ function SearchButton({
           </svg>
         </button>
 
-        {/* Provider Search Input */}
-        <input
-          type="text"
-          placeholder="Search Provider by name"
-          value={providerInput}
-          onChange={(e) => handleProviderInput(e.target.value)}
-          onFocus={() => {
-            setShowProviders(true);
-            setShowServices(false); // hide service dropdown
-          }}
-          className="provider-search-filter"
-        />
-      </div>
+        
+        <div className={`provider-input-wrapper ${isActive ? "active" : ""}`}>
+          {/* Provider Search Input */}
+          <input
+            type="text"
+            placeholder="Search Provider by name"
+            value={providerInput}
+            onChange={(e) => handleProviderInput(e.target.value)}
+            onFocus={() => {
+              setShowProviders(true);
+              setShowServices(false);  // hide service dropdown
+              setIsExpanded(true); // hide service dropdown
+            }}
+            className="provider-search-filter"
+          />
 
-      {/* Service Dropdown */}
-      {showServices && (
-        <ul className="search-dropdown">
-          {serviceResults.map((service, idx) => (
-            <li
-              key={idx}
-              className="dropdown-item"
-              onClick={() => selectService(service)}
-            >
-              {service}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {/* Provider Dropdown */}
-      {showProviders && (
-        <ul className="search-dropdown">
-          {providerResults.length > 0 ? (
-            providerResults.map((provider, idx) => (
-              <li
-                key={idx}
-                className="dropdown-item"
-                onClick={() => selectProvider(provider)}
-              >
-                {provider}
-              </li>
-            ))
-          ) : (
-            <li className="no-results">No providers found</li>
-          )}
-        </ul>
-      )}
+        {/* Provider Dropdown */}
+        {showProviders && (
+          <ul className="search-dropdown">
+            {providerResults.length > 0 ? (
+              providerResults.map((provider, idx) => (
+                <li
+                  key={idx}
+                  className="dropdown-item"
+                  onClick={() => selectProvider(provider)}
+                >
+                  {provider}
+                </li>
+              ))
+            ) : (
+              <li className="no-results">No providers found</li>
+            )}
+          </ul>
+        )}
+        </div>
+       </div> 
     </div>
   );
 }

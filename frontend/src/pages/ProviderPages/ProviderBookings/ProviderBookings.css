@@ -304,12 +304,30 @@
 /* BUSINESS INSIGHTS */
 .client-stats-container {
   display: flex;
-  gap: 20px;
-  /* padding-bottom: clamp(2.5rem, 3.5vw, 4rem); */
+  gap: 30px;
+  justify-content: center;
 }
 
 .stat-card {
+  width: 250px; 
+}
+
+.large-stat {
   flex: 1;
+  max-width: 100%;
+  max-height: 90%;
+  background: transparent;
+  border: 3px solid #ffc72c;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  transform: scale(1.06);
+}
+
+.small-stat {
+  flex: 1;
+  max-width: 100%;
+  max-height: 85%;
   background: transparent;
   border: 3px solid #ffc72c;
   border-radius: 12px;
@@ -317,7 +335,7 @@
   text-align: center;
 }
 
-.stat-card h3 {
+.large-stat h3 {
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-family: "nunito";
   font-weight: bold;
@@ -325,10 +343,18 @@
   color: #1f3a5f;
 }
 
-.stat-card p {
+.small-stat h3 {
+  font-size: clamp(2rem, 3vw, 2.4rem);
+  font-family: "nunito";
+  font-weight: bold;
+  margin: 0;
+  color: #1f3a5f;
+}
+
+.small-stat p {
   margin-top: 5px;
   font-size: clamp(0.93rem, 1vw, 0.93rem);
-  color: #6b7280;
+  color:  #6d7480 !important;
 }
 
 

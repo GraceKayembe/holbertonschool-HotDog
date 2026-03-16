@@ -384,18 +384,24 @@ export default function ProviderBookings() {
         {/* Buiness Insights */}
         <div className="client-stats-container">
           <div className="stat-card">
-            <h3>{clientStats.totalClients}</h3>
-            <p>Total Clients</p>
+            <div className="small-stat">
+              <h3>{clientStats.newClientsThisWeek}</h3>
+              <p>New Clients This Week</p>
+            </div>
           </div>
 
           <div className="stat-card">
-            <h3>{clientStats.newClientsThisWeek}</h3>
-            <p>New Clients This Week</p>
+            <div className="large-stat">
+              <h3>{clientStats.totalClients}</h3>
+              <p>Total Clients</p>
+            </div>
           </div>
 
           <div className="stat-card">
-            <h3>{clientStats.repeatClients}</h3>
-            <p>Repeat Clients</p>
+            <div className="small-stat"> 
+              <h3>{clientStats.repeatClients}</h3>
+              <p>Repeat Clients</p>
+            </div>
           </div>
         </div>
 

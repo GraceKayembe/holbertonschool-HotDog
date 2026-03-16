@@ -86,7 +86,7 @@ const AddReviewModal = ({ isOpen, onClose, onSubmit }) => {
 
           {/* Comment Section */}
           <div className="form-group">
-            <label htmlFor="comment">Comment *</label>
+            <label htmlFor="comment" className="comment-title">Comment *</label>
             <textarea
               id="comment"
               value={comment}

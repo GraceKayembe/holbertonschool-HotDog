@@ -30,6 +30,7 @@ export default function Register() {
 
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [showRegisterSuccess, setShowRegisterSuccess] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -62,7 +63,11 @@ export default function Register() {
 
       await registerUser(dataToSend);
 
-      navigate("/login");
+      setShowRegisterSuccess(true);
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 1500);
     } catch (err) {
       setError(
         err.response?.data?.message || err.message || "Registration failed",
@@ -161,6 +166,16 @@ export default function Register() {
             Already have an account? <Link to="/login">Login</Link>
           </p>
         </Form>
+
+        {/* Register Success Modal */}
+        {showRegisterSuccess && (
+          <div className="success-modal">
+            <div className="success-modal-content">
+              <h2>✅ Sign Up Successful</h2>
+              <p>Your HotDog account has been successfully registered.</p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,5 +1,8 @@
 import { Form } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext.jsx";
+import { deleteUser } from "../../../api/user.js";
+import { updateUser } from "../../../api/user.js";
 
 import FormLabel from "../../../components/Form/FormLabel.jsx";
 import FormNav from "../../../components/Form/FormNav.jsx";
@@ -27,7 +30,7 @@ export default function Account() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
-  cconst [showPasswordSuccess, setShowPasswordSuccess] = useState(false);
+  const [showPasswordSuccess, setShowPasswordSuccess] = useState(false);
   const [showDeleteSuccess, setShowDeleteSuccess] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -112,7 +115,7 @@ export default function Account() {
         slot_duration: provider.slot_duration,
         img_url: provider.img_url,
         logo_url: provider.logo_url,
-        email: user.email
+        email: provider.email || user.email
       };
 
       const res = await fetch(url, {
@@ -277,13 +280,6 @@ export default function Account() {
                     />
 
                     <FormLabel
-                      name="Business Name"
-                      value={provider.name}
-                      disabled={!editMode}
-                      onChange={e => updateField("name", e.target.value)}
-                    />
-
-                    <FormLabel
                       name="Phone"
                       value={provider.phone}
                       disabled={!editMode}
@@ -329,7 +325,7 @@ export default function Account() {
                   {editMode ? (
                     <button
                       className="btn-style button-yellow"
-                      onClick={saveProvider}
+                      onClick={saveChanges}
                       disabled={saving}
                     >
                       {saving ? "Saving..." : "Save Details"}
@@ -402,6 +398,7 @@ export default function Account() {
                     className="btn-style button-navy"
                     onClick={() => setShowDeleteModal(true)}
                   >
+                    Delete Account
                   </button>
                 </div>
               </>

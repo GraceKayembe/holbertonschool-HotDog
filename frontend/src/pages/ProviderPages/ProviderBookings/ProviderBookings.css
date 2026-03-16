@@ -124,7 +124,7 @@
   border: 3px solid #ffc72c;
   border-radius: 15px;
   font-size: clamp(1rem, 2vw, 1.1rem);
-  font-weight: 700;
+  font-weight: 600;
   min-width: clamp(11rem, 27vw, 14.5rem);
   height: clamp(2.1875rem, 5vw, 2.5rem);
   white-space: normal;
@@ -151,7 +151,8 @@
   background: white;
   border-radius: 12px;
   padding: 30px;
-  padding-top: 50px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   position: relative;
 }
 
@@ -270,10 +271,26 @@
   margin-top: 12px;
 }
 
-.modal-btn-cancel {
-  background: #e8eaee;
+.modal-btn-book {
+  background: transparent;
   color: #1f3a5f;
-  border: 3px solid #e8eaee;
+  border: 3px solid #ffc72c;
+  border-radius: 15px;
+  padding: 8px 12px;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 600;
+}
+
+.modal-btn-book:hover {
+  background: #ffc72c;
+  color: #1f3a5f;
+  border: 3px solid #ffc72c;
+}
+
+.modal-btn-cancel {
+  background: #d2d7de;
+  color: #1f3a5f;
+  border: 3px solid #d2d7de;
   border-radius: 15px;
   padding: 8px 12px;
   font-size: clamp(1rem, 2vw, 1.1rem);
@@ -281,9 +298,9 @@
 }
 
 .modal-btn-cancel:hover {
-  background: #d2d7de;
+  background: #a5aebd;
   color: #1f3a5f;
-  border: 3px solid #d2d7de;
+  border: 3px solid #a5aebd;
 }
 
 .modal-btn-continue {

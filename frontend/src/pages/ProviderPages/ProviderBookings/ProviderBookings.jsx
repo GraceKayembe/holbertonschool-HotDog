@@ -429,7 +429,7 @@ export default function ProviderBookings() {
               <h3 className="provider-modal-title">New Booking</h3>
 
               <div className="provider-modal-block">
-                <p className="label-titles">Have they been to your clinic before?</p>
+                <p className="label-title">Have they been to your clinic before?</p>
                 <div className="provider-radio-row">
                   <label>
                     <input
@@ -452,7 +452,7 @@ export default function ProviderBookings() {
 
               {existingOwner === "yes" && (
                 <div className="provider-modal-block">
-                  <p className="label-titles">Find owner (email or phone)</p>
+                  <p className="label-title">Find owner (email or phone)</p>
                   <input
                     className="provider-input"
                     placeholder="Owner email"

@@ -100,6 +100,8 @@
 }
 
 .notes-label {
+  display: flex;
+  gap: 10px;
   font-family:
     Open Sans,
     sans-serif;
@@ -109,6 +111,12 @@
   display: flex;
   gap: 10px;
   margin-left: auto;
+}
+
+.patient-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .pet-card-footer button {
@@ -129,18 +137,21 @@
 }
 
 .patient-card-footer .notes-label .btn.btn-primary.popover-buttons {
-  background-color: #e8eaee;
-  border: 3px solid #e8eaee;
-  min-width: 110px;
-  height: 35px;
-  color: #1f3a5f;
+  background-color: #e8eaee !important;
+  color: #1f3a5f !important;
   font-weight: bold;
-  border-radius: 20px !important;
+  white-space: nowrap;
+  width: auto;
+  min-width: fit-content;
+  height: 35px;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  border: 3px solid #e8eaee
 }
 
 .notes-label .btn.btn-primary.popover-buttons:hover {
-  background-color: #e8eaee;
-  border: 3px solid #ffc72c;
+  border: 3px solid #a5aebd !important;
+  background-color: #a5aebd !important;
 }
 
 .popover-body.popover-body {

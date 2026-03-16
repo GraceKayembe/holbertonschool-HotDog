@@ -39,7 +39,8 @@ def create_pet():
             "weight": pet.weight,
             "notes": pet.notes,
             "medical_notes": pet.medical_notes,
-            "age": pet.age_display
+            "age": pet.age_display,
+            "owner_name": f"{pet.owner.first_name} {pet.owner.last_name}"
         }), 201
     except ValueError as e:
         return jsonify({"error": str(e)}), 400
@@ -86,7 +87,8 @@ def get_my_pets():
             "notes": pet.notes,
             "medical_notes": pet.medical_notes,
             "age": pet.age_display,
-            "img_url": pet.img_url
+            "img_url": pet.img_url,
+            "owner_name": f"{pet.owner.first_name} {pet.owner.last_name}"
         }
         for pet in pets
     ]), 200
@@ -119,7 +121,8 @@ def get_pet(pet_id):
         "notes": pet.notes,
         "medical_notes": pet.medical_notes,
         "age": pet.age_display,
-        "img_url": pet.img_url
+        "img_url": pet.img_url,
+        "owner_name": f"{pet.owner.first_name} {pet.owner.last_name}"
     }), 200
 
 

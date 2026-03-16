@@ -12,8 +12,8 @@
 .home-container {
   width: 100%;
   margin: 0 auto;
-  margin-top: clamp(2.5rem, 3.5vw, 4rem);
-  margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
+  padding-top: calc(var(--header-height) + 50px);
+  padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
 }
 
 .home-content {
@@ -72,6 +72,7 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   margin-bottom: clamp(2.5rem, 3.5vw, 4rem);
+  justify-items: center; /* added */
 }
 
 .topsearchs-card {
@@ -303,9 +304,10 @@
   }
 
   .banner-advert-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding-top: 0.93rem;
+    /* display: grid; */
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+    gap: 15px;
   }
 
   .advert-btn {
@@ -317,13 +319,13 @@
   }
 
   .banner-advert-container .advert-banner-card:nth-child(3) {
-    
     grid-column: 1 / -1;
     grid-row: 1;
   }
 
   .banner-advert-container .advert-banner-card:nth-child(1),
   .banner-advert-container .advert-banner-card:nth-child(2) {
+    grid-column: auto;
     grid-row: 2;
   }
 }
@@ -366,13 +368,14 @@
   }
 
   .topsearchs-cards-container {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
   }
 
   .banner-advert-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding-top: 0.93rem;
+    /* display: grid; */
+    grid-template-columns: 1fr 1fr;
+    /* padding-top: 0.93rem; */
   }
 
   .advert-btn {
@@ -396,10 +399,9 @@
 
 
 
-
-/* Desktop */
-/* @media (max-width: 1440px) { 
-  .home-container {
-    max-width: 1200px;
+/* smaller header for mobile */
+/* @media (max-width: 600px) {
+  :root {
+    --header-height: 80px; 
   }
 } */

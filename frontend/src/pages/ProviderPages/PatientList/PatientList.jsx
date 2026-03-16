@@ -4,53 +4,120 @@ import { useEffect, useState } from "react";
 import { getPetById } from "../../../api/pet";
 import { getProviderAppointments } from "../../../api/providerBookings";
 import "./PatientList.css";
+import ProviderSearchBar from "../../../components/SearchBar/ProviderSearchBar";
 
 export default function PatientList() {
   const [appointments, setAppointments] = useState([]);
   const [patients, setPatients] = useState([]);
+  const [filteredPatients, setFilteredPatients] = useState([]);
+
+  // Controlled input states
+  const [ageInput, setAgeInput] = useState("");      // what user selects/enters
+  const [searchInput, setSearchInput] = useState(""); // what user types
+
+  // Applied filters (only updated on search)
+  const [ageFilter, setAgeFilter] = useState("");    
+  const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    setFilteredPatients(patients);
+  }, [patients]);
 
   useEffect(() => {
     async function getAppointments() {
       const token = localStorage.getItem("token");
-      if (!token) {
-        return;
-      }
+      if (!token) return;
+
       const providerAppointments = await getProviderAppointments(token);
-      // only set appointments where status is CONFIRMED
-      const completedAppointments = providerAppointments.appointments.filter(
-        (appointment) =>
-          appointment.status === "CONFIRMED" ||
-          appointment.status === "COMPLETED",
+      const confirmedAppointments = providerAppointments.appointments.filter(
+        (appt) =>
+          appt.status === "CONFIRMED" || appt.status === "COMPLETED"
       );
-      setAppointments(completedAppointments || []);
+      setAppointments(confirmedAppointments || []);
     }
     getAppointments();
   }, []);
 
-  // pass patientsID into getPetByID
-
   useEffect(() => {
     async function getPatients() {
       const token = localStorage.getItem("token");
-      if (!token) {
-        return;
-      }
+      if (!token) return;
+
       try {
-        const promises = appointments.map((appointment) =>
-          getPetById(appointment.pet_id, token),
+        const promises = appointments.map((appt) =>
+          getPetById(appt.pet_id, token)
         );
         const patientDataArray = await Promise.all(promises);
-        // return an array with UNIQUE patients
-        let sanitisedDataArray = [
-          ...new Set(patientDataArray.map((item) => JSON.stringify(item))),
-        ].map((item) => JSON.parse(item));
-        setPatients(sanitisedDataArray);
-      } catch (error) {
-        console.error(error);
+
+        // unique patients
+        const uniquePatients = [
+          ...new Set(patientDataArray.map((p) => JSON.stringify(p))),
+        ].map((p) => JSON.parse(p));
+
+        setPatients(uniquePatients);
+      } catch (err) {
+        console.error(err);
       }
     }
+
     getPatients();
   }, [appointments]);
+
+  // Filter patients whenever the **applied filters** change
+  useEffect(() => {
+    let filtered = [...patients];
+
+    if (ageFilter && ageFilter !== "All") {
+      const now = new Date();
+
+      filtered = filtered.filter(patient => {
+        if (!patient.date_of_birth) return false;
+
+        const dob = new Date(patient.date_of_birth);
+        const age = (now - dob) / (1000 * 60 * 60 * 24 * 365.25);
+
+        switch (ageFilter) {
+          case "Puppies (< 1 year)":
+            return age < 1;
+
+          case "Young (1-5 years)":
+            return age >= 1 && age < 5;
+
+          case "Adult (5-10 years)":
+            return age >= 5 && age < 10;
+
+          case "Senior (10+ years)":
+            return age >= 10;
+
+          default:
+            return true;
+        }
+      });
+    }
+
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase();
+
+      filtered = filtered.filter(p => {
+        const pet = p.name?.toLowerCase() || "";
+        const owner = (p.owner_name || "").toLowerCase();
+
+        return (
+          pet.includes(q) ||
+          owner.includes(q) ||
+          `${pet} - ${owner}`.includes(q)
+        );
+      });
+    }
+
+    setFilteredPatients(filtered);
+  }, [patients, ageFilter, searchQuery]);
+
+  // Trigger search when button is clicked
+  const handleSearch = (ageOverride) => {
+    setAgeFilter(ageOverride ?? ageInput);
+    setSearchQuery(searchInput);
+  };
 
   return (
     <div className="all-patients-container">
@@ -58,13 +125,22 @@ export default function PatientList() {
         <div className="all-patients-header">
           <h1>Patients</h1>
         </div>
-        <div className="all-pets-actions">
-          <div>All({patients.length})</div>
-          {/* <button className="btn-yellow">+ Add Pet(s)</button> */}
+
+        <ProviderSearchBar
+          patients={patients}
+          service={ageInput}         
+          searchValue={searchInput}     
+          onServiceChange={setAgeInput} 
+          onSearchChange={setSearchInput}
+          onSearch={handleSearch}         
+        />
+
+        <div className="all-pets-actions-patient-list">
+          <div>All({filteredPatients.length})</div>
         </div>
 
         <div className="pets-list">
-          {patients.map((patient) => (
+          {filteredPatients.map((patient) => (
             <PatientCard key={patient.id} pet={patient} />
           ))}
         </div>

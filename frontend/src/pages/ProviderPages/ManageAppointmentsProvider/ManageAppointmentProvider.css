@@ -1,8 +1,14 @@
+.manage-appt-container {
+  width: 100%;
+  background-color: #f2f3f7;
+  margin: 0 auto;
+  padding-top: calc(var(--header-height) + 5px);
+  padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
+}
+
 .manage-appointment-provider {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
-  /* background-color: #f5f5f5; */
   min-height: 100vh;
 }
 
@@ -10,8 +16,6 @@
   display: flex;
   align-items: center;
   gap: 15px;
-  margin-bottom: 30px;
-  padding-top: 10px;
 }
 
 .back-btn {
@@ -72,8 +76,8 @@
 .booking-card {
   background: white;
   border-radius: 8px;
-  padding: 25px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: clamp(1rem, 2.5vw, 2rem);
+  box-shadow: 0 2px 8px rgba(31, 58, 95, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -84,7 +88,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 10px;
 }
 
 .detail-row {
@@ -97,10 +101,12 @@
 .detail-label {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   font-weight: 600;
-  color: #1a3a52;
-  font-size: 14px;
+  color: #1f3a5f;
+  color: #333333;
+  width: 200px;
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
 }
 
 .detail-label .icon {
@@ -113,26 +119,30 @@
 }
 
 .detail-value {
-  color: #555;
-  font-size: 14px;
+  color: #333333;
+  font-size: clamp(0.93rem,1.25vw, 1rem);
+  padding-left: 10px;
 }
 
 .cancel-btn {
-  background-color: #1a3a52;
-  color: #ffc72c;
+  border: 3px solid #ffc72c !important;
+  background-color: transparent;
+  color: #1f3a5f;
   border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  font-weight: 600;
+  border-radius: 20px;
+  width: 100px;
+  height: 40px;
+  font-weight: 700;
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
   cursor: pointer;
-  font-size: 14px;
   transition: background-color 0.3s;
-  white-space: nowrap;
-  align-self: flex-start;
+  margin-top: auto;
 }
 
 .cancel-btn:hover:not(:disabled) {
-  background-color: #152841;
+  background-color: #ffc72c;
+  color: #1f3a5f;
+  border: 3px solid #ffc72c !important;
 }
 
 .cancel-btn:disabled {
@@ -175,6 +185,13 @@
   margin: 0;
   color: #555;
   font-size: 14px;
+}
+
+
+.detail-row .location-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 @keyframes fadeIn {

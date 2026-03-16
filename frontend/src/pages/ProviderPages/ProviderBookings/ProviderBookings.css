@@ -1,19 +1,25 @@
+/* .provider-container-background {
+  background-color: #f2f3f7 !important;
+} */
+
 .wrapper-container {
   display: flex;
   flex-direction: column;
-  background: white;
   width: min(100%, 800px);
-  margin: 2.5rem auto;
-  padding: 0 1rem 2rem;
+  margin: 0 auto;
+  padding-top: var(--header-height);
+  padding-bottom: clamp(3rem, 5.5vw, 5rem);
   overflow-x: hidden;
 }
 
 .bookings-header-bar {
   display: flex;
   justify-content: space-between;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
 }
 
 .bookings-header-bar h1 {
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
   font-weight: bold;
   color: #1f3a5f;
 }
@@ -26,7 +32,7 @@
   font-family:
     Open Sans,
     sans-serif;
-  font-size: 1rem;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   padding: 0 16px;
   text-decoration: underline;
 }
@@ -91,7 +97,7 @@
 .provider-bookings-container .time-container {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  grid-auto-rows: minmax(64px, auto);
+  /* grid-auto-rows: minmax(64px, auto); */
   gap: 0.85rem;
   width: 100%;
   margin-top: 1rem;
@@ -99,10 +105,11 @@
 }
 
 .provider-bookings-container .time-container .time-button {
-  min-height: 42px;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 800;
+  min-height: 40px;
+  border-radius: 15px;
+  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
+  font-weight: 600;
+  color: #333333;
 }
 
 .create-booking-row {
@@ -112,14 +119,20 @@
 }
 
 .create-booking-btn {
-  background: #1f3a5f;
-  color: #ffc72c;
-  border: none;
-  border-radius: 12px;
-  padding: 10px 16px;
+  background: transparent;
+  color: #1f3a5f;
+  border: 3px solid #ffc72c;
+  border-radius: 15px;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   font-weight: 700;
-  max-width: 100%;
+  min-width: clamp(11rem, 27vw, 14.5rem);
+  height: clamp(2.1875rem, 5vw, 2.5rem);
   white-space: normal;
+}
+
+.create-booking-btn:hover {
+  color: #1f3a5f;
+  background-color: #ffc72c;
 }
 
 .provider-modal-overlay {
@@ -144,7 +157,9 @@
 .provider-modal-title {
   color: #1f3a5f;
   margin: 0 0 12px;
-  font-weight: 900;
+  font-weight: bold;
+  font-size: clamp(1.25rem, 2.25vw, 1.5rem);
+  font-family: "nunito";
 }
 
 .provider-modal-close {
@@ -154,6 +169,7 @@
   border: none;
   background: transparent;
   font-size: 20px;
+  color: #333333;
   cursor: pointer;
 }
 
@@ -165,20 +181,29 @@
 }
 
 .provider-modal-block label {
-  font-weight: 700;
-  font-size: large;
-  color: #1f3a5f;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  color: #333333;
 }
 
-.provider-modal-block p {
-  font-weight: 700;
-  font-size: large;
-  color: #1f3a5f;
+.label-title {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 600;
+  color: #1f3a5f !important;
 }
+
+/* .provider-modal-block p {
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  color: #333333;
+} */
 
 .provider-radio-row {
   display: flex;
   gap: 16px;
+}
+
+.provider-radio-row p{
+  font-size: clamp(1rem, 2vw, 1.1rem) !important;
+  color: #333333 !important;
 }
 
 .provider-grid-2 {
@@ -193,8 +218,11 @@
   width: 100%;
   margin-top: 8px;
   padding: 10px;
-  border: 1px solid #1f3a5f;
-  border-radius: 12px;
+  border: 2px solid #1f3a5f;
+  border-radius: 6px;
+  color: #333333;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+
 }
 
 .provider-notes {
@@ -203,19 +231,19 @@
 
 .provider-secondary-btn {
   margin-top: 12px;
-  border: 3px solid #1f3a5f;
-  border-radius: 20px;
+  border: 3px solid #ffc72c;
+  border-radius: 15px;
   padding: 8px 12px;
-  background-color: transparent;
+  background: transparent;
   color: #1f3a5f;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   font-weight: 700;
-  width: 110px;
 }
 
 .provider-secondary-btn:hover {
-  background-color: #1f3a5f;
-  color: #ffc72c;
-  border: 3px solid #1f3a5f 
+  background-color: #ffc72c;
+  color: #1f3a5f;
+  border: 3px solid #ffc72c;
 }
 
 .provider-checkbox-row {
@@ -223,6 +251,9 @@
   gap: 8px;
   align-items: center;
   margin-top: 10px;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 600;
+  color: #1f3a5f !important;
 }
 
 .provider-error {
@@ -238,34 +269,70 @@
 }
 
 .modal-btn-cancel {
-  background-color: transparent;
-  border: 3px solid #ffc72c;
-  border-radius: 20px; /* replicate user's booking side */
+  background: #e8eaee;
+  color: #1f3a5f;
+  border: 3px solid #e8eaee;
+  border-radius: 15px;
   padding: 8px 12px;
+  font-size: clamp(1rem, 2vw, 1.1rem);
   font-weight: 700;
-  width: 110px;
 }
 
 .modal-btn-cancel:hover {
-  background-color: #e8eaee;
-  border: 3px solid #e8eaee;
-}
-
-.modal-btn-book {
-  border: 3px solid #1f3a5f;
-  background-color: transparent;
+  background: #d2d7de;
   color: #1f3a5f;
-  border-radius: 20px;
-  padding: 8px 12px;
-  font-weight: 700;
-  width: 110px;
+  border: 3px solid #d2d7de;
 }
 
-.modal-btn-book:hover {
-  background-color: #1f3a5f;
+.modal-btn-continue {
+  background: transparent;
+  color: #1f3a5f;
+  border: 3px solid #1f3a5f;
+  border-radius: 15px;
+  padding: 8px 12px;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 700;
+}
+
+.modal-btn-continue:hover {
+  background: #1f3a5f;
   color: #ffc72c;
   border: 3px solid #1f3a5f;
 }
+
+
+/* BUSINESS INSIGHTS */
+.client-stats-container {
+  display: flex;
+  gap: 20px;
+  /* padding-bottom: clamp(2.5rem, 3.5vw, 4rem); */
+}
+
+.stat-card {
+  flex: 1;
+  background: transparent;
+  border: 3px solid #ffc72c;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-family: "nunito";
+  font-weight: bold;
+  margin: 0;
+  color: #1f3a5f;
+}
+
+.stat-card p {
+  margin-top: 5px;
+  font-size: clamp(0.93rem, 1vw, 0.93rem);
+  color: #6b7280;
+}
+
+
+
 
 @media (max-width: 768px) {
   .wrapper-container {

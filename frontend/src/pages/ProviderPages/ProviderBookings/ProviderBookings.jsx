@@ -43,6 +43,7 @@ export default function ProviderBookings() {
   const [notes, setNotes] = useState("");
   const [submitError, setSubmitError] = useState("");
   const [intakeData, setIntakeData] = useState({
+
     owner: {
       first_name: "",
       last_name: "",
@@ -327,300 +328,367 @@ export default function ProviderBookings() {
     }
   };
 
+
+
+  // Business insights
+  const clientStats = useMemo(() => {
+    const uniqueOwners = new Map();
+
+    appointments.forEach((appt) => {
+      const owner = appt.pet_owner_name;
+      const date = dayjs(appt.date_time);
+
+      if (!owner) return;
+
+      if (!uniqueOwners.has(owner)) {
+        uniqueOwners.set(owner, []);
+      }
+
+      uniqueOwners.get(owner).push(date);
+    });
+
+    const totalClients = uniqueOwners.size;
+
+    const startOfWeek = dayjs().startOf("week");
+
+    let newClientsThisWeek = 0;
+    let repeatClients = 0;
+
+    uniqueOwners.forEach((dates) => {
+      const sortedDates = dates.sort((a, b) => a.valueOf() - b.valueOf());
+      const firstVisit = sortedDates[0];
+
+      if (firstVisit.isAfter(startOfWeek)) {
+        newClientsThisWeek++;
+      }
+
+      if (dates.length > 1) {
+        repeatClients++;
+      }
+    });
+
+    return {
+      totalClients,
+      newClientsThisWeek,
+      repeatClients,
+    };
+  }, [appointments]);
+
   return (
-    <div className="wrapper-container">
-      <div className="bookings-header-bar">
-        <h1 className="my-auto">Appointments</h1>
-      </div>
-      <div className="upcoming-appointments-container">
-        <p>View and manage all your upcoming appointments in one place:</p>
-        <div className="upcoming-appointments-table">
-          <UpcomingEvents upcomingEvents={appointments} />
+    <div className="provider-container-background">
+      <div className="wrapper-container">
+        <div className="bookings-header-bar">
+          <h1 className="my-auto">Appointments</h1>
         </div>
-      </div>
+        
+        {/* Buiness Insights */}
+        <div className="client-stats-container">
+          <div className="stat-card">
+            <h3>{clientStats.totalClients}</h3>
+            <p>Total Clients</p>
+          </div>
 
-      <div className="create-booking-row">
-        <button className="create-booking-btn" onClick={() => setShowModal(true)}>
-          Create an appointment
-        </button>
-      </div>
+          <div className="stat-card">
+            <h3>{clientStats.newClientsThisWeek}</h3>
+            <p>New Clients This Week</p>
+          </div>
 
-      {showModal && (
-        <div className="provider-modal-overlay">
-          <div className="provider-modal">
-            <button className="provider-modal-close" onClick={closeModal}>
-              x
-            </button>
+          <div className="stat-card">
+            <h3>{clientStats.repeatClients}</h3>
+            <p>Repeat Clients</p>
+          </div>
+        </div>
 
-            <h3 className="provider-modal-title">New Booking</h3>
+        {/* Appointment data */}
+        <div className="upcoming-appointments-container">
+          <p>View and manage all your upcoming appointments in one place:</p>
+          <div className="upcoming-appointments-table">
+            <UpcomingEvents upcomingEvents={appointments} />
+          </div>
+        </div>
 
-            <div className="provider-modal-block">
-              <p>Have they been to your clinic before?</p>
-              <div className="provider-radio-row">
-                <label>
-                  <input
-                    type="radio"
-                    checked={existingOwner === "yes"}
-                    onChange={() => setExistingOwner("yes")}
-                  />{" "}
-                  Yes
-                </label>
-                <label>
-                  <input
-                    type="radio"
-                    checked={existingOwner === "no"}
-                    onChange={() => setExistingOwner("no")}
-                  />{" "}
-                  No
-                </label>
-              </div>
-            </div>
+        <div className="create-booking-row">
+          <button className="create-booking-btn" onClick={() => setShowModal(true)}>
+            Create an appointment
+          </button>
+        </div>
 
-            {existingOwner === "yes" && (
+        {showModal && (
+          <div className="provider-modal-overlay">
+            <div className="provider-modal">
+              <button className="provider-modal-close" onClick={closeModal}>
+                x
+              </button>
+
+              <h3 className="provider-modal-title">New Booking</h3>
+
               <div className="provider-modal-block">
-                <p>Find owner (email or phone)</p>
-                <input
-                  className="provider-input"
-                  placeholder="Owner email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <input
-                  className="provider-input"
-                  placeholder="Owner phone"
-                  value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
-                />
-                <button className="provider-secondary-btn" onClick={handleOwnerLookup}>
-                  Search
-                </button>
-                {lookupError && <p className="provider-error">{lookupError}</p>}
-              </div>
-            )}
-
-            {existingOwner === "no" && (
-              <div className="provider-modal-block">
-                <p>Create new customer and pet</p>
-                <div className="provider-grid-2">
-                  <input
-                    className="provider-input"
-                    placeholder="Owner first name"
-                    value={intakeData.owner.first_name}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      owner: { ...prev.owner, first_name: e.target.value },
-                    }))}
-                  />
-                  <input
-                    className="provider-input"
-                    placeholder="Owner last name"
-                    value={intakeData.owner.last_name}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      owner: { ...prev.owner, last_name: e.target.value },
-                    }))}
-                  />
+                <p className="label-titles">Have they been to your clinic before?</p>
+                <div className="provider-radio-row">
+                  <label>
+                    <input
+                      type="radio"
+                      checked={existingOwner === "yes"}
+                      onChange={() => setExistingOwner("yes")}
+                    />{" "}
+                    Yes
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      checked={existingOwner === "no"}
+                      onChange={() => setExistingOwner("no")}
+                    />{" "}
+                    No
+                  </label>
                 </div>
-                <div className="provider-grid-2">
+              </div>
+
+              {existingOwner === "yes" && (
+                <div className="provider-modal-block">
+                  <p className="label-titles">Find owner (email or phone)</p>
                   <input
                     className="provider-input"
                     placeholder="Owner email"
-                    value={intakeData.owner.email}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      owner: { ...prev.owner, email: e.target.value },
-                    }))}
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                   <input
                     className="provider-input"
-                    placeholder="Owner phone (optional)"
-                    value={intakeData.owner.phone_number}
+                    placeholder="Owner phone"
+                    value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
+                  />
+                  <button className="provider-secondary-btn" onClick={handleOwnerLookup}>
+                    Search
+                  </button>
+                  {lookupError && <p className="provider-error">{lookupError}</p>}
+                </div>
+              )}
+
+              {existingOwner === "no" && (
+                <div className="provider-modal-block">
+                  <p>Create new customer and pet</p>
+                  <div className="provider-grid-2">
+                    <input
+                      className="provider-input"
+                      placeholder="Owner first name"
+                      value={intakeData.owner.first_name}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        owner: { ...prev.owner, first_name: e.target.value },
+                      }))}
+                    />
+                    <input
+                      className="provider-input"
+                      placeholder="Owner last name"
+                      value={intakeData.owner.last_name}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        owner: { ...prev.owner, last_name: e.target.value },
+                      }))}
+                    />
+                  </div>
+                  <div className="provider-grid-2">
+                    <input
+                      className="provider-input"
+                      placeholder="Owner email"
+                      value={intakeData.owner.email}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        owner: { ...prev.owner, email: e.target.value },
+                      }))}
+                    />
+                    <input
+                      className="provider-input"
+                      placeholder="Owner phone (optional)"
+                      value={intakeData.owner.phone_number}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        owner: { ...prev.owner, phone_number: e.target.value },
+                      }))}
+                    />
+                  </div>
+
+                  <div className="provider-grid-2">
+                    <input
+                      className="provider-input"
+                      placeholder="Pet name"
+                      value={intakeData.pet.name}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        pet: { ...prev.pet, name: e.target.value },
+                      }))}
+                    />
+                    <select
+                      className="provider-select"
+                      value={intakeData.pet.species}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        pet: { ...prev.pet, species: e.target.value, breed: "" },
+                      }))}
+                    >
+                      <option value="" disabled>
+                        Select species
+                      </option>
+                      <option value="dog">Dog</option>
+                      <option value="cat">Cat</option>
+                    </select>
+                  </div>
+
+                  <div className="provider-grid-2">
+                    <select
+                      className="provider-select"
+                      value={intakeData.pet.breed}
+                      disabled={!intakeData.pet.species}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        pet: { ...prev.pet, breed: e.target.value },
+                      }))}
+                    >
+                      <option value="" disabled>
+                        Select breed
+                      </option>
+                      {breedOptions.map((breed) => (
+                        <option key={breed} value={breed}>
+                          {breed}
+                        </option>
+                      ))}
+                    </select>
+                    <select
+                      className="provider-select"
+                      value={intakeData.pet.gender}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        pet: { ...prev.pet, gender: e.target.value },
+                      }))}
+                    >
+                      <option value="" disabled>
+                        Select gender
+                      </option>
+                      <option value="unknown">Unknown</option>
+                      <option value="male">Male</option>
+                      <option value="female">Female</option>
+                    </select>
+                  </div>
+
+                  <div className="provider-grid-2">
+                    <input
+                      className="provider-input"
+                      type="date"
+                      value={intakeData.pet.date_of_birth}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        pet: { ...prev.pet, date_of_birth: e.target.value },
+                      }))}
+                    />
+                    <input
+                      className="provider-input"
+                      type="number"
+                      min="0"
+                      step="0.1"
+                      placeholder="Weight kg (optional)"
+                      value={intakeData.pet.weight}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        pet: { ...prev.pet, weight: e.target.value },
+                      }))}
+                    />
+                  </div>
+
+                  <label className="provider-checkbox-row">
+                    <input
+                      type="checkbox"
+                      checked={intakeData.pet.desexed}
+                      onChange={(e) => setIntakeData((prev) => ({
+                        ...prev,
+                        pet: { ...prev.pet, desexed: e.target.checked },
+                      }))}
+                    />
+                    Desexed
+                  </label>
+
+                  <textarea
+                    className="provider-notes"
+                    placeholder="Pet notes (optional)"
+                    value={intakeData.pet.notes}
                     onChange={(e) => setIntakeData((prev) => ({
                       ...prev,
-                      owner: { ...prev.owner, phone_number: e.target.value },
+                      pet: { ...prev.pet, notes: e.target.value },
                     }))}
                   />
                 </div>
+              )}
 
-                <div className="provider-grid-2">
-                  <input
-                    className="provider-input"
-                    placeholder="Pet name"
-                    value={intakeData.pet.name}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      pet: { ...prev.pet, name: e.target.value },
-                    }))}
-                  />
+              {ownerResult && (
+                <div className="provider-modal-block">
+                  <p>
+                    Owner: {ownerResult.owner.first_name} {ownerResult.owner.last_name}
+                  </p>
+                  <label htmlFor="pet-select">Which pet is appointment for?</label>
                   <select
+                    id="pet-select"
                     className="provider-select"
-                    value={intakeData.pet.species}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      pet: { ...prev.pet, species: e.target.value, breed: "" },
-                    }))}
+                    value={selectedPetId}
+                    onChange={(e) => setSelectedPetId(e.target.value)}
                   >
-                    <option value="" disabled>
-                      Select species
-                    </option>
-                    <option value="dog">Dog</option>
-                    <option value="cat">Cat</option>
-                  </select>
-                </div>
-
-                <div className="provider-grid-2">
-                  <select
-                    className="provider-select"
-                    value={intakeData.pet.breed}
-                    disabled={!intakeData.pet.species}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      pet: { ...prev.pet, breed: e.target.value },
-                    }))}
-                  >
-                    <option value="" disabled>
-                      Select breed
-                    </option>
-                    {breedOptions.map((breed) => (
-                      <option key={breed} value={breed}>
-                        {breed}
+                    <option value="">Select pet</option>
+                    {ownerResult.pets.map((pet) => (
+                      <option key={pet.id} value={pet.id}>
+                        {pet.name} ({pet.species})
                       </option>
                     ))}
                   </select>
-                  <select
-                    className="provider-select"
-                    value={intakeData.pet.gender}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      pet: { ...prev.pet, gender: e.target.value },
-                    }))}
-                  >
-                    <option value="" disabled>
-                      Select gender
-                    </option>
-                    <option value="unknown">Unknown</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                  </select>
                 </div>
+              )}
 
-                <div className="provider-grid-2">
-                  <input
-                    className="provider-input"
-                    type="date"
-                    value={intakeData.pet.date_of_birth}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      pet: { ...prev.pet, date_of_birth: e.target.value },
-                    }))}
-                  />
-                  <input
-                    className="provider-input"
-                    type="number"
-                    min="0"
-                    step="0.1"
-                    placeholder="Weight kg (optional)"
-                    value={intakeData.pet.weight}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      pet: { ...prev.pet, weight: e.target.value },
-                    }))}
-                  />
-                </div>
-
-                <label className="provider-checkbox-row">
-                  <input
-                    type="checkbox"
-                    checked={intakeData.pet.desexed}
-                    onChange={(e) => setIntakeData((prev) => ({
-                      ...prev,
-                      pet: { ...prev.pet, desexed: e.target.checked },
-                    }))}
-                  />
-                  Desexed
-                </label>
-
-                <textarea
-                  className="provider-notes"
-                  placeholder="Pet notes (optional)"
-                  value={intakeData.pet.notes}
-                  onChange={(e) => setIntakeData((prev) => ({
-                    ...prev,
-                    pet: { ...prev.pet, notes: e.target.value },
-                  }))}
-                />
-              </div>
-            )}
-
-            {ownerResult && (
               <div className="provider-modal-block">
-                <p>
-                  Owner: {ownerResult.owner.first_name} {ownerResult.owner.last_name}
-                </p>
-                <label htmlFor="pet-select">Which pet is appointment for?</label>
+                <label className="label-title" htmlFor="service-select">Booking Type</label>
                 <select
-                  id="pet-select"
+                  id="service-select"
                   className="provider-select"
-                  value={selectedPetId}
-                  onChange={(e) => setSelectedPetId(e.target.value)}
+                  value={serviceType}
+                  onChange={(e) => setServiceType(e.target.value)}
                 >
-                  <option value="">Select pet</option>
-                  {ownerResult.pets.map((pet) => (
-                    <option key={pet.id} value={pet.id}>
-                      {pet.name} ({pet.species})
+                  <option value="">Select booking type</option>
+                  {services.map((service) => (
+                    <option key={service} value={service}>
+                      {service}
                     </option>
                   ))}
                 </select>
               </div>
-            )}
 
-            <div className="provider-modal-block">
-              <label htmlFor="service-select">Booking Type</label>
-              <select
-                id="service-select"
-                className="provider-select"
-                value={serviceType}
-                onChange={(e) => setServiceType(e.target.value)}
-              >
-                <option value="">Select booking type</option>
-                {services.map((service) => (
-                  <option key={service} value={service}>
-                    {service}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="provider-bookings-container">
-              <div className="date-container">
-                <DateStep
-                  value={selectedDate}
-                  onChange={setSelectedDate}
-                  sx={{
-                    margin: 0,
-                    padding: 0,
-                    transform: "scale(1.05)",
-                    alignSelf: "flex-start",
-                  }}
-                />
+              <div className="provider-bookings-container">
+                <div className="date-container">
+                  <DateStep
+                    value={selectedDate}
+                    onChange={setSelectedDate}
+                    sx={{
+                      margin: 0,
+                      padding: 0,
+                      transform: "scale(1.05)",
+                      alignSelf: "flex-start",
+                    }}
+                  />
+                </div>
+                <div className="time-container">
+                  <TimeStep
+                    selectedTime={selectedTime}
+                    setSelectedTime={setSelectedTime}
+                    times={availableTimes}
+                  />
+                </div>
               </div>
-              <div className="time-container">
-                <TimeStep
-                  selectedTime={selectedTime}
-                  setSelectedTime={setSelectedTime}
-                  times={availableTimes}
-                />
-              </div>
-            </div>
 
-            <textarea
-              className="provider-notes"
-              placeholder="Notes (optional)"
-              value={notes}
-              onChange={(e) => setNotes(e.target.value)}
-            />
+              <textarea
+                className="provider-notes"
+                placeholder="Notes (optional)"
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
+              />
 
-            {submitError && <p className="provider-error">{submitError}</p>}
+              {submitError && <p className="provider-error">{submitError}</p>}
 
             <div className="modal-actions">
               <button className="modal-btn-cancel" onClick={closeModal}>
@@ -648,8 +716,8 @@ export default function ProviderBookings() {
               </button>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }

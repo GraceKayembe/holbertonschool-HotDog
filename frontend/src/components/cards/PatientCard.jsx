@@ -125,7 +125,7 @@ export default function PetCard({ pet }) {
               bodyClassName="popover-body"
             />
           </div>
-
+          
           <div className="pet-card-actions">
             <button
               className="btn-yellow"

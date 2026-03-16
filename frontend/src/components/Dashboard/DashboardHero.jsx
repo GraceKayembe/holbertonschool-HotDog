@@ -9,13 +9,13 @@ export default function DashboardHero({
 
   let greeting = "Hello";
   if (hour < 12) {
-    greeting = "Good morning";
+    greeting = "Morning";
   }
   else if (hour < 17) {
-    greeting = "Good afternoon";
+    greeting = "Afternoon";
   }
   else {
-    greeting = "Good evening";
+    greeting = "Evening";
   }
 
   return (

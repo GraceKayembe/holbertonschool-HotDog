@@ -37,26 +37,21 @@ export default function Account() {
   // ============================
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadProvider = async () => {
+      if (!user) return;
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const userRes = await fetch("/api/users/me", {
-        headers: { Authorization: `Bearer ${token}` }
+      try {
+        const res = await fetch("/api/providers/me", {
+          headers: { Authorization: `Bearer ${token}` }
       });
 
-      const userData = await userRes.json();
-      setUser(userData);
-
-      const providerRes = await fetch("/api/providers/me", {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-
-      if (providerRes.status === 404) {
+      if (res.status === 404) {
         setNeedsOnboarding(true);
         setProvider({
           name: "",
-          phone: userData.phone_number || "",
+          phone: user.phone_number || "",
           address: "",
           description: "",
           opening_time: "",
@@ -65,15 +60,18 @@ export default function Account() {
           img_url: "",
           logo_url: "",
         });
-
-        return;
+      } else {
+        const data = await res.json();
+        setProvider(data);
       }
-      const providerData = await providerRes.json();
-      setProvider(providerData);
-    };
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    loadData();
-  }, []);
+    loadProvider();
+  }, [user]);
+
 
 
   // ============================

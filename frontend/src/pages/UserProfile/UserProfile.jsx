@@ -9,7 +9,7 @@ import FormLabel from "../../components/Form/FormLabel.jsx";
 import FormNav from "../../components/Form/FormNav.jsx";
 import SuccessToast from "../../components/toasts/SuccessToast.jsx";
 import ConfirmModal from "../../components/modals/ConfirmModal.jsx";
-import "../../components/Header/Header.css";
+// import "../../components/Header/Header.css";
 import "./UserProfile.css";
 import "../../styles/common.css";
 
@@ -165,12 +165,13 @@ export default function UserProfile() {
                 Account
               </h3>
               <FormNav
-                nav1="My Details"
-                nav2="Manage Password"
-                nav3="Manage Account"
+                tabs={[
+                  { label: "Profile Details", value: "details" },
+                  { label: "Change Password", value: "password" },
+                  { label: "Delete Account", value: "account" }
+                ]}
                 activeTab={activeTab}
                 setActiveTab={setActiveTab}
-                className="link-style"
               />
             </div>
           </div>

@@ -217,6 +217,10 @@ main {
   gap: 8px;
 }
 
+.edit-pet-form-label {
+  align-items: left;
+}
+
 .form-group .form-input,
 .form-group .form-textarea {
   font-family: "Open Sans", sans-serif;

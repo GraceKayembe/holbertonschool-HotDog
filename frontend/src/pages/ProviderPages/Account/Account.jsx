@@ -73,7 +73,6 @@ export default function Account() {
   }, [user]);
 
 
-
   // ============================
   // UPDATE FIELD
   // ============================
@@ -93,14 +92,16 @@ export default function Account() {
 
   const saveChanges = async () => {
 
-    if (!dirty) {
-      setEditMode(false);
-      return;
-    }
+    if (!dirty) return setEditMode(false);
+    const token = localStorage.getItem("token");
+    setSaving(true);
 
     try {
-      setSaving(true);
-      const token = localStorage.getItem("token");
+      const url = needsOnboarding
+        ? "/api/providers"
+        : `/api/providers/${provider.id}`;
+      const method = needsOnboarding ? "POST" : "PATCH";
+
       const payload = {
         name: provider.name,
         phone: provider.phone,
@@ -114,30 +115,14 @@ export default function Account() {
         email: user.email
       };
 
-      let res;
-
-      if (needsOnboarding) {
-        res = await fetch("/api/providers", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify(payload)
-        });
-
-      } else {
-
-        res = await fetch(`/api/providers/${provider.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify(payload)
-        });
-
-      }
+      const res = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
 
       const data = await res.json();
 
@@ -145,12 +130,11 @@ export default function Account() {
       setDirty(false);
       setEditMode(false);
       setNeedsOnboarding(false);
-      setShowToast(true);
 
     } catch (err) {
 
       console.error(err);
-      alert("Failed to save profile");
+      alert("Failed to save provider details");
 
     } finally {
 

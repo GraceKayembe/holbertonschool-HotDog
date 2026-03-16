@@ -1,10 +1,9 @@
 .profile-background {
   width: 100%;
   background-color: #f2f3f7;
-  display: flex;
-  justify-content: center;
-  padding-top: calc(var(--header-height) + 50px);
+  margin: 0 auto;
   padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
+  overflow: hidden;
 }
 
 .user-profile-container {
@@ -34,23 +33,22 @@
   width: 100%;
   padding-bottom: 50px;
   min-height: 850px;
+
+  align-items: stretch;
 }
 
 .form-nav {
   background: white;
   border-radius: 12px;
-  top: 24px;
-  width: 200px;
   padding: 5px;
+  height: 100%;
 }
 
 .form-panel {
   background: white;
   border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   padding: 1.5rem;
+  height: 100%;
 }
 
 .form-panel .form-control,
@@ -62,7 +60,7 @@
   font-size: clamp(1.25rem, 2.25vw, 1.5rem);
   font-weight: 700;
   color: #1f3a5f;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .form-block {
@@ -112,6 +110,7 @@
   width: fit-content;
   height: 40px;
   padding: 0 14px;
+  margin-top: 30px;
   font-weight: bold;
   color: #1f3a5f;
   font-size: 0.93rem;

@@ -144,9 +144,9 @@ export default function UserProfile() {
   };
 
   return (
-    <div className="profile-background">
+    <div className="profile-background" >
       <div className="user-profile-container">
-        <h1 className="mb-5" style={{ fontWeight: "800", color: "#1f3a5f" }}>
+        <h1 className="mb-5" style={{ paddingTop: "calc(var(--header-height) - 50px)", fontWeight: "800", color: "#1f3a5f" }}>
           My Profile
         </h1>
         <div className="form">
@@ -154,8 +154,10 @@ export default function UserProfile() {
             <div>
               <h3
                 style={{
+                  fontSize: "clamp(1.25rem, 2.25vw, 1.5rem)",
                   paddingLeft: "16px",
                   paddingTop: "30px",
+                  paddingBottom: "30px",
                   color: "#1f3a5f",
                   fontWeight: "800",
                 }}

@@ -58,7 +58,13 @@ export default function App() {
       {user?.role === "provider" && <ProviderNav />}
 
       <main
-        className={user?.role === "provider" ? "main with-sidebar" : "main"}
+        className={[
+          "main",
+          hideHeader ? "no-header" : "",
+          user?.role === "provider" ? "with-sidebar" : "",
+        ]
+          .filter(Boolean)
+          .join(" ")}
       >
         <Routes>
           {/* =======================

@@ -212,8 +212,10 @@ function FormAddPet({ closePopup, onPetAdded }) {
           placeholder="Important notes about your pet." 
         />
 
-        <button type="button" onClick={closePopup} className="cancelbutton">Cancel</button>
-        <button type="submit" className="submitbutton">Submit</button>
+        <div className="button-group">
+          <button type="button" onClick={closePopup} className="cancelbutton">Cancel</button>
+          <button type="submit" className="submitbutton">Submit</button>
+        </div>
       </form>
     </div>
   );

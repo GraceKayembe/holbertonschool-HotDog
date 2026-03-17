@@ -132,18 +132,28 @@
 }
 
 .appointment-card .cancel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #d2d7de!important;
   background-color: #d2d7de;
-  color: #1f3a5f;
-  border: none;
   border-radius: 20px;
-  width: 100px;
-  height: 40px;
-  font-weight: 700;
-  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 120px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
   cursor: pointer;
-  transition: background-color 0.3s;
-  margin-top: auto
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .appointment-card .cancel-button:hover:not(:disabled) {
@@ -221,19 +231,28 @@
 }
 
 .make-appointment-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
   border: 3px solid #ffc72c;
-  color: #1f3a5f;
-  border-radius: 6px;
-  width: clamp(11rem, 25vw, 12.5rem);
-  height: clamp(2.1875rem, 5vw, 2.5rem);
   border-radius: 20px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
   font-weight: 600;
-  font-size: clamp(1rem, 2vw, 1.1rem);
+
+  width: 290px; 
+  max-width: auto;
+  height: 45px;     
+  padding: 0 16px; 
+
   cursor: pointer;
-  transition: background-color 0.3s;
-  min-width: 250px;
-  text-align: center;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .make-appointment-btn:hover {

@@ -221,15 +221,28 @@
    BUTTON
 ============================== */
 .book-now-btn {
-  width: 100px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
-  border: 2px solid #ffc72c;
+  border: 3px solid #ffc72c;
+  border-radius: 20px;
+  
   color: #ffc72c;
-  border-radius: 10px;
-  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
+  font-family: "Open Sans";
+  font-size: 1.1rem;
   font-weight: 600;
-  height: 30px;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
   cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .book-now-btn:hover {

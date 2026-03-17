@@ -66,18 +66,34 @@ body {
 
 .button-group {
   padding-top: 15px;
+  display: flex;   
+  justify-content: center;
+  gap: 20px;  
 }
 
 .bookingsequence-cancelbutton {
-  /* padding: 10px 15px; */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: #d2d7de;
   border: 3px solid #d2d7de;
-  color: #1f3a5f;
   border-radius: 20px;
-  margin: 15px;
-  width: 100px;
-  height: 40px;
-  font-weight: 700;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .bookingsequence-cancelbutton:hover {
@@ -86,15 +102,28 @@ body {
 }
 
 .bookingsequence-submitbutton {
-  /* padding: 10px 15px; */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
   border: 3px solid#ffc72c;
-  color: #1f3a5f;
   border-radius: 20px;
-  margin: 15px;
-  width: 100px;
-  height: 40px;
-  font-weight: 700;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .bookingsequence-submitbutton:hover {
@@ -104,14 +133,28 @@ body {
 }
 
 .bookingsequence-backbutton {
-  border-radius: 20px;
-  margin: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #d2d7de;
-  color: #1f3a5f;
   background-color: #d2d7de;
-  width: 100px;
-  height: 40px;
-  font-weight: 700;
+  border-radius: 20px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .bookingsequence-backbutton:hover {
@@ -167,14 +210,29 @@ body {
 }
 
 .bookingsequence-closebutton {
-  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #d2d7de;
-  color: #1f3a5f;
   background-color: #d2d7de;
-  width: 100px;
-  height: 40px;
-  font-weight: 700;
-  margin-top: 15px;
+  border-radius: 20px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+  margin-top: 10px;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .bookingsequence-closebutton:hover {

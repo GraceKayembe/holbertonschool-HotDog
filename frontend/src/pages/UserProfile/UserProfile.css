@@ -13,6 +13,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin: 0 auto;
 }
 
 .mb-5 {
@@ -81,9 +82,28 @@
 }
 
 .button-yellow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #ffc72c;
   background-color: transparent;
-  margin-top: 10px;
+  border-radius: 20px;
+  
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 200px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .button-yellow:hover {

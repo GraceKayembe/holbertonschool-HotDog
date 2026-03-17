@@ -121,9 +121,9 @@ with app.app_context():
     # Seed user
     # =====================
     user1 = User(
-        first_name="John",
-        last_name="Doe",
-        email="john@test.com",
+        first_name="Bad",
+        last_name="Bunny",
+        email="badbunny@test.com",
         phone_number="+61412345678"
     )
     user1.set_password("password123")
@@ -262,10 +262,8 @@ with app.app_context():
     print("✅ Database seeded successfully with Users, Pets, and 6 Providers!")
 
     # =====================
-    # 4. Seed Appointments for John -- testing Sylvia's manage appointments frontend
+    # 4. Seed Appointments 
     # =====================
-    # Can delete these seed data if Crystal creates real bookings / appointments through the frontend.
-    
     # Query all providers from database
     providers = ServiceProvider.query.all()
     
@@ -288,6 +286,15 @@ with app.app_context():
                 service_type=ServiceType.HAIRCUTS_COAT,
                 status=AppointmentStatus.CONFIRMED,
                 notes="Grooming session"
+            ),
+            # Bad Bunny (user1) completed appointment at Safe Hands (providers[4])
+            Appointment(
+                pet_id=pet1.id,
+                provider_id=providers[4].id,  # Safe Hands Desexing Clinic
+                date_time=datetime.now(timezone.utc) - timedelta(days=7), # 1 week ago
+                service_type=ServiceType.DESEXING,
+                status=AppointmentStatus.COMPLETED,
+                notes="Routine desexing completed without complications."
             ),
             Appointment(
                 pet_id=pet2.id,
@@ -329,6 +336,14 @@ with app.app_context():
                 status=AppointmentStatus.COMPLETED,
                 notes="Test for COMPLETED appointments"
             ),
+            Appointment(
+                pet_id=pet1.id,
+                provider_id=providers[5].id,  # Canine Smiles Dental
+                date_time=datetime.now(timezone.utc) - timedelta(days=3), # 3 days ago
+                service_type=ServiceType.DENTAL,
+                status=AppointmentStatus.COMPLETED,
+                notes="Routine dental scaling and cleaning completed."
+            ),
         ]
         
         db.session.add_all(appointments)
@@ -341,7 +356,7 @@ with app.app_context():
 
     if appointments and len(appointments) >= 2:
         test_reviews = [
-            # Link this review to John's first appointment (Paws & Claws)
+            # Link this review to the first appointment (Paws & Claws)
             Review(
                 provider_id=appointments[0].provider_id,
                 user_id=appointments[0].pet.owner_id,
@@ -359,20 +374,11 @@ with app.app_context():
                 comment="Great grooming session, Butters looks like a new dog!",
                 created_at=datetime.now() - timedelta(days=5)
             ),
-            # Link this to the third appointment (Paws & Claws)
-            Review(
-                provider_id=appointments[2].provider_id,
-                user_id=appointments[2].pet.owner_id,
-                appointment_id=appointments[2].id,
-                rating=4,
-                comment="Snom had a wonderful time at the vet!",
-                created_at=datetime.now() - timedelta(days=1)
-            ),
             # Link this to the fourth appointment (Happy Tails)
             Review(
-                provider_id=appointments[3].provider_id,
-                user_id=appointments[3].pet.owner_id,
-                appointment_id=appointments[3].id,
+                provider_id=appointments[4].provider_id,
+                user_id=appointments[4].pet.owner_id,
+                appointment_id=appointments[4].id,
                 rating=3,
                 comment="Happy Tails is reliable, but the 30-minute walk ended up being closer to 20 minutes today.",
                 created_at=datetime.now() - timedelta(days=1)
@@ -382,3 +388,53 @@ with app.app_context():
         db.session.add_all(test_reviews)
         db.session.commit()
         print("✅ Reviews hardcoded successfully with Appointment IDs!")
+    # ==========================================
+    # EXTRA SEED DATA: Generic Users, Pets, Appointments & Reviews
+    # ==========================================
+    
+    # 1. Create Generic Users
+    gen_user1 = User(first_name="Mc", last_name="Lovin", email="mc.lovin@test.com", phone_number="+61400000011", role="user")
+    gen_user1.set_password("password123")
+    
+    gen_user2 = User(first_name="Mya", last_name="Banks", email="mya.banks@test.com", phone_number="+61400000012", role="user")
+    gen_user2.set_password("password123")
+    
+    gen_user3 = User(first_name="John", last_name="Pork", email="john.pork@test.com", phone_number="+61400000013", role="user")
+    gen_user3.set_password("password123")
+    
+    db.session.add_all([gen_user1, gen_user2, gen_user3])
+    db.session.commit()
+
+    # 2. Create Pets for the Generic Users
+    gen_pet1 = Pet(owner_id=gen_user1.id, name="Buddy", species=SpeciesEnum.dog, breed="Poodle", gender=GenderEnum.female, desexed=True, date_of_birth=date(2022, 5, 12), weight=12.0)
+    gen_pet2 = Pet(owner_id=gen_user2.id, name="Bagel", species=SpeciesEnum.dog, breed="Labrador", gender=GenderEnum.male, desexed=True, date_of_birth=date(2021, 8, 20), weight=30.0)
+    gen_pet3 = Pet(owner_id=gen_user3.id, name="Darcy", species=SpeciesEnum.dog, breed="Husky", gender=GenderEnum.female, desexed=False, date_of_birth=date(2023, 2, 10), weight=22.0)
+    
+    db.session.add_all([gen_pet1, gen_pet2, gen_pet3])
+    db.session.commit()
+
+    # 3. Create COMPLETED Appointments (Required for reviews)
+    gen_appts = [
+        # Good Boy Puppy School (providers[3])
+        Appointment(pet_id=gen_pet1.id, provider_id=providers[3].id, date_time=datetime.now(timezone.utc) - timedelta(days=10), service_type=ServiceType.PUPPY_TRAINING, status=AppointmentStatus.COMPLETED, notes="Graduated puppy school"),
+        # Safe Hands Desexing Clinic (providers[4])
+        Appointment(pet_id=gen_pet2.id, provider_id=providers[4].id, date_time=datetime.now(timezone.utc) - timedelta(days=14), service_type=ServiceType.DESEXING, status=AppointmentStatus.COMPLETED, notes="Routine desexing"),
+        # Canine Smiles Dental (providers[5])
+        Appointment(pet_id=gen_pet3.id, provider_id=providers[5].id, date_time=datetime.now(timezone.utc) - timedelta(days=5), service_type=ServiceType.DENTAL, status=AppointmentStatus.COMPLETED, notes="Teeth scaling")
+    ]
+    
+    db.session.add_all(gen_appts)
+    db.session.commit()
+
+    # 4. Create the Reviews for those specific clinics
+    gen_reviews = [
+        Review(provider_id=providers[3].id, user_id=gen_user1.id, appointment_id=gen_appts[0].id, rating=5, comment="Fantastic puppy school! Buddy learned so much and the trainers were incredibly patient.", created_at=datetime.now() - timedelta(days=9)),
+        
+        Review(provider_id=providers[4].id, user_id=gen_user2.id, appointment_id=gen_appts[1].id, rating=5, comment="Very professional and caring. Bagel recovered beautifully from his procedure at Safe Hands.", created_at=datetime.now() - timedelta(days=12)),
+        
+        Review(provider_id=providers[5].id, user_id=gen_user3.id, appointment_id=gen_appts[2].id, rating=4, comment="Great dental service. Darcy's teeth have never looked better, though the wait time was a bit long.", created_at=datetime.now() - timedelta(days=4))
+    ]
+    
+    db.session.add_all(gen_reviews)
+    db.session.commit()
+    print("✅ Generic users and reviews seeded successfully!")

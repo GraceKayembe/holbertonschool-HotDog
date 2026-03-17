@@ -51,20 +51,22 @@ body {
 }
 
 .provider-links li a {
+  display: inline-block;
   text-decoration: none;
   font-family: "Open Sans";
   font-size: 20px !important;
   font-weight: 500 !important;
   color: white !important;
+  width: 150px;
   padding: 10px;
+  border: 3px solid transparent;
+  border-radius: 15px;
+  box-sizing: border-box;
   transition: all 0.2s ease;
 }
 
 .provider-links li a:hover {
   font-weight: 700;
-  border-radius: 15px;
-  width: 20% !important;
-  padding: 10px;
   border: 3px solid #ffc72c !important;
 }
 

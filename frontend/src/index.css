@@ -1,12 +1,12 @@
 html,
 body {
-  min-height: 100vh;
+  min-height: 100%;
   margin: 0;
   overflow-x: hidden;
 }
 
 #root {
-  flex: 1;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -19,4 +19,20 @@ body {
 :root {
   --header-height: 100px;
   --provider-padding: 80px;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex: 1;
+  padding-top: var(--header-height);
+}
+
+.main.no-header,
+.main.with-sidebar {
+  padding-top: 0;
 }

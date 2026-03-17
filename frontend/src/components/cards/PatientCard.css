@@ -139,15 +139,16 @@
 
 .patient-card-footer .notes-label .btn.btn-primary.popover-buttons {
   background-color: #e8eaee !important;
+  font-size: 0.93rem;
   color: #1f3a5f !important;
   font-weight: bold;
   white-space: nowrap;
   width: auto;
   min-width: fit-content;
   height: 35px;
-  padding: 0.35rem 0.75rem;
+  padding: 0 12px; /* override bootstrap */
   border-radius: 20px;
-  border: 3px solid #e8eaee
+  border: 3px solid #e8eaee;
 }
 
 .notes-label .btn.btn-primary.popover-buttons:hover {

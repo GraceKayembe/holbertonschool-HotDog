@@ -23,10 +23,15 @@ function sortAppointmentsByDateTime(items = []) {
   });
 }
 
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export default function ProviderBookings() {
   const token = localStorage.getItem("token");
   const [provider, setProvider] = useState(null);
   const [appointments, setAppointments] = useState([]);
+  const [eventsTableVersion, setEventsTableVersion] = useState(0);
 
   const [showModal, setShowModal] = useState(false);
   const [existingOwner, setExistingOwner] = useState("yes");
@@ -123,7 +128,7 @@ export default function ProviderBookings() {
     resetForm();
   };
 
-  const closeModalAfterBooking = () => {
+  const closeModalAfterBooking = async () => {
     setShowModal(false);
     setExistingOwner("yes");
     setEmail("");
@@ -153,15 +158,43 @@ export default function ProviderBookings() {
         notes: "",
       },
     });
+
+    // Ensure table reflects freshest backend state after modal closes.
+    await loadAppointments({ forceRefresh: true });
+    setEventsTableVersion((prev) => prev + 1);
   };
 
-  const loadAppointments = useCallback(async () => {
+  const loadAppointments = useCallback(async ({ forceRefresh = false } = {}) => {
     if (!token) {
-      return;
+      return [];
     }
-    const response = await getProviderAppointments(token);
-    setAppointments(response.appointments || []);
+    const response = await getProviderAppointments(token, "", { cacheBust: forceRefresh });
+    const nextAppointments = sortAppointmentsByDateTime(response.appointments || []);
+    setAppointments(nextAppointments);
+    return nextAppointments;
   }, [token]);
+
+  const refreshUntilAppointmentVisible = useCallback(
+    async (appointmentId) => {
+      if (!appointmentId) {
+        await loadAppointments({ forceRefresh: true });
+        return;
+      }
+
+      const retryDelays = [0, 1000, 3000];
+      for (const delay of retryDelays) {
+        if (delay > 0) {
+          await wait(delay);
+        }
+        const latest = await loadAppointments({ forceRefresh: true });
+        const found = latest.some((appt) => appt.id === appointmentId);
+        if (found) {
+          return;
+        }
+      }
+    },
+    [loadAppointments],
+  );
 
   const loadAvailableTimes = async (date = selectedDate) => {
     if (!provider?.id || !date) {
@@ -319,10 +352,10 @@ export default function ProviderBookings() {
         });
       }
 
-      // Reconcile with backend source of truth.
-      await loadAppointments();
+      // Reconcile with backend source of truth with short retries.
+      await refreshUntilAppointmentVisible(createdBooking?.booking?.id);
       await loadAvailableTimes(selectedDate);
-      closeModalAfterBooking();
+      await closeModalAfterBooking();
     } catch (error) {
       setSubmitError(error.message);
     }
@@ -727,6 +760,6 @@ export default function ProviderBookings() {
           )}
         </div>
       </div>
-    </div>
+  </div>
   );
 }

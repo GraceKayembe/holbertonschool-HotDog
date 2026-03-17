@@ -44,6 +44,11 @@
   background-color: #1f3a5f;
 }
 
+.btn.signup-btn:hover {
+  color: #ffc72c;
+  background-color: #1f3a5f;
+}
+
 .form-card {
   min-height: 100vh;
   display: flex;

@@ -112,7 +112,7 @@ export default function PetCard({ pet }) {
               body={pet.notes}
               buttonText="User Notes"
               headerClassName="popover-header"
-              buttonClassName="popover-button"
+              buttonClassName="popover-buttons"
               bodyClassName="popover-body"
             />
             <BasicPopover
@@ -125,7 +125,7 @@ export default function PetCard({ pet }) {
               bodyClassName="popover-body"
             />
           </div>
-          
+
           <div className="pet-card-actions">
             <button
               className="btn-yellow"

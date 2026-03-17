@@ -138,6 +138,7 @@
 
 .patient-card-footer .notes-label .btn.btn-primary.popover-buttons {
   background-color: #e8eaee !important;
+  font-size: 0.93rem;
   color: #1f3a5f !important;
   font-weight: bold;
   white-space: nowrap;

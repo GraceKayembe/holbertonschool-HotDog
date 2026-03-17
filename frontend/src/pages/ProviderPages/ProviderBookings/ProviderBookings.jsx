@@ -756,7 +756,6 @@ export default function ProviderBookings() {
               </div>
             </div>
           </div>
-          </div>
         )}
       </div>
   </div>

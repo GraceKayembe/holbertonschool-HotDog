@@ -172,7 +172,7 @@ export default function ProviderEditPetDetails() {
   };
 
   return (
-    <div className="edit-pet-container">
+    <div className="edit-pet-provider-container">
       <div className="edit-pet-provider-contents-container">
         <ConfirmModal
           show={showDeleteModal}

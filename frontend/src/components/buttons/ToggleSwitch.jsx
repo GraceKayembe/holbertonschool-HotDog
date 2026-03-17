@@ -27,7 +27,7 @@ export default function ToggleSwitch({
             fontWeight: "bold",
             fontFamily: "Open Sans, sans serif",
           }}
-          size="sm"
+          size="md"
           value={firstRadio}
           onClick={() => {
             navigate(firstPath);
@@ -48,7 +48,7 @@ export default function ToggleSwitch({
             fontWeight: "bold",
             fontFamily: "Open Sans, sans serif",
           }}
-          size="sm"
+          size="md"
           value={secondRadio}
           onClick={() => {
             navigate(secondPath);

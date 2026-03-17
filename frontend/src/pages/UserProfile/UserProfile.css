@@ -112,12 +112,28 @@
 }
 
 .button-navy {
-  /* background: #1f3a5f;
-  color: #ffc72c;
-  width: fit-content; */
-  border: 3px solid #1f3a5f;
+   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
+  border: 3px solid #1f3a5f;
+  border-radius: 20px;
+
   color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 200px; 
+  max-width: auto;
+  height: 45px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .button-navy:hover {

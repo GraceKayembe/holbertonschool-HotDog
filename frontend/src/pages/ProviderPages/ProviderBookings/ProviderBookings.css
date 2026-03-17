@@ -1,6 +1,5 @@
 .provider-container-background {
   width: 100%;
-  background-color: #f2f3f7;
   margin: 0 auto;
   padding-top: var(--provider-padding);
   padding-bottom: var(--provider-padding);
@@ -128,15 +127,28 @@
 }
 
 .create-booking-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background: transparent;
-  color: #1f3a5f;
   border: 3px solid #ffc72c;
-  border-radius: 15px;
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  border-radius: 20px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
   font-weight: 600;
-  min-width: clamp(11rem, 27vw, 14.5rem);
-  height: clamp(2.1875rem, 5vw, 2.5rem);
-  white-space: normal;
+
+  width: 270px; 
+  max-width: auto;
+  height: 45px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .create-booking-btn:hover {
@@ -243,13 +255,28 @@
 
 .provider-secondary-btn {
   margin-top: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #ffc72c;
-  border-radius: 15px;
-  padding: 8px 12px;
   background: transparent;
+  border-radius: 20px;
+
   color: #1f3a5f;
-  font-size: clamp(1rem, 2vw, 1.1rem);
-  font-weight: 700;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .provider-secondary-btn:hover {
@@ -281,13 +308,28 @@
 }
 
 .modal-btn-book {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background: transparent;
-  color: #1f3a5f;
   border: 3px solid #ffc72c;
-  border-radius: 15px;
-  padding: 8px 12px;
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  border-radius: 20px;
+  
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
   font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .modal-btn-book:hover {
@@ -297,13 +339,28 @@
 }
 
 .modal-btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background: #d2d7de;
-  color: #1f3a5f;
   border: 3px solid #d2d7de;
-  border-radius: 15px;
-  padding: 8px 12px;
-  font-size: clamp(1rem, 2vw, 1.1rem);
-  font-weight: 700;
+  border-radius: 20px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .modal-btn-cancel:hover {

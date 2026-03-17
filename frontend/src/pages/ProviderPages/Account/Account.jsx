@@ -325,7 +325,7 @@ export default function Account() {
 
                     {editMode ? (
                       <button
-                        className="btn-style button-yellow"
+                        className="btn-style account-button-yellow"
                         onClick={saveChanges}
                         disabled={saving}
                       >

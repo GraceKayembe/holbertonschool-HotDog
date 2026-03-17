@@ -370,7 +370,7 @@ export default function ProviderEditPetDetails() {
                 <button className="btn-cancel" onClick={handleCancel}>
                   Cancel
                 </button>
-                <button className="btn-save" onClick={handleSave}>
+                <button className="provider-btn-save" onClick={handleSave}>
                   Save Patient
                 </button>
               </div>

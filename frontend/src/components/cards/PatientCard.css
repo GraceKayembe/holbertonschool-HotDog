@@ -138,17 +138,28 @@
 }
 
 .patient-card-footer .notes-label .btn.btn-primary.popover-buttons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: #e8eaee !important;
-  font-size: 0.93rem;
-  color: #1f3a5f !important;
-  font-weight: bold;
-  white-space: nowrap;
-  width: auto;
-  min-width: fit-content;
-  height: 35px;
-  padding: 0 12px; /* override bootstrap */
   border-radius: 20px;
   border: 3px solid #e8eaee;
+
+  color: #1f3a5f !important;
+  font-family: "Open Sans";
+  font-size: 1rem;
+  font-weight: 600;
+
+  width: 130px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .notes-label .btn.btn-primary.popover-buttons:hover {

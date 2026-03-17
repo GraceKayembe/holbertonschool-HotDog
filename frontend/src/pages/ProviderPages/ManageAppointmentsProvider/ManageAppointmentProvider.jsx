@@ -9,6 +9,7 @@ import utc from 'dayjs/plugin/utc';
 
 import Days from "../../../assets/icons/calendar-icon.png";
 import Bookingicon from "../../../assets/icons/book_icon.png";
+import Customericon from "../../../assets/icons/customer.png"
 
 dayjs.extend(utc);
 
@@ -85,7 +86,11 @@ export default function ManageAppointmentProvider() {
                 {/* Pet Name */}
                 <div className="detail-row">
                   <div className="detail-label">
-                    <span className="icon">🐾</span>
+                    <img
+                      src={Customericon}
+                      alt="location"
+                      className="location-icon"
+                    />
                     <span>Pet:</span>
                   </div>
                   <span className="detail-value">{selectedAppt.pet_name}</span>

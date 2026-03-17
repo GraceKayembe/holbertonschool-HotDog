@@ -70,19 +70,29 @@ body {
 
 /* DONE! */
 .provider-logout {
-  width: 150px;
-  /* position: absolute; */
-  bottom: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
   background-color: transparent;
   border: 3px solid #ffc72c;
+  border-radius: 20px;
+
   color: #ffc72c;
-  font-size: 20px;
-  font-weight: 700;
-  padding: 8px 18px;
-  margin-top: 80px;
-  border-radius: 15px;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 200px; 
+  max-width: auto;
+  height: 45px;     
+  padding: 0 16px; 
+
   cursor: pointer;
   transition: all 0.25s ease;
+
+  white-space: nowrap;
+  margin-top: 80px;
 }
 
 .provider-logout:hover {

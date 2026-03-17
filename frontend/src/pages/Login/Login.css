@@ -75,7 +75,7 @@
 }
 
 .login-h2 {
-  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-size: clamp(2rem, 2.25vw, 2.5rem);
   font-family: "nunito";
   text-align: center;
 }

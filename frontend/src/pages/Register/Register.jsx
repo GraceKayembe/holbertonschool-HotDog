@@ -7,6 +7,7 @@ import FormLabel from "../../components/Form/FormLabel";
 import FormRadio from "../../components/Form/FormRadio";
 import ToggleSwitch from "../../components/buttons/ToggleSwitch";
 import { registerUser } from "../../api/auth";
+import HotDogLogo from "../../assets/logo/hotdog_logo.svg";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -81,20 +82,27 @@ export default function Register() {
     <div className="auth-page">
       <div className="form-card">
         <Form onSubmit={handleSubmit}>
+          <Link to={"/"}>
+              <div className="logo-container">
+                  <img src={HotDogLogo} alt="HotDog Logo" className="HotDogLogo" />
+              </div>
+          </Link>
+
+          <h2 className="signup-h2" style={{ color: "#1f3a5f", fontWeight: 700, marginBottom: 25 }}>
+            Create a HotDog Account
+          </h2>
+          <p className="signup-subtitle-text" style={{ marginBottom: 40 }}>
+            Keep on top of your pet's appointments and create an account!{" "}
+          </p>
+
+          {error && <p style={{ color: "red" }}>{error}</p>}
+
           <ToggleSwitch
             firstRadio={"Login"}
             firstPath={"/login"}
             secondRadio={"Sign Up"}
             secondPath={"/register"}
           />
-          <h2 style={{ color: "#1f3a5f", fontWeight: 700, marginBottom: 25 }}>
-            Create a HotDog Account
-          </h2>
-          <p className="subtitle-text" style={{ marginBottom: 40 }}>
-            Keep on top of your pet's appointments and create an account!{" "}
-          </p>
-
-          {error && <p style={{ color: "red" }}>{error}</p>}
 
           <Row>
             <FormLabel

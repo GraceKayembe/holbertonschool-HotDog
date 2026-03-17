@@ -7,6 +7,24 @@
   min-height: 100vh;
 }
 
+/* .signup-header {
+  font-size: clamp(2rem, 3.5vw, 2.5rem);
+  font-family: "nunito";
+  text-align: center;
+} */
+
+.signup-h2 {
+  font-size: clamp(2rem, 2.25vw, 2.5rem);
+  font-family: "nunito";
+  text-align: center;
+}
+
+.signup-subtitle-text {
+  font-size: clamp(0.93rem, 1vw, 1rem) !important;
+  text-align: center;
+  font-family: Open Sans, sans-serif;
+}
+
 .btn.signup-btn {
   background-color: #ffc72c;
   width: 100%;
@@ -18,6 +36,12 @@
   color: #1f3a5f;
   border: none;
   font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn.signup-btn:hover {
+  color: #ffc72c;
+  background-color: #1f3a5f;
 }
 
 .form-card {

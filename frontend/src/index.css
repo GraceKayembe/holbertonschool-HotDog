@@ -20,6 +20,5 @@ body {
 
 :root {
   --header-height: 100px;
-  --user-padding: 80px;
   --provider-padding: 80px;
 }

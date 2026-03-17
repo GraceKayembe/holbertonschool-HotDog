@@ -8,6 +8,7 @@ import Days from "../../assets/icons/calendar-icon.png";
 import Bookingicon from "../../assets/icons/book_icon.png";
 import Locationicon from "../../assets/icons/location.png";
 import Doctoricon from "../../assets/icons/doctor.png";
+import Customericon from "../../assets/icons/customer.png";
 
 
 export default function ManageAppointments() {
@@ -157,7 +158,11 @@ export default function ManageAppointments() {
                 {/* Customer */}
                 <div className="detail-row">
                   <div className="detail-label">
-                    <span className="icon">🐾</span>
+                    <img
+                      src={Customericon}
+                      alt="location"
+                      className="location-icon"
+                    />
                     <span>Customer:</span>
                   </div>
                   <span className="detail-value">{appointment.pet_name}</span>

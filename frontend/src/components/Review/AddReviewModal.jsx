@@ -86,7 +86,7 @@ const AddReviewModal = ({ isOpen, onClose, onSubmit }) => {
 
           {/* Comment Section */}
           <div className="form-group">
-            <label htmlFor="comment">Comment *</label>
+            <label htmlFor="comment" className="comment-title">Comment *</label>
             <textarea
               id="comment"
               value={comment}
@@ -107,7 +107,7 @@ const AddReviewModal = ({ isOpen, onClose, onSubmit }) => {
           <div className="form-actions">
             <button
               type="button"
-              className="btn-cancel"
+              className="review-btn-cancel"
               onClick={handleClose}
             >
               Cancel

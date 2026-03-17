@@ -226,7 +226,7 @@ export default function EditPetDetails() {
             <h2 className="form-title">Information</h2>
 
             <div className="form-group">
-              <label htmlFor="name" className="form-label">
+              <label htmlFor="name" className="edit-pet-form-label">
                 Pet Name
               </label>
               <input
@@ -240,7 +240,7 @@ export default function EditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="species" className="form-label">
+              <label htmlFor="species" className="edit-pet-form-label">
                 Species
               </label>
               <select
@@ -257,7 +257,7 @@ export default function EditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="breed" className="form-label">
+              <label htmlFor="breed" className="edit-pet-form-label">
                 Breed
               </label>
               <select
@@ -278,7 +278,7 @@ export default function EditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="gender" className="form-label">
+              <label htmlFor="gender" className="edit-pet-form-label">
                 Gender
               </label>
               <select
@@ -296,7 +296,7 @@ export default function EditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="weight" className="form-label">
+              <label htmlFor="weight" className="edit-pet-form-label">
                 Weight (kg)
               </label>
               <input
@@ -311,7 +311,7 @@ export default function EditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="date_of_birth" className="form-label">
+              <label htmlFor="date_of_birth" className="edit-pet-form-label">
                 Date of Birth
               </label>
               <input
@@ -325,7 +325,7 @@ export default function EditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">
+              <label className="edit-pet-form-label">
                 <input
                   type="checkbox"
                   name="desexed"
@@ -338,7 +338,7 @@ export default function EditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="notes" className="form-label">
+              <label htmlFor="notes" className="edit-pet-form-label">
                 Notes
               </label>
               <textarea

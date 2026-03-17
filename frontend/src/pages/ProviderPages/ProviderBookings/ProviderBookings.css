@@ -124,7 +124,7 @@
   border: 3px solid #ffc72c;
   border-radius: 15px;
   font-size: clamp(1rem, 2vw, 1.1rem);
-  font-weight: 700;
+  font-weight: 600;
   min-width: clamp(11rem, 27vw, 14.5rem);
   height: clamp(2.1875rem, 5vw, 2.5rem);
   white-space: normal;
@@ -150,7 +150,9 @@
   overflow: auto;
   background: white;
   border-radius: 12px;
-  padding: 18px;
+  padding: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   position: relative;
 }
 
@@ -160,6 +162,7 @@
   font-weight: bold;
   font-size: clamp(1.25rem, 2.25vw, 1.5rem);
   font-family: "nunito";
+  padding-bottom: 10px;
 }
 
 .provider-modal-close {
@@ -175,7 +178,7 @@
 
 .provider-modal-block {
   margin-bottom: 14px;
-  padding: 12px;
+  padding: 25px 20px;
   border-radius: 12px;
   background: #f2f4f7;
 }
@@ -218,7 +221,7 @@
   width: 100%;
   margin-top: 8px;
   padding: 10px;
-  border: 2px solid #1f3a5f;
+  border: 3px solid #1f3a5f;
   border-radius: 6px;
   color: #333333;
   font-size: clamp(1rem, 2vw, 1.1rem);
@@ -230,7 +233,7 @@
 }
 
 .provider-secondary-btn {
-  margin-top: 12px;
+  margin-top: 20px;
   border: 3px solid #ffc72c;
   border-radius: 15px;
   padding: 8px 12px;
@@ -268,10 +271,26 @@
   margin-top: 12px;
 }
 
-.modal-btn-cancel {
-  background: #e8eaee;
+.modal-btn-book {
+  background: transparent;
   color: #1f3a5f;
-  border: 3px solid #e8eaee;
+  border: 3px solid #ffc72c;
+  border-radius: 15px;
+  padding: 8px 12px;
+  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-weight: 600;
+}
+
+.modal-btn-book:hover {
+  background: #ffc72c;
+  color: #1f3a5f;
+  border: 3px solid #ffc72c;
+}
+
+.modal-btn-cancel {
+  background: #d2d7de;
+  color: #1f3a5f;
+  border: 3px solid #d2d7de;
   border-radius: 15px;
   padding: 8px 12px;
   font-size: clamp(1rem, 2vw, 1.1rem);
@@ -279,9 +298,9 @@
 }
 
 .modal-btn-cancel:hover {
-  background: #d2d7de;
+  background: #a5aebd;
   color: #1f3a5f;
-  border: 3px solid #d2d7de;
+  border: 3px solid #a5aebd;
 }
 
 .modal-btn-continue {
@@ -304,12 +323,30 @@
 /* BUSINESS INSIGHTS */
 .client-stats-container {
   display: flex;
-  gap: 20px;
-  /* padding-bottom: clamp(2.5rem, 3.5vw, 4rem); */
+  gap: 30px;
+  justify-content: center;
 }
 
 .stat-card {
+  width: 250px; 
+}
+
+.large-stat {
   flex: 1;
+  max-width: 100%;
+  max-height: 90%;
+  background: transparent;
+  border: 3px solid #ffc72c;
+  border-radius: 12px;
+  padding: 10px;
+  text-align: center;
+  transform: scale(1.06);
+}
+
+.small-stat {
+  flex: 1;
+  max-width: 100%;
+  max-height: 85%;
   background: transparent;
   border: 3px solid #ffc72c;
   border-radius: 12px;
@@ -317,7 +354,7 @@
   text-align: center;
 }
 
-.stat-card h3 {
+.large-stat h3 {
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-family: "nunito";
   font-weight: bold;
@@ -325,10 +362,18 @@
   color: #1f3a5f;
 }
 
-.stat-card p {
+.small-stat h3 {
+  font-size: clamp(2rem, 3vw, 2.4rem);
+  font-family: "nunito";
+  font-weight: bold;
+  margin: 0;
+  color: #1f3a5f;
+}
+
+.small-stat p {
   margin-top: 5px;
   font-size: clamp(0.93rem, 1vw, 0.93rem);
-  color: #6b7280;
+  color:  #6d7480 !important;
 }
 
 

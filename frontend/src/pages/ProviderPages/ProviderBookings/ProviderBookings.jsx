@@ -384,18 +384,24 @@ export default function ProviderBookings() {
         {/* Buiness Insights */}
         <div className="client-stats-container">
           <div className="stat-card">
-            <h3>{clientStats.totalClients}</h3>
-            <p>Total Clients</p>
+            <div className="small-stat">
+              <h3>{clientStats.newClientsThisWeek}</h3>
+              <p>New Clients This Week</p>
+            </div>
           </div>
 
           <div className="stat-card">
-            <h3>{clientStats.newClientsThisWeek}</h3>
-            <p>New Clients This Week</p>
+            <div className="large-stat">
+              <h3>{clientStats.totalClients}</h3>
+              <p>Total Clients</p>
+            </div>
           </div>
 
           <div className="stat-card">
-            <h3>{clientStats.repeatClients}</h3>
-            <p>Repeat Clients</p>
+            <div className="small-stat"> 
+              <h3>{clientStats.repeatClients}</h3>
+              <p>Repeat Clients</p>
+            </div>
           </div>
         </div>
 
@@ -423,7 +429,7 @@ export default function ProviderBookings() {
               <h3 className="provider-modal-title">New Booking</h3>
 
               <div className="provider-modal-block">
-                <p className="label-titles">Have they been to your clinic before?</p>
+                <p className="label-title">Have they been to your clinic before?</p>
                 <div className="provider-radio-row">
                   <label>
                     <input
@@ -446,7 +452,7 @@ export default function ProviderBookings() {
 
               {existingOwner === "yes" && (
                 <div className="provider-modal-block">
-                  <p className="label-titles">Find owner (email or phone)</p>
+                  <p className="label-title">Find owner (email or phone)</p>
                   <input
                     className="provider-input"
                     placeholder="Owner email"
@@ -690,30 +696,31 @@ export default function ProviderBookings() {
 
               {submitError && <p className="provider-error">{submitError}</p>}
 
-            <div className="modal-actions">
-              <button className="modal-btn-cancel" onClick={closeModal}>
-                Cancel
-              </button>
-              <button
-                className="modal-btn-book"
-                onClick={handleCreateBooking}
-                disabled={(
-                  (existingOwner === "yes" && !selectedPetId)
-                  || (existingOwner === "no" && (
-                    !intakeData.owner.first_name
-                    || !intakeData.owner.last_name
-                    || !intakeData.owner.email
-                    || !intakeData.pet.name
-                    || !intakeData.pet.species
-                    || !intakeData.pet.breed
-                    || !intakeData.pet.gender
-                  ))
-                  || !serviceType
-                  || !selectedTime
-                )}
-              >
-                Book
-              </button>
+              <div className="modal-actions">
+                <button className="modal-btn-cancel" onClick={closeModal}>
+                  Cancel
+                </button>
+                <button
+                  className="modal-btn-book"
+                  onClick={handleCreateBooking}
+                  disabled={(
+                    (existingOwner === "yes" && !selectedPetId)
+                    || (existingOwner === "no" && (
+                      !intakeData.owner.first_name
+                      || !intakeData.owner.last_name
+                      || !intakeData.owner.email
+                      || !intakeData.pet.name
+                      || !intakeData.pet.species
+                      || !intakeData.pet.breed
+                      || !intakeData.pet.gender
+                    ))
+                    || !serviceType
+                    || !selectedTime
+                  )}
+                >
+                  Book
+                </button>
+              </div>
             </div>
           </div>
         )}

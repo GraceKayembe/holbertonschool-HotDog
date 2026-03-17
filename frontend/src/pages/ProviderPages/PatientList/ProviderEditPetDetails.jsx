@@ -173,7 +173,7 @@ export default function ProviderEditPetDetails() {
 
   return (
     <div className="edit-pet-container">
-      <div className="edit-pet-contents-container">
+      <div className="edit-pet-provider-contents-container">
         <ConfirmModal
           show={showDeleteModal}
           handleClose={() => setShowDeleteModal(false)}
@@ -185,14 +185,14 @@ export default function ProviderEditPetDetails() {
         />
         <div className="edit-pet-header">
           <h1 className="edit-pet-title">Edit {pet?.name || "Pet"} Details</h1>
-          <button className="back-btn" onClick={handleCancel}>
+          <button className="return-button" onClick={handleCancel}>
             &lt; Back
           </button>
         </div>
 
         {error && <div className="error-message">{error}</div>}
 
-        <div className="edit-pet-content">
+        <div className="edit-pet-provider-content">
           {/* Pet Card Section */}
           <div className="pet-card-section">
             <div className="pet-profile">
@@ -225,7 +225,7 @@ export default function ProviderEditPetDetails() {
             <h2 className="form-title">Information</h2>
 
             <div className="form-group">
-              <label htmlFor="name" className="form-label">
+              <label htmlFor="name" className="edit-pet-form-label">
                 Patient Name
               </label>
               <input
@@ -239,7 +239,7 @@ export default function ProviderEditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="species" className="form-label">
+              <label htmlFor="species" className="edit-pet-form-label">
                 Species
               </label>
               <select
@@ -256,7 +256,7 @@ export default function ProviderEditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="breed" className="form-label">
+              <label htmlFor="breed" className="edit-pet-form-label">
                 Breed
               </label>
               <select
@@ -277,7 +277,7 @@ export default function ProviderEditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="gender" className="form-label">
+              <label htmlFor="gender" className="edit-pet-form-label">
                 Gender
               </label>
               <select
@@ -295,7 +295,7 @@ export default function ProviderEditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="weight" className="form-label">
+              <label htmlFor="weight" className="edit-pet-form-label">
                 Weight (kg)
               </label>
               <input
@@ -310,7 +310,7 @@ export default function ProviderEditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="date_of_birth" className="form-label">
+              <label htmlFor="date_of_birth" className="edit-pet-form-label">
                 Date of Birth
               </label>
               <input
@@ -324,7 +324,7 @@ export default function ProviderEditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">
+              <label className="edit-pet-form-label">
                 <input
                   type="checkbox"
                   name="desexed"
@@ -337,7 +337,7 @@ export default function ProviderEditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="notes" className="form-label">
+              <label htmlFor="notes" className="edit-pet-form-label">
                 Notes
               </label>
               <textarea
@@ -352,7 +352,7 @@ export default function ProviderEditPetDetails() {
             </div>
 
             <div className="form-group">
-              <label htmlFor="medical_notes" className="form-label">
+              <label htmlFor="medical_notes" className="edit-pet-form-label">
                 Medical Notes
               </label>
               <textarea

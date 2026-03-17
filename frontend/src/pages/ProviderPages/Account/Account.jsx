@@ -1,5 +1,8 @@
 import { Form } from "react-bootstrap";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../../../context/AuthContext.jsx";
+import { deleteUser } from "../../../api/user.js";
+import { updateUser } from "../../../api/user.js";
 
 import FormLabel from "../../../components/Form/FormLabel.jsx";
 import FormNav from "../../../components/Form/FormNav.jsx";
@@ -12,8 +15,8 @@ import "./account.css";
 import "../../../styles/common.css";
 
 export default function Account() {
+  const { user, logout } = useContext(AuthContext);
 
-  const [user, setUser] = useState(null);
   const [provider, setProvider] = useState(null);
   const [needsOnboarding, setNeedsOnboarding] = useState(false);
 
@@ -23,15 +26,13 @@ export default function Account() {
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  const [showToast, setShowToast] = useState(false);
-
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
   const [showPasswordSuccess, setShowPasswordSuccess] = useState(false);
+  const [showDeleteSuccess, setShowDeleteSuccess] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
 
   // ============================
@@ -39,26 +40,21 @@ export default function Account() {
   // ============================
 
   useEffect(() => {
-    const loadData = async () => {
+    const loadProvider = async () => {
+      if (!user) return;
       const token = localStorage.getItem("token");
       if (!token) return;
 
-      const userRes = await fetch("/api/users/me", {
-        headers: { Authorization: `Bearer ${token}` }
+      try {
+        const res = await fetch("/api/providers/me", {
+          headers: { Authorization: `Bearer ${token}` }
       });
 
-      const userData = await userRes.json();
-      setUser(userData);
-
-      const providerRes = await fetch("/api/providers/me", {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-
-      if (providerRes.status === 404) {
+      if (res.status === 404) {
         setNeedsOnboarding(true);
         setProvider({
           name: "",
-          phone: userData.phone_number || "",
+          phone: user.phone_number || "",
           address: "",
           description: "",
           opening_time: "",
@@ -67,15 +63,17 @@ export default function Account() {
           img_url: "",
           logo_url: "",
         });
-
-        return;
+      } else {
+        const data = await res.json();
+        setProvider(data);
       }
-      const providerData = await providerRes.json();
-      setProvider(providerData);
-    };
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    loadData();
-  }, []);
+    loadProvider();
+  }, [user]);
 
 
   // ============================
@@ -97,14 +95,16 @@ export default function Account() {
 
   const saveChanges = async () => {
 
-    if (!dirty) {
-      setEditMode(false);
-      return;
-    }
+    if (!dirty) return setEditMode(false);
+    const token = localStorage.getItem("token");
+    setSaving(true);
 
     try {
-      setSaving(true);
-      const token = localStorage.getItem("token");
+      const url = needsOnboarding
+        ? "/api/providers"
+        : `/api/providers/${provider.id}`;
+      const method = needsOnboarding ? "POST" : "PATCH";
+
       const payload = {
         name: provider.name,
         phone: provider.phone,
@@ -115,33 +115,17 @@ export default function Account() {
         slot_duration: provider.slot_duration,
         img_url: provider.img_url,
         logo_url: provider.logo_url,
-        email: user.email
+        email: provider.email || user.email
       };
 
-      let res;
-
-      if (needsOnboarding) {
-        res = await fetch("/api/providers", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify(payload)
-        });
-
-      } else {
-
-        res = await fetch(`/api/providers/${provider.id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`
-          },
-          body: JSON.stringify(payload)
-        });
-
-      }
+      const res = await fetch(url, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
 
       const data = await res.json();
 
@@ -149,12 +133,11 @@ export default function Account() {
       setDirty(false);
       setEditMode(false);
       setNeedsOnboarding(false);
-      setShowToast(true);
 
     } catch (err) {
 
       console.error(err);
-      alert("Failed to save profile");
+      alert("Failed to save provider details");
 
     } finally {
 
@@ -191,8 +174,12 @@ export default function Account() {
         body: JSON.stringify({ password: newPassword })
       });
 
-      if (!res.ok) throw new Error("Failed to update password");
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to update password");
+      }
 
+      // SUCCESS
       setShowPasswordSuccess(true);
       setNewPassword("");
       setConfirmPassword("");
@@ -204,7 +191,8 @@ export default function Account() {
     } catch (err) {
 
       console.error(err);
-      setPasswordError("Failed to update password");
+      setPasswordError(err.message);
+
     }
   };
 
@@ -214,37 +202,22 @@ export default function Account() {
   // ============================
 
   const deleteAccount = async () => {
-
     try {
 
-      setDeleting(true);
-
       const token = localStorage.getItem("token");
-      const meRes = await fetch("/api/users/me", {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      const userData = await meRes.json();
 
-      await fetch(`/api/users/${userData.id}`, {
+      await fetch(`/api/users/${user.id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` }
       });
 
-      localStorage.removeItem("token");
-      window.location.href = "/";
-
+      setShowDeleteSuccess(true);
+      setTimeout(logout, 1500);
     } catch (err) {
-
       console.error(err);
       alert("Failed to delete account");
-
-    } finally {
-
-      setDeleting(false);
-      setShowDeleteModal(false);
     }
   };
-
 
   if (!user || !provider) return <p>Loading...</p>;
 
@@ -259,11 +232,12 @@ export default function Account() {
             <div>
               <h3
                 style={{
+                  fontSize: "clamp(1.25rem, 2.25vw, 1.5rem)",
                   paddingLeft: "16px",
                   paddingTop: "30px",
                   paddingBottom: "30px",
                   color: "#1f3a5f",
-                  fontWeight: "800",
+                  fontWeight: 800,
                 }}
               >
                 Account
@@ -291,46 +265,18 @@ export default function Account() {
                 <div className="form-block">
                   <Form>
                     <FormLabel
-                      name="First Name"
-                      value={user.first_name}
+                      name="Business Name"
+                      value={provider.name}
                       disabled={!editMode}
-                      onChange={e =>
-                        setUser(prev => ({
-                          ...prev,
-                          first_name: e.target.value
-                        }))
-                      }
-                    />
-
-                    <FormLabel
-                      name="Last Name"
-                      value={user.last_name}
-                      disabled={!editMode}
-                      onChange={e =>
-                        setUser(prev => ({
-                          ...prev,
-                          last_name: e.target.value
-                        }))
-                      }
+                      onChange={(e) => updateField("name", e.target.value)}
                     />
 
                     <FormLabel
                       name="Email"
-                      value={user.email}
+                      type="email"
+                      value={provider.email || user.email}
                       disabled={!editMode}
-                      onChange={e =>
-                        setUser(prev => ({
-                          ...prev,
-                          email: e.target.value
-                        }))
-                      }
-                    />
-
-                    <FormLabel
-                      name="Business Name"
-                      value={provider.name}
-                      disabled={!editMode}
-                      onChange={e => updateField("name", e.target.value)}
+                      onChange={(e) => updateField("email", e.target.value)}
                     />
 
                     <FormLabel
@@ -405,7 +351,7 @@ export default function Account() {
                 <div className="form-block">
 
                   {/* CHANGE PASSWORD */}
-                  <h6 style={{ marginBottom: "10px" }}>Change Password</h6>
+                  <h6 style={{ marginBottom: "10px", fontSize: "1.25rem" }}>Change Password</h6>
                   <Form>
 
                     <FormLabel
@@ -441,7 +387,7 @@ export default function Account() {
                   <hr style={{ margin: "35px 0" }} />
 
                   {/* DELETE ACCOUNT */}
-                  <h6>Delete Account</h6>
+                  <h6 style={{ fontSize: "1.25rem"}}>Delete Account</h6>
                   <p>
                     We're sorry to see you go 😢
                     <br /><br />
@@ -451,9 +397,8 @@ export default function Account() {
                   <button
                     className="btn-style button-navy"
                     onClick={() => setShowDeleteModal(true)}
-                    disabled={deleting}
                   >
-                    {deleting ? "Deleting..." : "Delete Account"}
+                    Delete Account
                   </button>
                 </div>
               </>
@@ -471,28 +416,32 @@ export default function Account() {
           </div>
         </div>
 
-        <SuccessToast
-          showToast={showToast}
-          onClose={() => setShowToast(false)}
-          message="Profile saved successfully!"
-        />
+        {showDeleteSuccess && (
+          <div className="success-modal">
+            <div className="success-modal-content">
+              <h2>Account Deleted</h2>
+              <p>Your account has been permanently deleted.</p>
+            </div>
+          </div>
+        )}
 
         {showPasswordSuccess && (
-          <SuccessToast
-            showToast={showPasswordSuccess}
-            onClose={() => setShowPasswordSuccess(false)}
-            message="Password updated successfully!"
-          />
+          <div className="success-modal">
+            <div className="success-modal-content">
+              <h2>Password Updated</h2>
+              <p>Your password was successfully updated.</p>
+            </div>
+          </div>
         )}
 
         <ConfirmModal
           show={showDeleteModal}
           handleClose={() => setShowDeleteModal(false)}
+          handlePrimary={deleteAccount}
           heading="Delete Account"
           body="Are you sure you want to permanently delete your account?"
           primaryButton="Delete Account"
           secondaryButton="Cancel"
-          onPrimaryClick={deleteAccount}
         />
       </div>
     </div>

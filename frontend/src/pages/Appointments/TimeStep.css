@@ -10,12 +10,14 @@
 }
 
 .time-button.time-button-available {
-  background-color: #fff6e2;
+  background-color: #fcf0c8 !important;
+  border: none;
   cursor: pointer;
 }
 
 .time-button.time-button-available:hover {
-  background-color: #feebc5;
+  background-color: #ffc72c !important;
+  border: none !important;
   transform: translateY(-1px);
 }
 
@@ -26,12 +28,15 @@
 .time-button.time-button-unavailable {
   background-color: #e8eaee;
   color: #9ca3af;
+  border: none;
   cursor: not-allowed;
   text-decoration: line-through;
 }
 
 .time-button.time-button-selected {
   background-color: #f6c21f;
+  border: none !important;
   color: #1f2a44;
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+  transform: scale(1.07) !important;
+  box-shadow: none !important;
 }

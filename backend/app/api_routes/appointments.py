@@ -33,6 +33,7 @@ def appointment_to_dict(appt: Appointment) -> dict:
             f"{appt.pet.owner.first_name} {appt.pet.owner.last_name}"
             if appt.pet and appt.pet.owner else None
         ),
+        "user_id": appt.pet.owner_id if appt.pet else None,
         "provider_name": appt.service_provider.name if appt.service_provider else None,
         "provider_address": appt.service_provider.address if appt.service_provider else None,
     }

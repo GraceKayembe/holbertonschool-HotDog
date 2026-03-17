@@ -291,21 +291,40 @@ export default function Appointments({ previewMode = false, providerData = null 
   // CHECK FOR COMPLETED APPOINTMENT
   useEffect(() => {
     const checkAppointmentStatus = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) return; // Don't check if they aren't logged in
+
       try {
-        const response = await fetch("/api/appointments/list");
+        const response = await fetch("/api/appointments/list", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        
         if (!response.ok) throw new Error("Failed to fetch appointments");
 
         const data = await response.json();
 
-        // Hunt for an appointment that matches THIS provider AND is COMPLETED
-        const completedAppt = data.appointments.find(
-          (appt) =>
-            appt.provider_id === providerID.id && appt.status === "COMPLETED",
-        );
+        // 1. Decode the JWT token to get Bad Bunny's user ID
+        const tokenPayload = JSON.parse(atob(token.split('.')[1]));
+        const currentUserId = tokenPayload.sub || tokenPayload.id || tokenPayload.user_id; 
+
+        // 2. Find the appointment matching the provider, status, AND the user
+        console.log("Looking for Provider:", providerID.id, "User:", currentUserId);
+        console.log("Backend Appointments Array:", data.appointments);
+        const completedAppt = data.appointments.find((appt) => {
+            const apptOwnerId = appt.user_id || appt.customer_id || (appt.pet && appt.pet.owner_id);
+            
+            return (
+              String(appt.provider_id) === String(providerID.id) && // <-- STRING CONVERSION ADDED HERE
+              appt.status === "COMPLETED" &&
+              String(apptOwnerId) === String(currentUserId)
+            );
+        });
 
         if (completedAppt) {
           setHasAppointment(true); // Reveals the "Add a Review" button
-          setValidAppointmentId(completedAppt.id); // Saves the real ID!
+          setValidAppointmentId(completedAppt.id); // Saves Bad Bunny's REAL ID!
         } else {
           setHasAppointment(false); // Hides the button if they haven't visited
         }
@@ -314,7 +333,9 @@ export default function Appointments({ previewMode = false, providerData = null 
       }
     };
 
-    checkAppointmentStatus();
+    if (providerID.id) {
+      checkAppointmentStatus();
+    }
   }, [providerID]);
 
   return (

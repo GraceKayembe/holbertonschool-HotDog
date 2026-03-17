@@ -84,8 +84,8 @@ body {
 /* DONE! */
 .provider-logout {
   width: 150px;
-  /* position: absolute; */
-  bottom: 0;
+  position: absolute;
+  bottom: 30px;
   background-color: transparent;
   border: 3px solid #ffc72c;
   color: #ffc72c;

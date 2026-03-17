@@ -1,122 +1,96 @@
 import { Form } from "react-bootstrap";
-import { useEffect, useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../../../context/AuthContext.jsx";
 import { deleteUser } from "../../../api/user.js";
-import { updateUser } from "../../../api/user.js";
-
 import FormLabel from "../../../components/Form/FormLabel.jsx";
 import FormNav from "../../../components/Form/FormNav.jsx";
 import SuccessToast from "../../../components/toasts/SuccessToast.jsx";
 import ConfirmModal from "../../../components/modals/ConfirmModal.jsx";
-
-import Appointments from "../../Appointments/Appointments.jsx";
-
 import "./account.css";
 import "../../../styles/common.css";
 
 export default function Account() {
   const { user, logout } = useContext(AuthContext);
-
+  
+  // State
   const [provider, setProvider] = useState(null);
   const [needsOnboarding, setNeedsOnboarding] = useState(false);
-
-  const [activeTab, setActiveTab] = useState("details");
-
   const [editMode, setEditMode] = useState(false);
   const [dirty, setDirty] = useState(false);
   const [saving, setSaving] = useState(false);
-
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-
   const [showPasswordSuccess, setShowPasswordSuccess] = useState(false);
   const [showDeleteSuccess, setShowDeleteSuccess] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+  const [activeTab, setActiveTab] = useState("details");
 
-
-  // ============================
-  // LOAD USER + PROVIDER
-  // ============================
-
+  // Load Provider Data
   useEffect(() => {
     const loadProvider = async () => {
-      if (!user) return;
       const token = localStorage.getItem("token");
       if (!token) return;
 
       try {
         const res = await fetch("/api/providers/me", {
-          headers: { Authorization: `Bearer ${token}` }
-      });
-
-      if (res.status === 404) {
-        setNeedsOnboarding(true);
-        setProvider({
-          name: "",
-          phone: user.phone_number || "",
-          address: "",
-          description: "",
-          opening_time: "",
-          closing_time: "",
-          slot_duration: 30,
-          img_url: "",
-          logo_url: "",
+          headers: { Authorization: `Bearer ${token}` },
         });
-      } else {
-        const data = await res.json();
-        setProvider(data);
-      }
-    } catch (err) {
-      console.error(err);
-    }
-  };
 
-    loadProvider();
+        if (res.status === 404) {
+          setNeedsOnboarding(true);
+          setProvider({
+            name: "",
+            phone: user.phone_number || "",
+            address: "",
+            description: "",
+            opening_time: "",
+            closing_time: "",
+            slot_duration: 30,
+            img_url: "",
+            logo_url: "",
+          });
+        } else {
+          const data = await res.json();
+          setProvider(data);
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    if (user) loadProvider();
   }, [user]);
 
-
-  // ============================
-  // UPDATE FIELD
-  // ============================
-
+  // Update a single provider field
   const updateField = (field, value) => {
-    setProvider(prev => ({
-      ...prev,
-      [field]: value
-    }));
-
+    setProvider((prev) => ({ ...prev, [field]: value }));
     setDirty(true);
   };
 
-  // ============================
-  // SAVE PROFILE
-  // ============================
-
-  const saveChanges = async () => {
-
+  // Save provider details
+  const saveProvider = async () => {
     if (!dirty) return setEditMode(false);
     const token = localStorage.getItem("token");
     setSaving(true);
 
     try {
-      const url = needsOnboarding
-        ? "/api/providers"
-        : `/api/providers/${provider.id}`;
-      const method = needsOnboarding ? "POST" : "PATCH";
+      const url = provider.id ? `/api/providers/${provider.id}` : "/api/providers";
+      const method = provider.id ? "PATCH" : "POST";
 
       const payload = {
-        name: provider.name,
-        phone: provider.phone,
-        address: provider.address,
-        description: provider.description,
-        opening_time: provider.opening_time,
-        closing_time: provider.closing_time,
-        slot_duration: provider.slot_duration,
-        img_url: provider.img_url,
-        logo_url: provider.logo_url,
-        email: provider.email || user.email
+        name: provider.name || "",
+        phone: provider.phone || "",
+        address: provider.address || "",
+        description: provider.description || "",
+        opening_time: provider.opening_time || "",
+        closing_time: provider.closing_time || "",
+        slot_duration: provider.slot_duration || 30,
+        img_url: provider.img_url || "",
+        logo_url: provider.logo_url || "",
       };
+
+      console.log("Saving payload:", payload);
 
       const res = await fetch(url, {
         method,
@@ -128,50 +102,40 @@ export default function Account() {
       });
 
       const data = await res.json();
+      console.log("Returned provider from backend:", data);
 
-      setProvider(data);
+      if (data.id) {
+      setProvider(data); 
+      }
+      
       setDirty(false);
       setEditMode(false);
-      setNeedsOnboarding(false);
-
     } catch (err) {
-
       console.error(err);
-      alert("Failed to save provider details");
-
+      alert("Failed to save profile");
     } finally {
-
       setSaving(false);
     }
   };
 
-  // ============================
-  // UPDATE PASSWORD
-  // ============================
-
+  // Update password
   const updatePassword = async () => {
-
     setPasswordError("");
-
-    if (!newPassword) {
-      return setPasswordError("Password cannot be empty");
-    }
-
-    if (newPassword !== confirmPassword) {
-      return setPasswordError("Passwords do not match");
-    }
+    if (!newPassword) return setPasswordError("Password cannot be empty");
+    if (newPassword !== confirmPassword) return setPasswordError("Passwords do not match");
 
     try {
-
       const token = localStorage.getItem("token");
+
+      console.log("Token:", token);
 
       const res = await fetch(`/api/users/${user.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ password: newPassword })
+        body: JSON.stringify({ password: newPassword }),
       });
 
       if (!res.ok) {
@@ -179,38 +143,23 @@ export default function Account() {
         throw new Error(data.error || "Failed to update password");
       }
 
-      // SUCCESS
       setShowPasswordSuccess(true);
       setNewPassword("");
       setConfirmPassword("");
-
-      setTimeout(() => {
-        setShowPasswordSuccess(false);
-      }, 1500);
-
+      setTimeout(() => setShowPasswordSuccess(false), 1500);
     } catch (err) {
-
-      console.error(err);
       setPasswordError(err.message);
-
     }
   };
 
-
-  // ============================
-  // DELETE ACCOUNT
-  // ============================
-
+  // Delete account
   const deleteAccount = async () => {
     try {
-
       const token = localStorage.getItem("token");
-
       await fetch(`/api/users/${user.id}`, {
         method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` }
+        headers: { Authorization: `Bearer ${token}` },
       });
-
       setShowDeleteSuccess(true);
       setTimeout(logout, 1500);
     } catch (err) {
@@ -226,225 +175,140 @@ export default function Account() {
       <div className="user-profile-container">
         <h1 className="account-mb-5">Business Profile</h1>
         <div className="form">
-
-          {/* LEFT NAV */}
           <div className="form-nav">
-            <div>
-              <h3
-                style={{
-                  fontSize: "clamp(1.25rem, 2.25vw, 1.5rem)",
-                  paddingLeft: "16px",
-                  paddingTop: "30px",
-                  paddingBottom: "30px",
-                  color: "#1f3a5f",
-                  fontWeight: 800,
-                }}
-              >
-                Account
-              </h3>
-              <FormNav
-                tabs={[
-                  { label: "Business Details", value: "details" },
-                  { label: "Manage Account", value: "account" },
-                  { label: "Business Page Preview", value: "preview" }
-                ]}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-              />
-            </div>
+            <h3 style={{ padding: "30px 16px", color: "#1f3a5f", fontWeight: 800 }}>Account</h3>
+            <FormNav
+              tabs={[
+                { label: "Business Details", value: "details" },
+                { label: "Manage Account", value: "account" },
+                { label: "Business Page Preview", value: "preview" },
+              ]}
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+            />
           </div>
 
-
-          {/* RIGHT PANEL */}
           <div className="form-panel">
-
             {/* DETAILS TAB */}
             {activeTab === "details" && (
-              <>
-                <h6>Business Details</h6>
-                <div className="form-block">
-                  <Form>
-                    <FormLabel
-                      name="Business Name"
-                      value={provider.name}
-                      disabled={!editMode}
-                      onChange={(e) => updateField("name", e.target.value)}
-                    />
+              <Form>
+                <FormLabel
+                  name="Business Name"
+                  value={provider.name}
+                  disabled={!editMode}
+                  onChange={(e) => updateField("name", e.target.value)}
+                />
+                <FormLabel
+                  name="Phone"
+                  value={provider.phone}
+                  disabled={!editMode}
+                  onChange={(e) => updateField("phone", e.target.value)}
+                />
+                <FormLabel
+                  name="Address"
+                  value={provider.address}
+                  disabled={!editMode}
+                  onChange={(e) => updateField("address", e.target.value)}
+                />
+                <Form.Group className="form-label-group">
+                  <Form.Label>Description</Form.Label>
+                  <textarea
+                    className="form-control business-description"
+                    value={provider.description}
+                    disabled={!editMode}
+                    onChange={(e) => updateField("description", e.target.value)}
+                  />
+                </Form.Group>
+                <FormLabel
+                  type="time"
+                  name="Opening Time"
+                  value={provider.opening_time}
+                  disabled={!editMode}
+                  onChange={(e) => updateField("opening_time", e.target.value)}
+                />
+                <FormLabel
+                  type="time"
+                  name="Closing Time"
+                  value={provider.closing_time}
+                  disabled={!editMode}
+                  onChange={(e) => updateField("closing_time", e.target.value)}
+                />
 
-                    <FormLabel
-                      name="Email"
-                      type="email"
-                      value={provider.email || user.email}
-                      disabled={!editMode}
-                      onChange={(e) => updateField("email", e.target.value)}
-                    />
-
-                    <FormLabel
-                      name="Phone"
-                      value={provider.phone}
-                      disabled={!editMode}
-                      onChange={e => updateField("phone", e.target.value)}
-                    />
-      
-                    <FormLabel 
-                      name="Address"
-                      value={provider.address}
-                      disabled={!editMode}
-                      onChange={e => updateField("address", e.target.value)}
-                    />
-
-                    {/* DESCRIPTION */}
-                    <Form.Group className="form-label-group">
-                      <Form.Label>Description</Form.Label>
-                      <textarea
-                        name="Description"
-                        value={provider.description}
-                        disabled={!editMode}
-                        onChange={e => updateField("description", e.target.value)}
-                        className="form-control business-description"
-                      />
-                    </Form.Group>
-
-                    <FormLabel
-                      type="time"
-                      name="Opening Time"
-                      value={provider.opening_time}
-                      disabled={!editMode}
-                      onChange={e => updateField("opening_time", e.target.value)}
-                    />
-
-                    <FormLabel
-                      type="time"
-                      name="Closing Time"
-                      value={provider.closing_time}
-                      disabled={!editMode}
-                      onChange={e => updateField("closing_time", e.target.value)}
-                    />
-                  </Form>
-
-                  {editMode ? (
-                    <button
-                      className="btn-style button-yellow"
-                      onClick={saveChanges}
-                      disabled={saving}
-                    >
-                      {saving ? "Saving..." : "Save Details"}
-                    </button>
-
-                  ) : (
-
-                    <button
-                      className="btn-style button-yellow"
-                      onClick={() => setEditMode(true)}
-                    >
-                      Edit Details
-                    </button>
-                  )}
-                </div>
-              </>
+                {editMode ? (
+                  <button type="button" className="btn-style button-yellow" onClick={saveProvider} disabled={saving}>
+                    {saving ? "Saving..." : "Save Details"}
+                  </button>
+                ) : (
+                  <button type="button" className="btn-style button-yellow" onClick={() => setEditMode(true)}>
+                    Edit Details
+                  </button>
+                )}
+              </Form>
             )}
 
             {/* ACCOUNT TAB */}
             {activeTab === "account" && (
               <>
-                <h6>Manage Account</h6>
-                <div className="form-block">
+                <h6>Change Password</h6>
+                <Form>
+                  <FormLabel
+                    name="New Password"
+                    type="password"
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                  <FormLabel
+                    name="Confirm New Password"
+                    type="password"
+                    value={confirmPassword}
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </Form>
+                {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
+                <button type="button" className="btn-style button-yellow" onClick={updatePassword}>
+                  Change Password
+                </button>
 
-                  {/* CHANGE PASSWORD */}
-                  <h6 style={{ marginBottom: "10px", fontSize: "1.25rem" }}>Change Password</h6>
-                  <Form>
+                <hr style={{ margin: "35px 0" }} />
 
-                    <FormLabel
-                      name="New Password"
-                      type="password"
-                      value={newPassword}
-                      onChange={e => setNewPassword(e.target.value)}
-                    />
-
-                    <FormLabel
-                      name="Confirm New Password"
-                      type="password"
-                      value={confirmPassword}
-                      onChange={e => setConfirmPassword(e.target.value)}
-                    />
-                  </Form>
-
-                  {passwordError && (
-                    <p style={{ color: "red", marginTop: "5px" }}>
-                      {passwordError}
-                    </p>
-                  )}
-
-                  <button
-                    className="btn-style button-yellow"
-                    onClick={updatePassword}
-                    style={{ marginTop: "10px" }}
-                  >
-                    Change Password
-                  </button>
-
-                  {/* DIVIDER */}
-                  <hr style={{ margin: "35px 0" }} />
-
-                  {/* DELETE ACCOUNT */}
-                  <h6 style={{ fontSize: "1.25rem"}}>Delete Account</h6>
-                  <p>
-                    We're sorry to see you go 😢
-                    <br /><br />
-                    This action cannot be undone and all provider data will be permanently removed.
-                  </p>
-
-                  <button
-                    className="btn-style button-navy"
-                    onClick={() => setShowDeleteModal(true)}
-                  >
-                    Delete Account
-                  </button>
-                </div>
+                <h6>Delete Account</h6>
+                <p>This action cannot be undone and all provider data will be permanently removed.</p>
+                <button type="button" className="btn-style button-navy" onClick={() => setShowDeleteModal(true)}>
+                  Delete Account
+                </button>
               </>
             )}
 
-            {/* BUSINESS PAGE PREVIEW TAB */}
-            {activeTab === "preview" && (
-              <div className="form-block">
-                <h6>Business Page Preview</h6>
-                  <div className="preview"> 
-                    <Appointments previewMode providerData={provider} />
-                  </div>
+            {showDeleteSuccess && (
+              <div className="success-modal">
+                <div className="success-modal-content">
+                  <h2>Account Deleted</h2>
+                  <p>Your account has been permanently deleted.</p>
+                </div>
               </div>
             )}
+
+            {showPasswordSuccess && (
+              <div className="success-modal">
+                <div className="success-modal-content">
+                  <h2>Password Updated</h2>
+                  <p>Your password was successfully updated.</p>
+                </div>
+              </div>
+            )}
+
+            <ConfirmModal
+              show={showDeleteModal}
+              handleClose={() => setShowDeleteModal(false)}
+              handlePrimary={deleteAccount}
+              heading="Delete Account"
+              body="Are you sure you want to permanently delete your account?"
+              primaryButton="Delete Account"
+              secondaryButton="Cancel"
+            />
           </div>
         </div>
-
-        {showDeleteSuccess && (
-          <div className="success-modal">
-            <div className="success-modal-content">
-              <h2>Account Deleted</h2>
-              <p>Your account has been permanently deleted.</p>
-            </div>
-          </div>
-        )}
-
-        {showPasswordSuccess && (
-          <div className="success-modal">
-            <div className="success-modal-content">
-              <h2>Password Updated</h2>
-              <p>Your password was successfully updated.</p>
-            </div>
-          </div>
-        )}
-
-        <ConfirmModal
-          show={showDeleteModal}
-          handleClose={() => setShowDeleteModal(false)}
-          handlePrimary={deleteAccount}
-          heading="Delete Account"
-          body="Are you sure you want to permanently delete your account?"
-          primaryButton="Delete Account"
-          secondaryButton="Cancel"
-        />
       </div>
     </div>
   );
 }
-

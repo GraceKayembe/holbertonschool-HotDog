@@ -111,15 +111,27 @@ header {
 } */
 
 .login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   border: 3px solid #1f3a5f;
-  color: #1f3a5f;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 8px 16px;
   border-radius: 20px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 100px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
   cursor: pointer;
   transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .login:hover {
@@ -129,15 +141,28 @@ header {
 }
 
 .signup {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: #1f3a5f;
   border: 3px solid #1f3a5f;
-  color: #ffc72c;
-  font-size: 15px;
-  font-weight: 700;
-  padding: 8px 18px;
   border-radius: 20px;
+  
+  color: #ffc72c;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 100px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
   cursor: pointer;
   transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .signup:hover {

@@ -15,7 +15,7 @@ import "../../styles/common.css";
 
 export default function UserProfile() {
   const [error, setError] = useState(null);
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, setUser } = useContext(AuthContext);
   const [firstName, setFirstName] = useState(user?.first_name || "");
   const [lastName, setLastName] = useState(user?.last_name || "");
   const [email, setEmail] = useState(user?.email || "");
@@ -25,6 +25,19 @@ export default function UserProfile() {
 
   //ACTIVE TAB STATE
   const [activeTab, setActiveTab] = useState("details"); //details | password | account
+
+  // ================================
+  // HEADER NAV NEEDS TO UPDATE WHEN USER CHANGES NAME
+  // ================================
+
+  useEffect(() => {
+    if (user) {
+      setFirstName(user.first_name || "");
+      setLastName(user.last_name || "");
+      setEmail(user.email || "");
+      setMobileNumber(user.phone_number || "");
+    }
+  }, [user]);
 
   // ================================
   // RESET ERROR ON TAB CHANGE
@@ -77,7 +90,17 @@ export default function UserProfile() {
     try {
       const result = await submitUpdate(body);
       console.log(result.message);
+
+      setUser((prev) => ({
+        ...prev,
+        first_name: firstName,
+        last_name: lastName,
+        email: email,
+        phone_number: mobileNumber,
+      }));
+
       closeEditMode();
+
     } catch (error) {
       console.log(error.message, "error-message");
       setError(error.message || "Failed to update user");
@@ -240,6 +263,7 @@ export default function UserProfile() {
                   {editMode ? (
                     <div>
                       <button
+                        type="button"
                         onClick={() => {
                           handleUpdateUser(
                             firstName,
@@ -255,6 +279,7 @@ export default function UserProfile() {
                     </div>
                   ) : (
                     <button
+                      type="button"
                       onClick={openEditMode}
                       className="btn-style button-yellow"
                     >
@@ -293,6 +318,7 @@ export default function UserProfile() {
                   </Form>
                   {error && <p style={{ color: "red" }}>{error}</p>}
                   <button
+                    type="button"
                     className="btn-style button-yellow"
                     onClick={() => {
                       handleUpdatePassword(newPassword, confirmPassword);

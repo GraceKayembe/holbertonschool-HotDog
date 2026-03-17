@@ -169,9 +169,8 @@
 .form-actions {
   display: flex;
   gap: 1rem;
-  justify-content: flex-end;
+  justify-content: center;
   padding-top: 1rem;
-  border-top: 1px solid #e0e0e0;
 }
 
 .review-btn-cancel,
@@ -186,9 +185,28 @@
 }
 
 .review-btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color:#d2d7de;
   border: 3px solid #d2d7de;
+  border-radius: 20px;
+
   color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .review-btn-cancel:hover {
@@ -197,9 +215,28 @@
 }
 
 .btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
   background-color:transparent;
   border: 3px solid #ffc72c;
+  border-radius: 20px;
+
   color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 200px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .btn-submit:hover {

@@ -121,28 +121,32 @@ export default function PatientList() {
 
   return (
     <div className="all-patients-container">
-      <div className="all-patients-content">
-        <div className="all-patients-header">
-          <h1>Patients</h1>
-        </div>
+      <div className="all-patient-section">
+        <div className="all-patients-content">
+          <div className="patient-content-container">
+            <div className="all-patients-header">
+              <h1>Patients</h1>
+            </div>
 
-        <ProviderSearchBar
-          patients={patients}
-          service={ageInput}         
-          searchValue={searchInput}     
-          onServiceChange={setAgeInput} 
-          onSearchChange={setSearchInput}
-          onSearch={handleSearch}         
-        />
+            <ProviderSearchBar
+              patients={patients}
+              service={ageInput}         
+              searchValue={searchInput}     
+              onServiceChange={setAgeInput} 
+              onSearchChange={setSearchInput}
+              onSearch={handleSearch}         
+            />
 
-        <div className="all-pets-actions-patient-list">
-          <div>All({filteredPatients.length})</div>
-        </div>
+            <div className="all-pets-actions-patient-list">
+              <div>All({filteredPatients.length})</div>
+            </div>
 
-        <div className="pets-list">
-          {filteredPatients.map((patient) => (
-            <PatientCard key={patient.id} pet={patient} />
-          ))}
+            <div className="pets-list">
+              {filteredPatients.map((patient) => (
+                <PatientCard key={patient.id} pet={patient} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </div>

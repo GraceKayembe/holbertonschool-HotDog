@@ -75,16 +75,27 @@
 }
 
 .contact-us-to-register-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
   border: 3px solid #1f3a5f;
+  border-radius: 20px;
+
   color: #1f3a5f;
   font-family: "Open Sans";
-  font-size: clamp(1rem, 2vw, 1.1rem);
+  font-size: 1.1rem;
   font-weight: 600;
-  min-width: clamp(12rem, 25vw, 15.5rem);
-  height: clamp(2.1875rem, 5vw, 2.5rem);
-  border-radius: 20px;
-  transition: all 0.2s ease;
+
+  width: 240px; 
+  height: 45px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .contact-us-to-register-btn:hover {

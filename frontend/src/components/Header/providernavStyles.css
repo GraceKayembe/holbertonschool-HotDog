@@ -38,30 +38,17 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 20%;
+  width: 260px;  
   background-color: #1f3a5f;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  margin-right: 30px;
-  padding-left: 60px;
-  padding-right: 50px;
-  padding-top: 100px;
-  overflow-y: auto;
-  z-index: 1000;
-  list-style: none;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 80px;
   gap: 20px;
+  list-style: none;
 }
-
-/* .provider-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-} */
 
 .provider-links li a {
   display: inline-block;
@@ -85,19 +72,29 @@ body {
 
 /* DONE! */
 .provider-logout {
-  width: 150px;
-  position: absolute;
-  bottom: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  
   background-color: transparent;
   border: 3px solid #ffc72c;
+  border-radius: 20px;
+
   color: #ffc72c;
-  font-size: 20px;
-  font-weight: 700;
-  padding: 8px 18px;
-  margin-top: 80px;
-  border-radius: 15px;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 200px; 
+  max-width: auto;
+  height: 45px;     
+  padding: 0 16px; 
+
   cursor: pointer;
   transition: all 0.25s ease;
+
+  white-space: nowrap;
+  margin-top: 80px;
 }
 
 .provider-logout:hover {

@@ -13,6 +13,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  margin: 0 auto;
 }
 
 .mb-5 {
@@ -81,9 +82,28 @@
 }
 
 .button-yellow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #ffc72c;
   background-color: transparent;
-  margin-top: 10px;
+  border-radius: 20px;
+  
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 200px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .button-yellow:hover {
@@ -92,12 +112,28 @@
 }
 
 .button-navy {
-  /* background: #1f3a5f;
-  color: #ffc72c;
-  width: fit-content; */
-  border: 3px solid #1f3a5f;
+   display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
+  border: 3px solid #1f3a5f;
+  border-radius: 20px;
+
   color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 200px; 
+  max-width: auto;
+  height: 45px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .button-navy:hover {
@@ -107,14 +143,35 @@
 }
 
 .btn-style {
-  border-radius: 20px;
-  width: fit-content;
-  height: 40px;
-  padding: 0 14px;
   margin-top: 30px;
-  font-weight: bold;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  border: 3px solid #ffc72c;
+  border-radius: 20px;
+  
   color: #1f3a5f;
-  font-size: 0.93rem;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 200px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
+}
+
+.btn-style:hover {
+  color: #1f3a5f;
+  background-color: #ffc72c;
+  border: none
 }
 
 .form-nav a {

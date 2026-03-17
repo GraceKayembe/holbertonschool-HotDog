@@ -100,22 +100,53 @@
 }
 
 .pet-card-footer .notes-label .btn.btn-primary.popover-buttons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: #d2d7de;
   border: 3px solid #d2d7de;
-  min-width: 110px;
-  height: 35px;
+  border-radius: 20px;
+  
   color: #1f3a5f;
-  font-weight: bold;
-  border-radius: 20px !important;
-  padding: 0 12px; /* override bootstrap */
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .pet-card-actions .btn-yellow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #ffc72c;
   background-color: transparent;
   border-radius: 20px;
-  width: 100px;
-  height: 35px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .pet-card-actions .btn-yellow:hover {
@@ -124,12 +155,28 @@
 }
 
 .pet-card-actions .btn-navy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #1f3a5f;
   background-color: transparent;
-  color: #1f3a5f;
   border-radius: 20px;
-  width: 100px;
-  height: 35px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .pet-card-actions .btn-navy:hover {

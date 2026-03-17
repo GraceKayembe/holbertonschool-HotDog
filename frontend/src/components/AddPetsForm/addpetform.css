@@ -14,7 +14,7 @@
   width: 500px;
   max-width: 100%;
   min-height: 600px;
-  max-height: min(86vh, 650px);
+  max-height: 86vh;
   overflow-y: auto;
   text-align: center;
   font-size: 15px;
@@ -147,16 +147,29 @@
 
 
 .pet-form-container .cancelbutton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: #d2d7de;
   border: 3px solid #d2d7de;
-  color: #1f3a5f;
   border-radius: 20px;
-  margin: 15px;
-  width: 100px;
-  height: 40px;
-  font-weight: 700;
-  transition: 0.2;
-}
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
+} 
 
 .pet-form-container .cancelbutton:hover {
   background-color: #a5aebd;
@@ -164,17 +177,33 @@
 }
 
 .pet-form-container .submitbutton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
   border: 3px solid #ffc72c;
-  color: #1f3a5f;
   border-radius: 20px;
-  margin: 15px;
-  width: 100px;
-  height: 40px;
-  font-weight: 700;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .pet-form-container .submitbutton:hover {
   background-color: #ffc72c;
   border: 3px solid #ffc72c;
 }
+
+

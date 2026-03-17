@@ -42,16 +42,28 @@
 }
 
 .all-pets-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
   border: 3px solid #ffc72c;
-  color: #1f3a5f;
   border-radius: 20px;
-  width: 130px;
-  max-width: 100%;
-  height: 40px;
-  font-size: clamp(0.93rem, 0.93vw, 0.93rem);
-  font-weight: bold;
-  margin-bottom: clamp(0rem, 0.40vw, 0.93rem);
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 200px; 
+  max-width: auto;
+  height: 45px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .all-pets-actions button:hover {

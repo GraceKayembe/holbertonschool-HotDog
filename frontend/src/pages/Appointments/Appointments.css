@@ -148,13 +148,28 @@
 }
 
 .grey-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: #d2d7de;
   border: 3px solid #d2d7de;
-  color: #1f3a5f;
   border-radius: 20px;
-  padding: 8px 12px;
-  font-weight: 700;
-  width: 110px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
 }
 
 .grey-btn:hover {
@@ -163,13 +178,28 @@
 }
 
 .action-btn-container .navy-btn {
-  border: 3px solid #ffc72c;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   background-color: transparent;
-  color: #1f3a5f;
+  border: 3px solid #ffc72c;
   border-radius: 20px;
-  padding: 8px 12px;
-  font-weight: 700;
-  width: 110px;
+
+  color: #1f3a5f;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .action-btn-container .navy-btn:hover {

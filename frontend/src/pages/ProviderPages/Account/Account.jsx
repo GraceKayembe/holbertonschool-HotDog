@@ -75,21 +75,22 @@ export default function Account() {
     setSaving(true);
 
     try {
-      const url = needsOnboarding ? "/api/providers" : `/api/providers/${provider.id}`;
-      const method = needsOnboarding ? "POST" : "PATCH";
+      const url = provider.id ? `/api/providers/${provider.id}` : "/api/providers";
+      const method = provider.id ? "PATCH" : "POST";
 
       const payload = {
-        name: provider.name,
-        phone: provider.phone,
-        address: provider.address,
-        description: provider.description,
-        opening_time: provider.opening_time,
-        closing_time: provider.closing_time,
-        slot_duration: provider.slot_duration,
-        img_url: provider.img_url,
-        logo_url: provider.logo_url,
-        email: user.email,
+        name: provider.name || "",
+        phone: provider.phone || "",
+        address: provider.address || "",
+        description: provider.description || "",
+        opening_time: provider.opening_time || "",
+        closing_time: provider.closing_time || "",
+        slot_duration: provider.slot_duration || 30,
+        img_url: provider.img_url || "",
+        logo_url: provider.logo_url || "",
       };
+
+      console.log("Saving payload:", payload);
 
       const res = await fetch(url, {
         method,
@@ -101,10 +102,14 @@ export default function Account() {
       });
 
       const data = await res.json();
-      setProvider(data);
+      console.log("Returned provider from backend:", data);
+
+      if (data.id) {
+      setProvider(data); 
+      }
+      
       setDirty(false);
       setEditMode(false);
-      setNeedsOnboarding(false);
     } catch (err) {
       console.error(err);
       alert("Failed to save profile");
@@ -230,11 +235,11 @@ export default function Account() {
                 />
 
                 {editMode ? (
-                  <button className="btn-style button-yellow" onClick={saveProvider} disabled={saving}>
+                  <button type="button" className="btn-style button-yellow" onClick={saveProvider} disabled={saving}>
                     {saving ? "Saving..." : "Save Details"}
                   </button>
                 ) : (
-                  <button className="btn-style button-yellow" onClick={() => setEditMode(true)}>
+                  <button type="button" className="btn-style button-yellow" onClick={() => setEditMode(true)}>
                     Edit Details
                   </button>
                 )}
@@ -260,7 +265,7 @@ export default function Account() {
                   />
                 </Form>
                 {passwordError && <p style={{ color: "red" }}>{passwordError}</p>}
-                <button className="btn-style button-yellow" onClick={updatePassword}>
+                <button type="button" className="btn-style button-yellow" onClick={updatePassword}>
                   Change Password
                 </button>
 
@@ -268,7 +273,7 @@ export default function Account() {
 
                 <h6>Delete Account</h6>
                 <p>This action cannot be undone and all provider data will be permanently removed.</p>
-                <button className="btn-style button-navy" onClick={() => setShowDeleteModal(true)}>
+                <button type="button" className="btn-style button-navy" onClick={() => setShowDeleteModal(true)}>
                   Delete Account
                 </button>
               </>

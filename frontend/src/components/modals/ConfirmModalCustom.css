@@ -31,15 +31,10 @@
   background: none;
   border: none;
 
-  color: #1f3a5f;
+  color: #a5aebd;
   font-family: "Open Sans";
   font-size: 1.1rem;
   font-weight: 600;
-
-  width: 125px; 
-  max-width: auto;
-  height: 40px;     
-  padding: 0 16px; 
 
   cursor: pointer;
   transition: all 0.25s ease;

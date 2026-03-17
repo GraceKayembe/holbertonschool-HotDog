@@ -73,33 +73,65 @@
 }
 
 .modal-footer .btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #1f3a5f !important;
   background-color: transparent !important;
+  border-radius: 20px;
+
   color: #1f3a5f !important;
-  border-radius: 15px;
-  font-family: 900 !important;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .modal-footer .btn-primary:hover {
   border: 3px solid #1f3a5f !important;
   background-color: #1f3a5f !important;
   color: #ffc72c !important;
-  border-radius: 15px;
   font-family: 900 !important;
 }
 
 .modal-footer .btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
   border: 3px solid #d2d7de !important;
   background-color: #d2d7de;
+  border-radius: 20px;
+
   color: #1f3a5f;
-  border-radius: 15px;
-  font-family: 900 !important;
+  font-family: "Open Sans";
+  font-size: 1.1rem;
+  font-weight: 600;
+
+  width: 125px; 
+  max-width: auto;
+  height: 40px;     
+  padding: 0 16px; 
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+
+  white-space: nowrap; 
 }
 
 .modal-footer .btn-secondary:hover {
   border: 3px solid #a5aebd !important;
   background-color: #a5aebd;
-  border-radius: 15px;
   color: #1f3a5f !important;
   font-family: 900 !important;
 }

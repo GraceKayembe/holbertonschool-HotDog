@@ -36,7 +36,7 @@
   color: #1f3a5f;
   border: none;
   font-size: 1rem;
-  transition: all 0.2s ease;
+  transition: all 0.25s ease;
 }
 
 .btn.signup-btn:hover {

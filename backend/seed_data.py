@@ -336,6 +336,14 @@ with app.app_context():
                 status=AppointmentStatus.COMPLETED,
                 notes="Test for COMPLETED appointments"
             ),
+            Appointment(
+                pet_id=pet1.id,
+                provider_id=providers[5].id,  # Canine Smiles Dental
+                date_time=datetime.now(timezone.utc) - timedelta(days=3), # 3 days ago
+                service_type=ServiceType.DENTAL,
+                status=AppointmentStatus.COMPLETED,
+                notes="Routine dental scaling and cleaning completed."
+            ),
         ]
         
         db.session.add_all(appointments)

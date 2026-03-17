@@ -7,7 +7,7 @@
   flex-direction: column;
   width: min(100%, 800px);
   margin: 0 auto;
-  padding-top: var(--header-height);
+  padding-top: var(--provider-padding);
   padding-bottom: clamp(3rem, 5.5vw, 5rem);
   overflow-x: hidden;
 }
@@ -325,28 +325,17 @@
   display: flex;
   gap: 30px;
   justify-content: center;
+  height: auto;
 }
 
 .stat-card {
   width: 250px; 
 }
 
-.large-stat {
+.small-stat, .large-stat {
   flex: 1;
   max-width: 100%;
-  max-height: 90%;
-  background: transparent;
-  border: 3px solid #ffc72c;
-  border-radius: 12px;
-  padding: 10px;
-  text-align: center;
-  transform: scale(1.06);
-}
-
-.small-stat {
-  flex: 1;
-  max-width: 100%;
-  max-height: 85%;
+  max-height: 100%;
   background: transparent;
   border: 3px solid #ffc72c;
   border-radius: 12px;
@@ -354,7 +343,8 @@
   text-align: center;
 }
 
-.large-stat h3 {
+
+.small-stat h3, .large-stat h3 {
   font-size: clamp(2rem, 3.5vw, 3rem);
   font-family: "nunito";
   font-weight: bold;
@@ -362,13 +352,13 @@
   color: #1f3a5f;
 }
 
-.small-stat h3 {
-  font-size: clamp(2rem, 3vw, 2.4rem);
-  font-family: "nunito";
-  font-weight: bold;
-  margin: 0;
-  color: #1f3a5f;
+.large-stat p {
+  margin-top: 5px;
+  font-size: clamp(0.93rem, 1vw, 0.93rem);
+  color:  #6d7480 !important;
+  font-weight: 600;
 }
+
 
 .small-stat p {
   margin-top: 5px;

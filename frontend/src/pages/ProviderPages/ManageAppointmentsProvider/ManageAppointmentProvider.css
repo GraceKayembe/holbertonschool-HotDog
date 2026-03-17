@@ -2,8 +2,8 @@
   width: 100%;
   background-color: #f2f3f7;
   margin: 0 auto;
-  padding-top: calc(var(--header-height) + 5px);
-  padding-bottom: clamp(2.5rem, 3.5vw, 4rem);
+  padding-top: var(--provider-padding);
+  padding-bottom: var(--provider-padding);
 }
 
 .manage-appointment-provider {

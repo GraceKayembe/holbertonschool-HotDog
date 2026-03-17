@@ -3,8 +3,8 @@
   display: flex;
   justify-content: center;
   background-color: #f2f3f7;
-  padding-top: var(--header-height) !important;
-  padding-bottom: clamp(3rem, 5.5vw, 5rem);
+  padding-top: var(--provider-padding);
+  padding-bottom: var(--provider-padding);
 }
 
 .profile-container {

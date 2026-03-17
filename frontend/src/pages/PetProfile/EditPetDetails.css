@@ -32,7 +32,7 @@ main {
   color: #1f3a5f;
   text-align: center;
   width: 100%;
-  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+  margin-bottom: clamp(2rem, 2vw, 2rem);
 }
 
 .return-button,

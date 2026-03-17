@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function ProtectedRoute({ children, allowedRole }) {
@@ -13,5 +13,5 @@ export default function ProtectedRoute({ children, allowedRole }) {
         return <Navigate to="/" />;
     }
 
-    return children;
+    return children ? children : <Outlet />;
 }

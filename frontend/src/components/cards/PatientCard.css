@@ -144,9 +144,9 @@
   width: auto;
   min-width: fit-content;
   height: 35px;
-  padding: 0.35rem 0.75rem;
+  padding: 0 12px; /* override bootstrap */
   border-radius: 20px;
-  border: 3px solid #e8eaee
+  border: 3px solid #e8eaee;
 }
 
 .notes-label .btn.btn-primary.popover-buttons:hover {

@@ -1,4 +1,11 @@
 /* provider edit pet detail */
+.edit-pet-provider-container {
+  width: 100%;
+  background-color: #f2f3f7;
+  margin: 0 auto;
+  padding-top: var(--provider-padding);
+  padding-bottom: var(--provider-padding);
+}
 
 .edit-pet-provider-contents-container{
   width: 100%;
@@ -14,13 +21,12 @@
   align-items: stretch;
 }
 
-
 /* patient list */
 .all-patients-container {
   display: flex;
   justify-content: center;
-  padding-top: var(--header-height);
-  padding-bottom: clamp(3rem, 5.5vw, 5rem);
+  padding-top: var(--provider-padding);
+  padding-bottom: var(--provider-padding);
   background-color: #f2f3f7;
 }
 

@@ -9,7 +9,7 @@
   background: white;
   margin: 1.5rem 0rem;
   align-items: stretch;
-  /* padding-bottom: 20px; */
+  /* padding-bottom: 50px; */
 }
 
 /*LEFT OF CARD*/
@@ -117,6 +117,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  padding-bottom: 20px;
 }
 
 .pet-card-footer button {

@@ -33,8 +33,12 @@ export async function getProviderProfile(token) {
   return data;
 }
 
-export async function getProviderAppointments(token, query = "") {
-  const response = await fetch(`${API_BASE}/api/appointments/provider/me${query}`, {
+export async function getProviderAppointments(token, query = "", { cacheBust = false } = {}) {
+  const tsSuffix = cacheBust
+    ? `${query.includes("?") ? "&" : "?"}_ts=${Date.now()}`
+    : "";
+
+  const response = await fetch(`${API_BASE}/api/appointments/provider/me${query}${tsSuffix}`, {
     method: "GET",
     headers: authHeaders(token),
     cache: "no-store",

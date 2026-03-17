@@ -165,7 +165,7 @@ export default function Account() {
 
       const token = localStorage.getItem("token");
 
-      const res = await fetch("/api/users/me", {
+      const res = await fetch(`/api/users/${user.id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

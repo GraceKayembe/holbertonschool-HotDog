@@ -222,227 +222,229 @@ export default function Account() {
   if (!user || !provider) return <p>Loading...</p>;
 
   return (
-    <div className="profile-background">
-      <div className="user-profile-container">
-        <h1 className="account-mb-5">Business Profile</h1>
-        <div className="form">
+    <div className="account-profile-background">
+      <div className="account-section">
+        <div className="account-profile-container">
+          <h1 className="account-mb-5">Business Profile</h1>
+          <div className="form">
 
-          {/* LEFT NAV */}
-          <div className="form-nav">
-            <div>
-              <h3
-                style={{
-                  fontSize: "clamp(1.25rem, 2.25vw, 1.5rem)",
-                  paddingLeft: "16px",
-                  paddingTop: "30px",
-                  paddingBottom: "30px",
-                  color: "#1f3a5f",
-                  fontWeight: 800,
-                }}
-              >
-                Account
-              </h3>
-              <FormNav
-                tabs={[
-                  { label: "Business Details", value: "details" },
-                  { label: "Manage Account", value: "account" },
-                  { label: "Business Page Preview", value: "preview" }
-                ]}
-                activeTab={activeTab}
-                setActiveTab={setActiveTab}
-              />
-            </div>
-          </div>
-
-
-          {/* RIGHT PANEL */}
-          <div className="form-panel">
-
-            {/* DETAILS TAB */}
-            {activeTab === "details" && (
-              <>
-                <h6>Business Details</h6>
-                <div className="form-block">
-                  <Form>
-                    <FormLabel
-                      name="Business Name"
-                      value={provider.name}
-                      disabled={!editMode}
-                      onChange={(e) => updateField("name", e.target.value)}
-                    />
-
-                    <FormLabel
-                      name="Email"
-                      type="email"
-                      value={provider.email || user.email}
-                      disabled={!editMode}
-                      onChange={(e) => updateField("email", e.target.value)}
-                    />
-
-                    <FormLabel
-                      name="Phone"
-                      value={provider.phone}
-                      disabled={!editMode}
-                      onChange={e => updateField("phone", e.target.value)}
-                    />
-      
-                    <FormLabel 
-                      name="Address"
-                      value={provider.address}
-                      disabled={!editMode}
-                      onChange={e => updateField("address", e.target.value)}
-                    />
-
-                    {/* DESCRIPTION */}
-                    <Form.Group className="form-label-group">
-                      <Form.Label>Description</Form.Label>
-                      <textarea
-                        name="Description"
-                        value={provider.description}
-                        disabled={!editMode}
-                        onChange={e => updateField("description", e.target.value)}
-                        className="form-control business-description"
-                      />
-                    </Form.Group>
-
-                    <FormLabel
-                      type="time"
-                      name="Opening Time"
-                      value={provider.opening_time}
-                      disabled={!editMode}
-                      onChange={e => updateField("opening_time", e.target.value)}
-                    />
-
-                    <FormLabel
-                      type="time"
-                      name="Closing Time"
-                      value={provider.closing_time}
-                      disabled={!editMode}
-                      onChange={e => updateField("closing_time", e.target.value)}
-                    />
-                  </Form>
-
-                  {editMode ? (
-                    <button
-                      className="btn-style button-yellow"
-                      onClick={saveChanges}
-                      disabled={saving}
-                    >
-                      {saving ? "Saving..." : "Save Details"}
-                    </button>
-
-                  ) : (
-
-                    <button
-                      className="btn-style button-yellow"
-                      onClick={() => setEditMode(true)}
-                    >
-                      Edit Details
-                    </button>
-                  )}
-                </div>
-              </>
-            )}
-
-            {/* ACCOUNT TAB */}
-            {activeTab === "account" && (
-              <>
-                <h6>Manage Account</h6>
-                <div className="form-block">
-
-                  {/* CHANGE PASSWORD */}
-                  <h6 style={{ marginBottom: "10px", fontSize: "1.25rem" }}>Change Password</h6>
-                  <Form>
-
-                    <FormLabel
-                      name="New Password"
-                      type="password"
-                      value={newPassword}
-                      onChange={e => setNewPassword(e.target.value)}
-                    />
-
-                    <FormLabel
-                      name="Confirm New Password"
-                      type="password"
-                      value={confirmPassword}
-                      onChange={e => setConfirmPassword(e.target.value)}
-                    />
-                  </Form>
-
-                  {passwordError && (
-                    <p style={{ color: "red", marginTop: "5px" }}>
-                      {passwordError}
-                    </p>
-                  )}
-
-                  <button
-                    className="btn-style button-yellow"
-                    onClick={updatePassword}
-                    style={{ marginTop: "10px" }}
-                  >
-                    Change Password
-                  </button>
-
-                  {/* DIVIDER */}
-                  <hr style={{ margin: "35px 0" }} />
-
-                  {/* DELETE ACCOUNT */}
-                  <h6 style={{ fontSize: "1.25rem"}}>Delete Account</h6>
-                  <p>
-                    We're sorry to see you go 😢
-                    <br /><br />
-                    This action cannot be undone and all provider data will be permanently removed.
-                  </p>
-
-                  <button
-                    className="btn-style button-navy"
-                    onClick={() => setShowDeleteModal(true)}
-                  >
-                    Delete Account
-                  </button>
-                </div>
-              </>
-            )}
-
-            {/* BUSINESS PAGE PREVIEW TAB */}
-            {activeTab === "preview" && (
-              <div className="form-block">
-                <h6>Business Page Preview</h6>
-                  <div className="preview"> 
-                    <Appointments previewMode providerData={provider} />
-                  </div>
+            {/* LEFT NAV */}
+            <div className="form-nav">
+              <div>
+                <h3
+                  style={{
+                    fontSize: "clamp(1.25rem, 2.25vw, 1.5rem)",
+                    paddingLeft: "16px",
+                    paddingTop: "30px",
+                    paddingBottom: "30px",
+                    color: "#1f3a5f",
+                    fontWeight: 800,
+                  }}
+                >
+                  Account
+                </h3>
+                <FormNav
+                  tabs={[
+                    { label: "Business Details", value: "details" },
+                    { label: "Manage Account", value: "account" },
+                    { label: "Business Page Preview", value: "preview" }
+                  ]}
+                  activeTab={activeTab}
+                  setActiveTab={setActiveTab}
+                />
               </div>
-            )}
+            </div>
+
+
+            {/* RIGHT PANEL */}
+            <div className="form-panel">
+
+              {/* DETAILS TAB */}
+              {activeTab === "details" && (
+                <>
+                  <h6>Business Details</h6>
+                  <div className="form-block">
+                    <Form>
+                      <FormLabel
+                        name="Business Name"
+                        value={provider.name}
+                        disabled={!editMode}
+                        onChange={(e) => updateField("name", e.target.value)}
+                      />
+
+                      <FormLabel
+                        name="Email"
+                        type="email"
+                        value={provider.email || user.email}
+                        disabled={!editMode}
+                        onChange={(e) => updateField("email", e.target.value)}
+                      />
+
+                      <FormLabel
+                        name="Phone"
+                        value={provider.phone}
+                        disabled={!editMode}
+                        onChange={e => updateField("phone", e.target.value)}
+                      />
+        
+                      <FormLabel 
+                        name="Address"
+                        value={provider.address}
+                        disabled={!editMode}
+                        onChange={e => updateField("address", e.target.value)}
+                      />
+
+                      {/* DESCRIPTION */}
+                      <Form.Group className="form-label-group">
+                        <Form.Label>Description</Form.Label>
+                        <textarea
+                          name="Description"
+                          value={provider.description}
+                          disabled={!editMode}
+                          onChange={e => updateField("description", e.target.value)}
+                          className="form-control business-description"
+                        />
+                      </Form.Group>
+
+                      <FormLabel
+                        type="time"
+                        name="Opening Time"
+                        value={provider.opening_time}
+                        disabled={!editMode}
+                        onChange={e => updateField("opening_time", e.target.value)}
+                      />
+
+                      <FormLabel
+                        type="time"
+                        name="Closing Time"
+                        value={provider.closing_time}
+                        disabled={!editMode}
+                        onChange={e => updateField("closing_time", e.target.value)}
+                      />
+                    </Form>
+
+                    {editMode ? (
+                      <button
+                        className="btn-style button-yellow"
+                        onClick={saveChanges}
+                        disabled={saving}
+                      >
+                        {saving ? "Saving..." : "Save Details"}
+                      </button>
+
+                    ) : (
+
+                      <button
+                        className="btn-style button-yellow"
+                        onClick={() => setEditMode(true)}
+                      >
+                        Edit Details
+                      </button>
+                    )}
+                  </div>
+                </>
+              )}
+
+              {/* ACCOUNT TAB */}
+              {activeTab === "account" && (
+                <>
+                  <h6>Manage Account</h6>
+                  <div className="form-block">
+
+                    {/* CHANGE PASSWORD */}
+                    <h6 style={{ marginBottom: "10px", fontSize: "1.25rem" }}>Change Password</h6>
+                    <Form>
+
+                      <FormLabel
+                        name="New Password"
+                        type="password"
+                        value={newPassword}
+                        onChange={e => setNewPassword(e.target.value)}
+                      />
+
+                      <FormLabel
+                        name="Confirm New Password"
+                        type="password"
+                        value={confirmPassword}
+                        onChange={e => setConfirmPassword(e.target.value)}
+                      />
+                    </Form>
+
+                    {passwordError && (
+                      <p style={{ color: "red", marginTop: "5px" }}>
+                        {passwordError}
+                      </p>
+                    )}
+
+                    <button
+                      className="btn-style button-yellow"
+                      onClick={updatePassword}
+                      style={{ marginTop: "10px" }}
+                    >
+                      Change Password
+                    </button>
+
+                    {/* DIVIDER */}
+                    <hr style={{ margin: "35px 0" }} />
+
+                    {/* DELETE ACCOUNT */}
+                    <h6 style={{ fontSize: "1.25rem"}}>Delete Account</h6>
+                    <p>
+                      We're sorry to see you go 😢
+                      <br /><br />
+                      This action cannot be undone and all provider data will be permanently removed.
+                    </p>
+
+                    <button
+                      className="btn-style button-navy"
+                      onClick={() => setShowDeleteModal(true)}
+                    >
+                      Delete Account
+                    </button>
+                  </div>
+                </>
+              )}
+
+              {/* BUSINESS PAGE PREVIEW TAB */}
+              {activeTab === "preview" && (
+                <div className="form-block">
+                  <h6>Business Page Preview</h6>
+                    <div className="preview"> 
+                      <Appointments previewMode providerData={provider} />
+                    </div>
+                </div>
+              )}
+            </div>
           </div>
+
+          {showDeleteSuccess && (
+            <div className="success-modal">
+              <div className="success-modal-content">
+                <h2>Account Deleted</h2>
+                <p>Your account has been permanently deleted.</p>
+              </div>
+            </div>
+          )}
+
+          {showPasswordSuccess && (
+            <div className="success-modal">
+              <div className="success-modal-content">
+                <h2>Password Updated</h2>
+                <p>Your password was successfully updated.</p>
+              </div>
+            </div>
+          )}
+
+          <ConfirmModal
+            show={showDeleteModal}
+            handleClose={() => setShowDeleteModal(false)}
+            handlePrimary={deleteAccount}
+            heading="Delete Account"
+            body="Are you sure you want to permanently delete your account?"
+            primaryButton="Delete Account"
+            secondaryButton="Cancel"
+          />
         </div>
-
-        {showDeleteSuccess && (
-          <div className="success-modal">
-            <div className="success-modal-content">
-              <h2>Account Deleted</h2>
-              <p>Your account has been permanently deleted.</p>
-            </div>
-          </div>
-        )}
-
-        {showPasswordSuccess && (
-          <div className="success-modal">
-            <div className="success-modal-content">
-              <h2>Password Updated</h2>
-              <p>Your password was successfully updated.</p>
-            </div>
-          </div>
-        )}
-
-        <ConfirmModal
-          show={showDeleteModal}
-          handleClose={() => setShowDeleteModal(false)}
-          handlePrimary={deleteAccount}
-          heading="Delete Account"
-          body="Are you sure you want to permanently delete your account?"
-          primaryButton="Delete Account"
-          secondaryButton="Cancel"
-        />
       </div>
     </div>
   );

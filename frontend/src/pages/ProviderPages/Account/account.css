@@ -1,19 +1,24 @@
-.profile-background {
+.account-profile-background {
   width: 100%;
-  display: flex;
-  justify-content: center;
   background-color: #f2f3f7;
+  margin: 0 auto;
   padding-top: var(--provider-padding);
   padding-bottom: var(--provider-padding);
 }
 
-.profile-container {
-  max-width: 700px;
+.account-section {
+  max-width: 800px;
   width: 100%;
+  margin: 0 auto;
+}
+
+.account-profile-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 100%;
+  align-items: flex-start;
   margin: 0 auto;
+  min-height: calc(100vh - 120px);
 }
 
 /* .form-panel {

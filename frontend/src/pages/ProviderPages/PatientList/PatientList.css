@@ -7,10 +7,17 @@
   padding-bottom: var(--provider-padding);
 }
 
+.edit-pet-provider-section {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
 .edit-pet-provider-contents-container{
   width: 100%;
-  max-width: 900px;
   margin: 0 auto;
+  align-items: flex-start;
+  min-height: calc(100vh - 120px);
   font-family: "Open Sans", sans-serif;
 }
 
@@ -23,20 +30,32 @@
 
 /* patient list */
 .all-patients-container {
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  background-color: #f2f3f7;
+  margin: 0 auto;
   padding-top: var(--provider-padding);
   padding-bottom: var(--provider-padding);
-  background-color: #f2f3f7;
+}
+
+.all-patient-section {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.patient-content-container {
+  width: 100%;
+  margin: 0 auto;
+  align-items: flex-start;
+  min-height: calc(100vh - 120px);
+  font-family: "Open Sans", sans-serif;
 }
 
 .all-patients-content {
   display: grid;
-  grid-template-rows: 80px 50px 1fr;
-  width: 100%;
-  max-width: 800px;
-  align-items: flex-start;
-  margin: 0 auto;
+  grid-template-rows: 1fr;
+  gap: 28px;
+  align-items: stretch;
 }
 
 .all-patients-header {

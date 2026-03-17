@@ -67,7 +67,7 @@ export default function ManageAppointmentProvider() {
   };
 
   return (
-    <div className="manage-appt-container">
+    <div className="provider-manage-appt-container">
       <div className="manage-appointment-provider">
         <div className="manage-appointment-provider-header">
           <button className="back-btn" onClick={() => navigate(-1)}>

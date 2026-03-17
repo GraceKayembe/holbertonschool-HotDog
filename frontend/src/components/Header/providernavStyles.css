@@ -38,30 +38,17 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 20%;
+  width: 260px;  
   background-color: #1f3a5f;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  margin-right: 30px;
-  padding-left: 60px;
-  padding-right: 50px;
-  padding-top: 100px;
-  overflow-y: auto;
-  z-index: 1000;
-  list-style: none;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 80px;
   gap: 20px;
+  list-style: none;
 }
-
-/* .provider-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-} */
 
 .provider-links li a {
   text-decoration: none;

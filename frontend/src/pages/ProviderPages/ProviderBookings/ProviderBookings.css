@@ -1,14 +1,23 @@
-/* .provider-container-background {
-  background-color: #f2f3f7 !important;
-} */
+.provider-container-background {
+  width: 100%;
+  background-color: #f2f3f7;
+  margin: 0 auto;
+  padding-top: var(--provider-padding);
+  padding-bottom: var(--provider-padding);
+}
+
+.provider-booking-section {
+  width: 100%;
+  margin: 0 auto;
+  align-items: flex-start;
+  min-height: calc(100vh - 120px);
+}
 
 .wrapper-container {
   display: flex;
   flex-direction: column;
   width: min(100%, 800px);
   margin: 0 auto;
-  padding-top: var(--provider-padding);
-  padding-bottom: clamp(3rem, 5.5vw, 5rem);
   overflow-x: hidden;
 }
 

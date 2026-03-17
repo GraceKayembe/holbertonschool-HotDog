@@ -366,20 +366,11 @@ with app.app_context():
                 comment="Great grooming session, Butters looks like a new dog!",
                 created_at=datetime.now() - timedelta(days=5)
             ),
-            # Link this to the third appointment (Paws & Claws)
-            Review(
-                provider_id=appointments[2].provider_id,
-                user_id=appointments[2].pet.owner_id,
-                appointment_id=appointments[2].id,
-                rating=4,
-                comment="Snom had a wonderful time at the vet!",
-                created_at=datetime.now() - timedelta(days=1)
-            ),
             # Link this to the fourth appointment (Happy Tails)
             Review(
-                provider_id=appointments[3].provider_id,
-                user_id=appointments[3].pet.owner_id,
-                appointment_id=appointments[3].id,
+                provider_id=appointments[4].provider_id,
+                user_id=appointments[4].pet.owner_id,
+                appointment_id=appointments[4].id,
                 rating=3,
                 comment="Happy Tails is reliable, but the 30-minute walk ended up being closer to 20 minutes today.",
                 created_at=datetime.now() - timedelta(days=1)

@@ -104,6 +104,20 @@
   margin-bottom: clamp(2rem, 3.5vw, 3rem);
 }
 
-/* .preview {
-  
-} */
+/* preview */
+.preview-wrapper {
+  margin-top: 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid #d2d7de;
+  padding: 0 40px;
+}
+
+.preview-wrapper .appointment-page {
+  padding-top: 20px !important;
+  background: white;
+}
+
+.preview-wrapper .appointment-container {
+  max-width: 100%;
+}

@@ -78,16 +78,16 @@ export default function App() {
           {/* =======================
               USER ROUTES (role: user)
           ======================= */}
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/edit-pet/:petId" element={<EditPetDetails />} />
-          <Route path="/pets" element={<AllPets />} />
-          <Route path="/user" element={<UserProfile />} />
-          <Route path="/appointments/:id" element={<Appointments />} />
-          <Route path="/manage-appointments" element={<ManageAppointments />} />
-          {/* MUST DELETE -- GRACE */}
-          <Route path="/BookingSteps" element={<BookingSteps1 />} />
-          BookingSteps
-          {/* </Route> */}
+          <Route element={<ProtectedRoute allowedRole="user" />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/edit-pet/:petId" element={<EditPetDetails />} />
+            <Route path="/pets" element={<AllPets />} />
+            <Route path="/user" element={<UserProfile />} />
+            <Route path="/appointments/:id" element={<Appointments />} />
+            <Route path="/manage-appointments" element={<ManageAppointments />} />
+            {/* MUST DELETE -- GRACE */}
+            <Route path="/BookingSteps" element={<BookingSteps1 />} />
+          </Route>
           {/* =======================
               PROVIDER ROUTES (role: provider)
           ======================= */}
